@@ -1,0 +1,1 @@
+ERROR: Codex writer lock is already held: /srv/agent-workstation/workspaces/agent-prompt-research/.codex-writer.lock

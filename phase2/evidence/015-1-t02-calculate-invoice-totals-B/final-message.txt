@@ -1,0 +1,6 @@
+Implemented the invoice calculation contract in [src/calculate-invoice-totals.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/015-1-t02-calculate-invoice-totals-B/src/calculate-invoice-totals.js).
+
+- Added integer-based round-half-up tax calculation.
+- Preserved validation and input immutability.
+- Tests: `npm test` — 1 passed, 0 failed.
+- Scope: only the allowed target changed; `git diff --check` passed.

@@ -1,0 +1,40 @@
+
+> test
+> node --test
+
+✔ stores and gets with injected now (0.381791ms)
+✔ is valid just before expiry (0.075375ms)
+✖ expires exactly at TTL and removes (0.355416ms)
+✔ delete reports presence (0.059334ms)
+✔ uses now for set and validates (0.226999ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33.274076
+
+✖ failing tests:
+
+test at test/target.test.js:5:1
+✖ expires exactly at TTL and removes (0.355416ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'v' !== undefined
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/006-1-t16-create-ttl-cache-B/test/target.test.js:5:128)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'v',
+    expected: undefined,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

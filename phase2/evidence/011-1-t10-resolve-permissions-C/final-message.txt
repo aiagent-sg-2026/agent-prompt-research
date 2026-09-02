@@ -1,0 +1,5 @@
+Implemented the permission resolver contract.
+
+- Full test suite: passed (1/1)
+- Changed files: only [`src/resolve-permissions.js`](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/011-1-t10-resolve-permissions-C/src/resolve-permissions.js)
+- Added validation, global/scoped rule matching, specificity handling, deny precedence, default deny, ordered output, and input immutability.

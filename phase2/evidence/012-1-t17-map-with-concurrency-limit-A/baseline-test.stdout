@@ -1,0 +1,58 @@
+
+> test
+> node --test
+
+✖ preserves order and caps active work (2.274125ms)
+✖ starts only the initial limit (1.107792ms)
+✔ passes value and index (0.273083ms)
+✔ rejects mapper errors (0.364791ms)
+✔ rejects bad arguments and does not mutate (0.071458ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 3
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 34.306049
+
+✖ failing tests:
+
+test at test/target.test.js:3:1
+✖ preserves order and caps active work (2.274125ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  3 !== 2
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/012-1-t17-map-with-concurrency-limit-A/test/target.test.js:3:321)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/target.test.js:4:1
+✖ starts only the initial limit (1.107792ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      1,
+      2,
+  +   3
+    ]
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/012-1-t17-map-with-concurrency-limit-A/test/target.test.js:4:250)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 1, 2, 3 ],
+    expected: [ 1, 2 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,6 @@
+Implemented the FIFO allocation fix in [src/allocate-inventory-fifo.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/002-1-t03-allocate-inventory-fifo-A/src/allocate-inventory-fifo.js).
+
+- Consumes lots in array order.
+- Preserves validation, immutability, and result behavior.
+- Tests: `npm test` — 1 passed, 0 failed.
+- No other fixture files changed.

@@ -1,0 +1,17 @@
+
+> test
+> node --test
+
+✔ preserves order and caps active work (2.128004ms)
+✔ starts only the initial limit (0.553126ms)
+✔ passes value and index (0.114667ms)
+✔ rejects mapper errors (0.220833ms)
+✔ rejects bad arguments and does not mutate (0.114958ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33.663986

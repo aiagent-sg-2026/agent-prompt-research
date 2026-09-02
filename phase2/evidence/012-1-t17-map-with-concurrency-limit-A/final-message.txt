@@ -1,0 +1,7 @@
+Implemented in [src/map-with-concurrency-limit.js](</srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/012-1-t17-map-with-concurrency-limit-A/src/map-with-concurrency-limit.js>).
+
+- Fixed worker count to enforce the strict concurrency limit.
+- Preserved ordered results and validation.
+- Stops scheduling new work after rejection while allowing active calls to settle.
+- `npm test`: 1 passed, 0 failed.
+- Only the allowed target file changed.

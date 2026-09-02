@@ -1,0 +1,17 @@
+
+> test
+> node --test
+
+✔ stores and gets with injected now (0.392124ms)
+✔ is valid just before expiry (0.069875ms)
+✔ expires exactly at TTL and removes (0.163833ms)
+✔ delete reports presence (0.120625ms)
+✔ uses now for set and validates (0.569791ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31.856462

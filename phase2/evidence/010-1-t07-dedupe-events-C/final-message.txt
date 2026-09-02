@@ -1,0 +1,7 @@
+Implemented `dedupeEvents` in [src/dedupe-events.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/010-1-t07-dedupe-events-C/src/dedupe-events.js).
+
+- Validates event arrays and records.
+- Retains the first occurrence of each ID in original order.
+- Returns a new array without mutation.
+- Full test suite: 1 passed, 0 failed.
+- Only the allowed target file changed.

@@ -1,0 +1,17 @@
+
+> test
+> node --test
+
+✔ prefers exact locale (0.386875ms)
+✔ falls back to language (0.073291ms)
+✔ tries fallback exact and language (0.054292ms)
+✔ returns falsy values and undefined when absent (0.077375ms)
+✔ uses insertion order on case collision and validates (0.471709ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31.800439

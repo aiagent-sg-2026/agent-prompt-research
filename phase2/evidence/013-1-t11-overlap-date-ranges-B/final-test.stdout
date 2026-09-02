@@ -1,0 +1,17 @@
+
+> test
+> node --test
+
+✔ returns inclusive intersection (0.640625ms)
+✔ returns null for separated ranges (0.062208ms)
+✔ accepts same-day ranges (0.050708ms)
+✔ rejects impossible dates (0.157625ms)
+✔ rejects non ISO and reversed ranges (0.067917ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31.492223

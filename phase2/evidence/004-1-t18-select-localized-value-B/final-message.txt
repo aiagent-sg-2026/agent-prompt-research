@@ -1,0 +1,9 @@
+Implemented the canonical locale fallback contract in [src/select-localized-value.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/004-1-t18-select-localized-value-B/src/select-localized-value.js).
+
+Evidence:
+
+- `npm test`: 1 passed, 0 failed
+- Edge checks passed
+- `git diff --check`: clean
+- Only changed file: `src/select-localized-value.js`
+- No evaluator-owned files changed

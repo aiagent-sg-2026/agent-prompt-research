@@ -1,0 +1,17 @@
+
+> test
+> node --test
+
+✔ plans bounded chunks (0.659332ms)
+✔ covers exact multiple without empty chunk (0.082959ms)
+✔ starts at zero (0.061208ms)
+✔ has contiguous offsets (0.111042ms)
+✔ validates positive integers (0.192083ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33.03385

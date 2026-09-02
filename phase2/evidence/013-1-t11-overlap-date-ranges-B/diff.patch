@@ -1,0 +1,44 @@
+diff --git a/src/overlap-date-ranges.js b/src/overlap-date-ranges.js
+index b87eb4b..c3c0915 100644
+--- a/src/overlap-date-ranges.js
++++ b/src/overlap-date-ranges.js
+@@ -1,4 +1,35 @@
+-/** Calendar-only range math; lexical comparison is safe for strict ISO dates. */
+-const date = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && (() => { const [y,m,d] = value.split('-').map(Number); const probe = new Date(Date.UTC(y,m-1,d)); return probe.getUTCFullYear() === y && probe.getUTCMonth() === m-1 && probe.getUTCDate() === d; })();
+-function validRange(range) { return Array.isArray(range) && range.length === 2 && date(range[0]) && date(range[1]) && range[0] <= range[1]; }
+-export function overlapDateRanges(left, right) { if (!validRange(left) || !validRange(right)) throw new TypeError('invalid date range'); const start = left[0] > right[0] ? left[0] : right[0]; const end = left[1] < right[1] ? left[1] : right[1]; return start < end ? [start, end] : null; }
++const ISO_DATE = /^(\d{4})-(\d{2})-(\d{2})$/;
++
++function isValidDate(value) {
++  if (typeof value !== 'string') return false;
++
++  const match = ISO_DATE.exec(value);
++  if (!match) return false;
++
++  const year = Number(match[1]);
++  const month = Number(match[2]);
++  const day = Number(match[3]);
++  const leapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
++  const daysInMonth = [31, leapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
++
++  return month >= 1 && month <= 12 && day >= 1 && day <= daysInMonth[month - 1];
++}
++
++function isValidRange(range) {
++  return Array.isArray(range) &&
++    range.length === 2 &&
++    isValidDate(range[0]) &&
++    isValidDate(range[1]) &&
++    range[0] <= range[1];
++}
++
++export function overlapDateRanges(left, right) {
++  if (!isValidRange(left) || !isValidRange(right)) {
++    throw new TypeError('invalid date range');
++  }
++
++  const start = left[0] > right[0] ? left[0] : right[0];
++  const end = left[1] < right[1] ? left[1] : right[1];
++
++  return start <= end ? [start, end] : null;
++}

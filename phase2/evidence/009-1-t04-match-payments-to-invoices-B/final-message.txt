@@ -1,0 +1,7 @@
+Implemented `matchPaymentsToInvoices` in [src/match-payments-to-invoices.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/009-1-t04-match-payments-to-invoices-B/src/match-payments-to-invoices.js).
+
+- Payments now apply across unpaid invoices in input order.
+- Validation, unmatched totals, balances, zero-match prevention, and immutability are preserved.
+- Tests: `1 passed, 0 failed`
+- Scope: only the allowed target changed.
+- `git diff --check`: passed.

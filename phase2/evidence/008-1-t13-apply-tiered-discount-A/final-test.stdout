@@ -1,0 +1,17 @@
+
+> test
+> node --test
+
+✔ chooses highest eligible tier (0.702458ms)
+✔ rounds half up exactly (0.074291ms)
+✔ uses zero when no tier (0.054667ms)
+✔ supports boundary eligibility (0.049ms)
+✔ validates and preserves tiers (0.25125ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31.994941

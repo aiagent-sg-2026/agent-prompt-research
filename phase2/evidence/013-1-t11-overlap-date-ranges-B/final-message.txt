@@ -1,0 +1,8 @@
+Implemented the canonical contract in [src/overlap-date-ranges.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/013-1-t11-overlap-date-ranges-B/src/overlap-date-ranges.js).
+
+- `npm test`: 1 passed, 0 failed
+- Inclusive one-day overlaps supported
+- Calendar-only validation; no local timezone behavior
+- Inputs are not mutated
+- Scope: only `src/overlap-date-ranges.js` changed
+- `git diff --check`: passed

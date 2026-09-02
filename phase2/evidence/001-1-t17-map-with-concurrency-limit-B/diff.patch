@@ -1,0 +1,32 @@
+diff --git a/src/map-with-concurrency-limit.js b/src/map-with-concurrency-limit.js
+index bfd99c4..a7d955a 100644
+--- a/src/map-with-concurrency-limit.js
++++ b/src/map-with-concurrency-limit.js
+@@ -1,2 +1,26 @@
+ /** Ordered async worker pool used by bounded import jobs. */
+-export async function mapWithConcurrencyLimit(items, limit, mapper) { if (!Array.isArray(items) || !Number.isInteger(limit) || limit < 1 || typeof mapper !== 'function') throw new TypeError('invalid worker pool'); const results = new Array(items.length); let cursor = 0; async function worker() { while (cursor < items.length) { const index = cursor++; results[index] = await mapper(items[index], index); } } await Promise.all(Array.from({ length: Math.min(limit + 1, items.length) }, worker)); return results; }
++export async function mapWithConcurrencyLimit(items, limit, mapper) {
++  if (
++    !Array.isArray(items) ||
++    !Number.isInteger(limit) ||
++    limit < 1 ||
++    typeof mapper !== 'function'
++  ) {
++    throw new TypeError('invalid worker pool');
++  }
++
++  const results = new Array(items.length);
++  let cursor = 0;
++
++  async function worker() {
++    while (cursor < items.length) {
++      const index = cursor++;
++      results[index] = await mapper(items[index], index);
++    }
++  }
++
++  await Promise.all(
++    Array.from({ length: Math.min(limit, items.length) }, worker),
++  );
++  return results;
++}

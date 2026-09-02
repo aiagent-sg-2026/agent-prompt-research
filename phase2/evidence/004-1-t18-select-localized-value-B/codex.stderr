@@ -1,0 +1,12 @@
+2026-09-02T15:22:47.950661Z ERROR codex_core::tools::router: error=exec_command failed for `/bin/bash -lc "pwd && rg --files -g '"'!node_modules'"' | sed -n '1,120p' && printf '\\n--- target ---\\n' && sed -n '1,240p' src/select-localized-value.js 2>/dev/null || true && printf '\\n--- package/test hints ---\\n' && (sed -n '1,220p' package.json 2>/dev/null || true) && rg -n \"selectLocalizedValue|localized|fixture|test\" -g '"'!node_modules'"' . | sed -n '1,160p'"`: CreateProcess { message: "Rejected(\"Failed to create unified exec process: No such file or directory (os error 2)\")" }
+2026-09-02T15:23:29.019256Z ERROR codex_core::tools::router: error=exec_command failed for `/bin/bash -lc "git diff --check && node --input-type=module - <<'NODE'
+import assert from 'node:assert/strict';
+import { selectLocalizedValue } from './src/select-localized-value.js';
+assert.equal(selectLocalizedValue({ 'pt-BR': 'exact', pt: 'language' }, 'pt-BR'), 'exact');
+assert.equal(selectLocalizedValue({ en: undefined }, 'ja'), undefined);
+assert.equal(selectLocalizedValue(Object.assign(Object.create(null), { EN: 0 }), 'ja'), 0);
+assert.throws(() => selectLocalizedValue(new Date(), 'en'), TypeError);
+assert.throws(() => selectLocalizedValue({}, 'en', null), TypeError);
+console.log('edge checks passed');
+NODE
+printf '\\n--- final scope ---\\n' && git status --short && git diff --name-only"`: CreateProcess { message: "Rejected(\"Failed to create unified exec process: No such file or directory (os error 2)\")" }

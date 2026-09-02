@@ -1,0 +1,8 @@
+Implemented `buildQueryString` in [src/build-query-string.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/003-1-t08-build-query-string-A/src/build-query-string.js).
+
+- Correct lexicographic key sorting
+- Validation and nullish omission
+- Array repetition and scalar serialization
+- URI encoding and empty output handling
+
+Verified with `npm test`: all tests pass. Only the allowed target changed.

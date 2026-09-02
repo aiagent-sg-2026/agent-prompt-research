@@ -1,0 +1,12 @@
+diff --git a/src/allocate-inventory-fifo.js b/src/allocate-inventory-fifo.js
+index 9ffe129..7a163f5 100644
+--- a/src/allocate-inventory-fifo.js
++++ b/src/allocate-inventory-fifo.js
+@@ -3,6 +3,6 @@ const validLot = lot => lot && typeof lot.id === 'string' && Number.isInteger(lo
+ function validate(lots, requested) { if (!Array.isArray(lots) || !Number.isInteger(requested) || requested < 0 || lots.some(lot => !validLot(lot))) throw new TypeError('invalid inventory request'); }
+ export function allocateInventoryFifo(lots, requested) {
+   validate(lots, requested); let remaining = requested; const allocations = [];
+-  for (const lot of [...lots].reverse()) { if (!remaining) break; const quantity = Math.min(lot.quantity, remaining); if (quantity > 0) allocations.push({ id: lot.id, quantity }); remaining -= quantity; }
++  for (const lot of lots) { if (!remaining) break; const quantity = Math.min(lot.quantity, remaining); if (quantity > 0) allocations.push({ id: lot.id, quantity }); remaining -= quantity; }
+   return { allocations, remaining };
+ }

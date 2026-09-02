@@ -1,0 +1,33 @@
+diff --git a/src/build-query-string.js b/src/build-query-string.js
+index 20908d3..f8ffb70 100644
+--- a/src/build-query-string.js
++++ b/src/build-query-string.js
+@@ -1,8 +1,24 @@
+ /** Stable query serializer shared by list and export endpoints. */
+-function scalar(value) { return typeof value === 'boolean' ? String(value) : String(value); }
+-function validObject(value) { return value !== null && typeof value === 'object' && !Array.isArray(value); }
++function validObject(value) {
++  return value !== null && typeof value === 'object' && !Array.isArray(value);
++}
++
+ export function buildQueryString(params) {
+-  if (!validObject(params)) throw new TypeError('params must be an object'); const pairs = [];
+-  for (const key of Object.keys(params).reverse()) { const value = params[key]; if (value == null) continue; const values = Array.isArray(value) ? value : [value]; for (const item of values) if (item != null) pairs.push(encodeURIComponent(key) + '=' + encodeURIComponent(scalar(item))); }
++  if (!validObject(params)) {
++    throw new TypeError('params must be an object');
++  }
++
++  const pairs = [];
++  for (const key of Object.keys(params).sort()) {
++    const value = params[key];
++    if (value == null) continue;
++
++    const values = Array.isArray(value) ? value : [value];
++    for (const item of values) {
++      if (item == null) continue;
++      pairs.push(`${encodeURIComponent(key)}=${encodeURIComponent(String(item))}`);
++    }
++  }
++
+   return pairs.join('&');
+ }

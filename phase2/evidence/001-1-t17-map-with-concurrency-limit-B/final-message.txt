@@ -1,0 +1,6 @@
+Implemented the concurrency-limited async mapper in [src/map-with-concurrency-limit.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/001-1-t17-map-with-concurrency-limit-B/src/map-with-concurrency-limit.js).
+
+- Fixed worker count to enforce the strict `limit`.
+- Preserved validation, input order, rejection behavior, and non-mutation.
+- Tests: `npm test` — 1 passed, 0 failed.
+- Scope: only the allowed target file changed.

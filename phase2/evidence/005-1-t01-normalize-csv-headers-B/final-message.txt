@@ -1,0 +1,6 @@
+Implemented the canonical CSV header normalization contract in [src/normalize-csv-headers.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/005-1-t01-normalize-csv-headers-B/src/normalize-csv-headers.js).
+
+- `npm test`: passed
+- `git diff --check`: clean
+- Scope: only the allowed target file changed
+- Unicode letters/numbers are preserved; punctuation runs normalize to underscores.

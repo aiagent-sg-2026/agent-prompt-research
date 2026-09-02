@@ -1,0 +1,2 @@
+2026-09-02T15:19:00.082568Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to read file to update /srv/agent-workstation/workspaces/agent-workstation/workspaces/agent-prompt-research/phase2/runs/001-1-t17-map-with-concurrency-limit-B/src/map-with-concurrency-limit.js: No such file or directory (os error 2)
+2026-09-02T15:19:16.995859Z ERROR codex_core::tools::router: error=exec_command failed for `/bin/bash -lc 'npm test'`: CreateProcess { message: "Rejected(\"Failed to create unified exec process: No such file or directory (os error 2)\")" }

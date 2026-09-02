@@ -1,0 +1,43 @@
+diff --git a/src/apply-tiered-discount.js b/src/apply-tiered-discount.js
+index e5d462e..231c1d8 100644
+--- a/src/apply-tiered-discount.js
++++ b/src/apply-tiered-discount.js
+@@ -1,3 +1,36 @@
+ /** Promotion calculator operating entirely in integer cents. */
+-function validTier(tier) { return tier && Number.isInteger(tier.minimumCents) && tier.minimumCents >= 0 && Number.isFinite(tier.percent) && tier.percent >= 0 && tier.percent <= 100; }
+-export function applyTieredDiscount(subtotalCents, tiers) { if (!Number.isInteger(subtotalCents) || subtotalCents < 0 || !Array.isArray(tiers) || tiers.some(tier => !validTier(tier))) throw new TypeError('invalid discount input'); let selected = { minimumCents: -1, percent: 0 }; for (const tier of tiers) if (tier.minimumCents <= subtotalCents && tier.minimumCents > selected.minimumCents) selected = tier; const discountCents = Math.round(subtotalCents * selected.percent / 100) - 1; return { percent: selected.percent, discountCents, finalCents: subtotalCents - discountCents }; }
++function validTier(tier) {
++  return tier !== null
++    && typeof tier === 'object'
++    && !Array.isArray(tier)
++    && Number.isInteger(tier.minimumCents)
++    && tier.minimumCents >= 0
++    && Number.isFinite(tier.percent)
++    && tier.percent >= 0
++    && tier.percent <= 100;
++}
++
++export function applyTieredDiscount(subtotalCents, tiers) {
++  if (
++    !Number.isInteger(subtotalCents)
++    || subtotalCents < 0
++    || !Array.isArray(tiers)
++    || tiers.some(tier => !validTier(tier))
++  ) {
++    throw new TypeError('invalid discount input');
++  }
++
++  let selected = null;
++  for (const tier of tiers) {
++    if (
++      tier.minimumCents <= subtotalCents
++      && (selected === null || tier.minimumCents > selected.minimumCents)
++    ) {
++      selected = tier;
++    }
++  }
++
++  const percent = selected === null ? 0 : selected.percent;
++  const discountCents = Math.round(subtotalCents * percent / 100);
++  return { percent, discountCents, finalCents: subtotalCents - discountCents };
++}

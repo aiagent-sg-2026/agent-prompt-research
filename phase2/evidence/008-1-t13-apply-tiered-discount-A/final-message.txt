@@ -1,0 +1,7 @@
+Implemented in [src/apply-tiered-discount.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/008-1-t13-apply-tiered-discount-A/src/apply-tiered-discount.js).
+
+- Corrected round-half-up discount calculation.
+- Enforced input and tier validation.
+- Preserved tier order, tie behavior, and immutability.
+- `npm test`: 5/5 passing.
+- No other fixture files changed.

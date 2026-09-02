@@ -1,0 +1,6 @@
+Implemented and verified the reorder threshold fix.
+
+- Final tests: `npm test` — 1 passed, 0 failed
+- Changed files: only `src/calculate-reorder-recommendation.js`
+- Implementation satisfies R1–R6, including zero reorder when available stock equals reorder point.
+- Tests, documentation, metadata, and unrelated sources unchanged.

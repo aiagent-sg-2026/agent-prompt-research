@@ -1,0 +1,17 @@
+
+> test
+> node --test
+
+✔ consumes oldest lots first (0.719377ms)
+✔ reports shortage (0.086666ms)
+✔ omits zero lots (0.168584ms)
+✔ zero request is empty (0.057375ms)
+✔ validates and does not mutate (0.200125ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33.662485
