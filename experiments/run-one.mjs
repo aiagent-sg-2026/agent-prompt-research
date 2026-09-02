@@ -47,7 +47,7 @@ const finalMessage = join(runDir, 'final-message.txt');
 const wrapper = join(root, 'scripts', 'with-codex-writer-lock.sh');
 const args = ['exec', '--ephemeral', '--ignore-user-config', '--ignore-rules', '-m', 'gpt-5.6-luna', '-c', "model_reasoning_effort='medium'", '-s', 'workspace-write', '--json', '-o', finalMessage, '-C', runDir, '-'];
 const start = new Date(); const t0 = performance.now();
-const agent = spawnSync(wrapper, args, { cwd: runDir, input: prompt, encoding: 'utf8', maxBuffer: 50 * 1024 * 1024 });
+const agent = spawnSync(wrapper, ["codex", ...args], { cwd: runDir, input: prompt, encoding: 'utf8', maxBuffer: 50 * 1024 * 1024 });
 const elapsed = Math.round(performance.now() - t0); const end = new Date();
 const agentExit = saveProcess('codex', agent);
 put(evidence('final-message.txt'), existsSync(finalMessage) ? readFileSync(finalMessage, 'utf8') : '');
