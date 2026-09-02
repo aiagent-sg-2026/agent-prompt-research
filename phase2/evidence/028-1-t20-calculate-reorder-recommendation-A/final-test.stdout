@@ -1,0 +1,17 @@
+
+> test
+> node --test
+
+✔ recommends to target from available stock (0.668886ms)
+✔ does not reorder at point (0.070917ms)
+✔ clamps reserved stock (0.067835ms)
+✔ never recommends negative quantity (0.056001ms)
+✔ validates and does not mutate (0.219712ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33.018002

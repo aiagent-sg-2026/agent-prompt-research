@@ -10,3 +10,7 @@ The first long VMMCP batch was re-entered by the connector while the original se
 2. A duplicate attempt reached the singleton wrapper while the original writer held the lock and exited `73` with `Codex writer lock is already held`. It made no target edit and is preserved under `recovery-evidence/003-lock-collision/`.
 
 The cell was then rerun once with the same frozen input and protocol hash and produced the sole valid formal cell-3 result. Neither excluded attempt is counted in `summary.json` or stability analysis.
+
+## Formal cell 21 connector re-entry
+
+A second connector re-entry occurred at cell 21. One active evidence directory was moved while the original run was still executing, leaving its result non-atomic; another duplicate was rejected by the singleton lock. The non-atomic run snapshot and both moved partial directories are preserved under `recovery-evidence/021-connector-interference/` and excluded. A later clean run from the unchanged frozen protocol produced the sole eligible cell-21 metrics (`harness_valid=true`, exact identity/hash, target-only scope, final tests passed).

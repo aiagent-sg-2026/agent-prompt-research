@@ -1,0 +1,55 @@
+
+> test
+> node --test
+
+✖ matches across invoices in order (1.149918ms)
+✔ reports unmatched and balances (0.165833ms)
+✔ does not emit zero matches (0.436001ms)
+✔ preserves input records (0.081167ms)
+✔ validates arrays and records (0.179542ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33.488007
+
+✖ failing tests:
+
+test at test/target.test.js:3:1
+✖ matches across invoices in order (1.149918ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      {
+        cents: 50,
+        invoiceId: 'i1',
+        paymentId: 'p1'
+      },
+  -   {
+  -     cents: 50,
+  -     invoiceId: 'i2',
+  -     paymentId: 'p1'
+  -   },
+  -   {
+  -     cents: 30,
+  -     invoiceId: 'i2',
+  -     paymentId: 'p2'
+  -   }
+    ]
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/023-1-t04-match-payments-to-invoices-A/test/target.test.js:3:52)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { paymentId: 'p1', invoiceId: 'i1', cents: 50 } ],
+    expected: [ { paymentId: 'p1', invoiceId: 'i1', cents: 50 }, { paymentId: 'p1', invoiceId: 'i2', cents: 50 }, { paymentId: 'p2', invoiceId: 'i2', cents: 30 } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

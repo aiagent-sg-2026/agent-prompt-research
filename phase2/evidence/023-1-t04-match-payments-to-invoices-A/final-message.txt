@@ -1,0 +1,8 @@
+Implemented the requested change in [src/match-payments-to-invoices.js](/srv/agent-workstation/workspaces/agent-workstation/workspaces/agent-prompt-research/phase2/runs/023-1-t04-match-payments-to-invoices-A/src/match-payments-to-invoices.js).
+
+- Payments now apply across invoices in input order.
+- Validation covers arrays and valid records.
+- Inputs remain unmutated.
+- Zero-cent matches are excluded.
+- Fixture tests and focused edge-case tests pass.
+- Only the allowed target file changed.

@@ -1,0 +1,17 @@
+
+> test
+> node --test
+
+✔ keeps first id order (0.642971ms)
+✔ duplicate timestamp does not replace first (0.086293ms)
+✔ returns a new array (0.060834ms)
+✔ accepts finite timestamp boundaries (0.053209ms)
+✔ validates array and records (0.209879ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31.424538

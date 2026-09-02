@@ -1,0 +1,6 @@
+Implemented and verified.
+
+- Final tests: `npm test` passed (1 test file, 0 failures).
+- Changed scope: only [src/calculate-invoice-totals.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/021-1-t02-calculate-invoice-totals-C/src/calculate-invoice-totals.js).
+- Added strict input validation, exact integer subtotal calculation, half-up tax rounding using integer arithmetic, correct totals, and preserved input immutability.
+- Tests, documentation, metadata, and unrelated sources were unchanged.

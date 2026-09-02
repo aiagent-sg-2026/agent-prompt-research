@@ -1,0 +1,7 @@
+Implemented `calculateReorderRecommendation` in [src/calculate-reorder-recommendation.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/018-1-t20-calculate-reorder-recommendation-B/src/calculate-reorder-recommendation.js).
+
+- Enforces plain object and non-negative integer inputs.
+- Correctly handles availability, reorder-point boundary, and clamping.
+- Does not mutate input or use time/randomness.
+- Tests: `npm test` — 1 passed, 0 failed.
+- Scope: only the allowed target file changed.

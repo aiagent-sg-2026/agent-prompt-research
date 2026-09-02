@@ -1,0 +1,47 @@
+
+> test
+> node --test
+
+✔ recommends to target from available stock (0.647876ms)
+✖ does not reorder at point (0.579751ms)
+✔ clamps reserved stock (0.07775ms)
+✔ never recommends negative quantity (0.402084ms)
+✔ validates and does not mutate (0.145334ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33.519209
+
+✖ failing tests:
+
+test at test/target.test.js:4:1
+✖ does not reorder at point (0.579751ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      available: 7,
+  +   needsReorder: true,
+  +   reorder: 13
+  -   needsReorder: false,
+  -   reorder: 0
+    }
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/018-1-t20-calculate-reorder-recommendation-B/test/target.test.js:4:45)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { available: 7, reorder: 13, needsReorder: true },
+    expected: { available: 7, reorder: 0, needsReorder: false },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

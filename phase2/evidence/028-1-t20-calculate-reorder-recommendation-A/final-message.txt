@@ -1,0 +1,7 @@
+Implemented the requested change in [src/calculate-reorder-recommendation.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/028-1-t20-calculate-reorder-recommendation-A/src/calculate-reorder-recommendation.js).
+
+- Fixed reorder-point equality handling.
+- Enforced plain-object input validation.
+- Preserved immutability and required return shape.
+- Tests: `npm test` — 1 passed, 0 failed.
+- No fixture files changed.

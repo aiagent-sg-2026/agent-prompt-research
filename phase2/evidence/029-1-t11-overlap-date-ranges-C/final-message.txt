@@ -1,0 +1,7 @@
+Implemented the contract in [src/overlap-date-ranges.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/029-1-t11-overlap-date-ranges-C/src/overlap-date-ranges.js).
+
+- Added inclusive one-day overlap handling.
+- Replaced `Date` usage with timezone-independent calendar validation.
+- Preserved input immutability and TypeError validation.
+- Final `npm test`: passed.
+- Changed files: only the allowed target.

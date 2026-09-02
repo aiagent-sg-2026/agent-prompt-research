@@ -238,7 +238,7 @@
     "title": "Phase 2 · Stability replication",
     "intro": "20 realistic synthetic engineering tasks × 3 prompt variants × 5 repeats, in a frozen randomized balanced order.",
     "cells": "Formal cells",
-    "cellsNote": "5% complete",
+    "cellsNote": "live progress snapshot",
     "success": "Task success so far",
     "successNote": "descriptive progress only",
     "scope": "Unrelated edits",

@@ -1,0 +1,1 @@
+2026-09-02T15:44:57.434359Z ERROR codex_core::tools::router: error=exec_command failed for `/bin/bash -lc "npm test && printf '\\n--- diff check ---\\n' && git diff --check && git status --short && git diff -- src/create-ttl-cache.js"`: CreateProcess { message: "Rejected(\"Failed to create unified exec process: No such file or directory (os error 2)\")" }

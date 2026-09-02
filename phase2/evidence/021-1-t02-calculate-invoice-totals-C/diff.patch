@@ -1,0 +1,70 @@
+diff --git a/src/calculate-invoice-totals.js b/src/calculate-invoice-totals.js
+index 87c2a1f..828b4b4 100644
+--- a/src/calculate-invoice-totals.js
++++ b/src/calculate-invoice-totals.js
+@@ -1,10 +1,58 @@
+ /** Integer-cent invoice calculator; callers provide rates as percentages. */
+-const isInteger = value => Number.isInteger(value);
+-function validateLine(line) { if (!line || !isInteger(line.quantity) || line.quantity < 0 || !isInteger(line.unitCents) || line.unitCents < 0) throw new TypeError('invalid invoice line'); }
+-function roundHalfUp(numerator, denominator) { return Math.floor((numerator + denominator / 2) / denominator); }
++
++const isNonNegativeInteger = value => Number.isInteger(value) && value >= 0;
++
++function validateLine(line) {
++  if (
++    line === null ||
++    typeof line !== 'object' ||
++    Array.isArray(line) ||
++    !isNonNegativeInteger(line.quantity) ||
++    !isNonNegativeInteger(line.unitCents)
++  ) {
++    throw new TypeError('invalid invoice line');
++  }
++}
++
++function rateAsFraction(rate) {
++  const text = String(rate).toLowerCase();
++  const [mantissa, exponentText] = text.split('e');
++  const exponent = exponentText === undefined ? 0 : Number(exponentText);
++  const [whole, fraction = ''] = mantissa.split('.');
++  const digits = `${whole}${fraction}`;
++  const scale = fraction.length - exponent;
++
++  if (scale >= 0) {
++    return { numerator: BigInt(digits), denominator: 10n ** BigInt(scale) };
++  }
++  return { numerator: BigInt(digits) * 10n ** BigInt(-scale), denominator: 1n };
++}
++
++function roundHalfUp(numerator, denominator) {
++  return (numerator * 2n + denominator) / (denominator * 2n);
++}
++
+ export function calculateInvoiceTotals(lines, taxRatePercent) {
+-  if (!Array.isArray(lines) || !Number.isFinite(taxRatePercent) || taxRatePercent < 0) throw new TypeError('invalid invoice');
+-  lines.forEach(validateLine); const subtotalCents = lines.reduce((sum, line) => sum + line.quantity * line.unitCents, 0);
+-  const taxCents = Math.floor(subtotalCents * taxRatePercent / 100); // intentionally incomplete rounding policy
+-  return { subtotalCents, taxCents, totalCents: subtotalCents + taxCents };
++  if (!Array.isArray(lines) || !Number.isFinite(taxRatePercent) || taxRatePercent < 0) {
++    throw new TypeError('invalid invoice');
++  }
++
++  let subtotalCents = 0n;
++  for (const line of lines) {
++    validateLine(line);
++    subtotalCents += BigInt(line.quantity) * BigInt(line.unitCents);
++  }
++
++  const { numerator: rateNumerator, denominator: rateDenominator } = rateAsFraction(taxRatePercent);
++  const taxCents = roundHalfUp(
++    subtotalCents * rateNumerator,
++    rateDenominator * 100n,
++  );
++  const totalCents = subtotalCents + taxCents;
++
++  return {
++    subtotalCents: Number(subtotalCents),
++    taxCents: Number(taxCents),
++    totalCents: Number(totalCents),
++  };
+ }

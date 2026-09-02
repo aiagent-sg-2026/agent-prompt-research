@@ -1,0 +1,34 @@
+diff --git a/src/select-localized-value.js b/src/select-localized-value.js
+index 58bf457..099d2b4 100644
+--- a/src/select-localized-value.js
++++ b/src/select-localized-value.js
+@@ -1,5 +1,26 @@
+ /** Locale selection with exact and language-subtag fallback. */
+-const plain = value => value !== null && typeof value === 'object' && !Array.isArray(value);
++const plain = value => {
++  if (value === null || typeof value !== 'object') return false;
++  const prototype = Object.getPrototypeOf(value);
++  return prototype === Object.prototype || prototype === null;
++};
++
+ const language = locale => locale.split('-')[0];
+-function find(values, wanted) { const normalized = wanted.toLowerCase(); const key = Object.keys(values).find(candidate => candidate.toLowerCase() === normalized); return key === undefined ? undefined : values[key]; }
+-export function selectLocalizedValue(values, requested, fallback = 'en') { if (!plain(values) || typeof requested !== 'string' || typeof fallback !== 'string') throw new TypeError('invalid locale input'); for (const candidate of [language(requested), requested, fallback, language(fallback)]) { const found = find(values, candidate); if (found !== undefined) return found; } return undefined; }
++
++function find(values, wanted) {
++  const normalized = wanted.toLowerCase();
++  return Object.keys(values).find(candidate => candidate.toLowerCase() === normalized);
++}
++
++export function selectLocalizedValue(values, requested, fallback = 'en') {
++  if (!plain(values) || typeof requested !== 'string' || typeof fallback !== 'string') {
++    throw new TypeError('invalid locale input');
++  }
++
++  for (const candidate of [requested, language(requested), fallback, language(fallback)]) {
++    const key = find(values, candidate);
++    if (key !== undefined) return values[key];
++  }
++
++  return undefined;
++}

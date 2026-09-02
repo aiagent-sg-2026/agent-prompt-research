@@ -1,0 +1,9 @@
+Implemented the TTL cache in [src/create-ttl-cache.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/030-1-t16-create-ttl-cache-C/src/create-ttl-cache.js).
+
+- Corrected expiry at exactly `ttlMs`.
+- Preserved injected-clock validation and usage.
+- Ensured cache methods and return semantics satisfy R1–R6.
+- No timers, wall-clock globals, or unrelated changes.
+
+Final tests: `npm test` — 1 passed, 0 failed.  
+Changed scope: only `src/create-ttl-cache.js`.

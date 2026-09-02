@@ -1,0 +1,52 @@
+
+> test
+> node --test
+
+✖ keeps first id order (1.212026ms)
+✔ duplicate timestamp does not replace first (0.167503ms)
+✔ returns a new array (0.070668ms)
+✔ accepts finite timestamp boundaries (0.06721ms)
+✔ validates array and records (0.219713ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 34.03355
+
+✖ failing tests:
+
+test at test/target.test.js:3:1
+✖ keeps first id order (1.212026ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      {
+  +     id: 'b',
+  +     timestamp: 1
+  +   },
+  +   {
+        id: 'a',
+        timestamp: 2
+      },
+  -   {
+  -     id: 'b',
+  -     timestamp: 1
+  -   }
+    ]
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/026-1-t07-dedupe-events-A/test/target.test.js:3:40)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { id: 'b', timestamp: 1 }, { id: 'a', timestamp: 2 } ],
+    expected: [ { id: 'a', timestamp: 2 }, { id: 'b', timestamp: 1 } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

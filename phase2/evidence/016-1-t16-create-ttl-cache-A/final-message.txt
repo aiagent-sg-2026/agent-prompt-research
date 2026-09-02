@@ -1,0 +1,9 @@
+Implemented `createTtlCache` in [src/create-ttl-cache.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/016-1-t16-create-ttl-cache-A/src/create-ttl-cache.js).
+
+- Validates TTL and injected clock.
+- Supports `get`, `set`, `has`, and `delete`.
+- Expires entries at `age >= ttlMs`.
+- Uses only the injected clock.
+- Modified no other fixture files.
+
+Tests: `npm test` — 1 passed, 0 failed.

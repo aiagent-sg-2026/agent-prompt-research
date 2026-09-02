@@ -1,4 +1,4 @@
-const CACHE_NAME = 'apr-site-v3';
+const CACHE_NAME = 'apr-site-v4';
 const PRECACHE = [
   './index.html', './tcm.html', './styles.css', './app.js', './manifest.webmanifest', './data/summary.json', './data/phase2-summary.json',
   './i18n/en.json', './i18n/zh-CN.json', './i18n/zh-TW.json',

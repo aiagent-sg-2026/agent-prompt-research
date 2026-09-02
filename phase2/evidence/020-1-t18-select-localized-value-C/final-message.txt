@@ -1,0 +1,8 @@
+Implemented all R1–R6 in [src/select-localized-value.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/020-1-t18-select-localized-value-C/src/select-localized-value.js).
+
+- Exact locale precedence and case-insensitive insertion-order matching
+- Strict plain-object/string validation
+- Falsy and explicit `undefined` values preserved
+- No mutation
+
+Final tests: `npm test` — 1 passed, 0 failed. Only the allowed target changed.

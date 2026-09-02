@@ -1,0 +1,38 @@
+
+> test
+> node --test
+
+✖ prefers exact locale (0.748334ms)
+✔ falls back to language (0.079667ms)
+✔ tries fallback exact and language (0.051458ms)
+✔ returns falsy values and undefined when absent (0.148209ms)
+✔ uses insertion order on case collision and validates (0.166959ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33.181835
+
+✖ failing tests:
+
+test at test/target.test.js:3:1
+✖ prefers exact locale (0.748334ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'oi' !== 'olá'
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/020-1-t18-select-localized-value-C/test/target.test.js:3:40)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'oi',
+    expected: 'olá',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

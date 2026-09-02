@@ -1,0 +1,5 @@
+Implemented the canonical contract in [src/apply-tiered-discount.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/022-1-t13-apply-tiered-discount-B/src/apply-tiered-discount.js).
+
+- Fixture tests: 1 passed, 0 failed
+- Scope: only the allowed target changed
+- Evaluator-owned files unchanged

@@ -1,0 +1,25 @@
+diff --git a/src/dedupe-events.js b/src/dedupe-events.js
+index e4751bf..13b2cdc 100644
+--- a/src/dedupe-events.js
++++ b/src/dedupe-events.js
+@@ -1,3 +1,18 @@
+ /** Keeps the first event for replay protection while retaining its original object shape. */
+-function valid(event) { return event && typeof event.id === 'string' && Number.isFinite(event.timestamp); }
+-export function dedupeEvents(events) { if (!Array.isArray(events) || events.some(event => !valid(event))) throw new TypeError('invalid event'); const seen = new Set(); return events.filter(event => { if (seen.has(event.id)) return false; seen.add(event.id); return true; }).reverse(); }
++function valid(event) {
++  return event !== null && typeof event === 'object' &&
++    typeof event.id === 'string' && Number.isFinite(event.timestamp);
++}
++
++export function dedupeEvents(events) {
++  if (!Array.isArray(events) || events.some(event => !valid(event))) {
++    throw new TypeError('invalid event');
++  }
++
++  const seen = new Set();
++  return events.filter(event => {
++    if (seen.has(event.id)) return false;
++    seen.add(event.id);
++    return true;
++  });
++}

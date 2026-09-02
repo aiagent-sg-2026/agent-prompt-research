@@ -1,0 +1,9 @@
+Implemented in [src/redact-sensitive-fields.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/027-1-t06-redact-sensitive-fields-A/src/redact-sensitive-fields.js).
+
+- Deeply copies plain objects and arrays.
+- Redacts exact, case-sensitive configured keys without traversing values.
+- Preserves primitives and non-plain objects by reference.
+- Validates `fields` as an array of strings.
+- Does not mutate input.
+
+Verification: `npm test` passed all tests. Only the allowed target changed.

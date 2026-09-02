@@ -1,0 +1,7 @@
+Implemented `dedupeEvents` in [src/dedupe-events.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/026-1-t07-dedupe-events-A/src/dedupe-events.js).
+
+- Validates input and event fields, throwing `TypeError` when invalid.
+- Removes duplicate IDs while retaining first occurrence order.
+- Returns a new array without mutation.
+- Tests pass: 1/1.
+- Only the allowed target file changed.

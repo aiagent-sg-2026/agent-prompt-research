@@ -1,0 +1,18 @@
+
+> test
+> node --test
+
+✔ redacts nested plain objects (0.670346ms)
+✔ redacts arrays without mutation (0.105585ms)
+✔ preserves primitives and dates by reference (0.07921ms)
+✔ uses exact custom names (0.38759ms)
+✔ does not traverse redacted values (0.08046ms)
+✔ validates field list (0.182503ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 35.357557

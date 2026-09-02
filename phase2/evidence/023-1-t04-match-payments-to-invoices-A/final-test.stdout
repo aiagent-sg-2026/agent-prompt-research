@@ -1,0 +1,17 @@
+
+> test
+> node --test
+
+✔ matches across invoices in order (0.724793ms)
+✔ reports unmatched and balances (0.111875ms)
+✔ does not emit zero matches (0.0565ms)
+✔ preserves input records (0.472167ms)
+✔ validates arrays and records (0.211542ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31.767504
