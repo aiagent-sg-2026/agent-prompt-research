@@ -1,0 +1,49 @@
+{
+  "status": "IN_PROGRESS",
+  "valid_cells": 15,
+  "total_cells": 300,
+  "protocol_hash": "16c0d5f58a941564bed45fa212797c2dafc906d0813b670874a7291ccb40c5ef",
+  "verdict": null,
+  "success_count": 15,
+  "unrelated_edit_count": 0,
+  "retry_proxy_total": 12,
+  "by_variant": [
+    {
+      "variant": "A",
+      "count": 4,
+      "success_count": 4,
+      "success_rate": 1,
+      "mean_input_tokens": 69129,
+      "mean_cached_input_tokens": 60480,
+      "mean_output_tokens": 1338.5,
+      "mean_latency_ms": 43056.5,
+      "mean_diff_lines": 24.25,
+      "unrelated_edit_count": 0
+    },
+    {
+      "variant": "B",
+      "count": 7,
+      "success_count": 7,
+      "success_rate": 1,
+      "mean_input_tokens": 112887.28571428571,
+      "mean_cached_input_tokens": 99547.42857142857,
+      "mean_output_tokens": 2222.4285714285716,
+      "mean_latency_ms": 65226,
+      "mean_diff_lines": 31.571428571428573,
+      "unrelated_edit_count": 0
+    },
+    {
+      "variant": "C",
+      "count": 4,
+      "success_count": 4,
+      "success_rate": 1,
+      "mean_input_tokens": 124237.5,
+      "mean_cached_input_tokens": 110336,
+      "mean_output_tokens": 2106.5,
+      "mean_latency_ms": 65933,
+      "mean_diff_lines": 22,
+      "unrelated_edit_count": 0
+    }
+  ],
+  "note": "Progress monitoring only. The preregistered stability verdict is withheld until 300/300 valid formal cells."
+}

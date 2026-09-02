@@ -9,3 +9,7 @@ The service worker version-precaches both `index.html` and `tcm.html` plus CSS, 
 All app URLs use `./`-relative paths so the site works under a GitHub Pages project path such as `/agent-prompt-research/`; artifact links remain absolute GitHub URLs.
 
 Install prompts are not universal, and browser/platform support varies. This site does not claim a Lighthouse score or guarantee installation on every browser.
+
+## Phase 2 progress data
+
+The home PWA reads `data/phase2-summary.json` as a public progress snapshot. The service worker uses network-first behavior for this changing file and falls back to its cached copy offline. While `valid_cells < 300`, the public stability `verdict` must remain `null`; early variant aggregates are progress monitoring only.

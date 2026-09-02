@@ -1,5 +1,6 @@
 const SUPPORTED_LOCALES = ['en', 'zh-CN', 'zh-TW'];
 const dataUrl = 'data/summary.json';
+const phase2DataUrl = 'data/phase2-summary.json';
 const localeUrl = (locale) => `i18n/${locale}.json`;
 let currentLocale = 'en';
 let deferredInstallPrompt = null;
@@ -41,11 +42,27 @@ function renderSummary(summary, dictionary) {
   const tasks = document.querySelector('#task-table tbody');
   if (tasks) { tasks.replaceChildren(); summary.runs.forEach((item) => { const row = document.createElement('tr'); const head = cell(get(dictionary, `task.${item.task}`), 'th'); head.scope = 'row'; row.append(head, cell(item.variant), cell(formatNumber(item.input_tokens)), cell(formatSeconds(item.wall_clock_ms)), cell(formatNumber(item.diff_lines)), cell(item.task_success ? get(dictionary, 'common.yes') : get(dictionary, 'common.no'))); tasks.append(row); }); }
 }
+
+function renderPhase2(summary, dictionary) {
+  const progress = document.querySelector('#phase2-progress-value');
+  const success = document.querySelector('#phase2-success-value');
+  const scope = document.querySelector('#phase2-scope-value');
+  const verdict = document.querySelector('#phase2-verdict-value');
+  if (progress) progress.textContent = `${formatNumber(summary.valid_cells, 0)}/${formatNumber(summary.total_cells, 0)}`;
+  if (success) success.textContent = `${formatNumber(summary.success_count, 0)}/${formatNumber(summary.valid_cells, 0)}`;
+  if (scope) scope.textContent = formatNumber(summary.unrelated_edit_count, 0);
+  if (verdict) verdict.textContent = summary.verdict || get(dictionary, 'phase2.pending');
+}
+async function loadPhase2(dictionary) {
+  if (!document.querySelector('#phase2-progress-value')) return;
+  try { const response = await fetch(phase2DataUrl, { cache: 'no-store' }); if (response.ok) renderPhase2(await response.json(), dictionary); } catch { /* Server-rendered progress is the offline fallback. */ }
+}
 async function loadLocale(locale) {
   currentLocale = normalizeLocale(locale) || 'en'; let dictionary;
   try { const response = await fetch(localeUrl(currentLocale)); if (!response.ok) throw new Error('locale'); dictionary = await response.json(); } catch { currentLocale = 'en'; const response = await fetch(localeUrl('en')); dictionary = await response.json(); }
   translate(dictionary); try { localStorage.setItem('apr-locale', currentLocale); } catch { /* Optional preference. */ }
   try { const response = await fetch(dataUrl); if (response.ok) renderSummary(await response.json(), dictionary); } catch { /* Server-rendered HTML is the fallback. */ }
+  await loadPhase2(dictionary);
 }
 function updateLocaleUrl(locale) {
   if (!window.history?.replaceState) return;

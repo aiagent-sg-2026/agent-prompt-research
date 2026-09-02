@@ -1,6 +1,6 @@
-const CACHE_NAME = 'apr-site-v2';
+const CACHE_NAME = 'apr-site-v3';
 const PRECACHE = [
-  './index.html', './tcm.html', './styles.css', './app.js', './manifest.webmanifest', './data/summary.json',
+  './index.html', './tcm.html', './styles.css', './app.js', './manifest.webmanifest', './data/summary.json', './data/phase2-summary.json',
   './i18n/en.json', './i18n/zh-CN.json', './i18n/zh-TW.json',
   './icons/icon-192.png', './icons/icon-512.png', './icons/icon-512-maskable.png', './icons/apple-touch-icon-180.png'
 ];
@@ -17,6 +17,14 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin) return;
   if (request.mode === 'navigate') {
     event.respondWith(fetch(request).catch(() => caches.match(url.pathname.endsWith('/tcm.html') ? './tcm.html' : './index.html')));
+    return;
+  }
+  if (url.pathname.endsWith('/data/phase2-summary.json')) {
+    event.respondWith(fetch(request).then((response) => {
+      const copy = response.clone();
+      caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+      return response;
+    }).catch(() => caches.match(request)));
     return;
   }
   event.respondWith(caches.match(request).then((cached) => cached || fetch(request)));

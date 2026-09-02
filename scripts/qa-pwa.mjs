@@ -6,7 +6,7 @@ const docs = join(root, 'docs');
 const failures = [];
 const required = [
   'manifest.webmanifest', 'sw.js', 'PWA.md', 'tcm.html', 'i18n/en.json', 'i18n/zh-CN.json', 'i18n/zh-TW.json',
-  'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-512-maskable.png', 'icons/apple-touch-icon-180.png'
+  'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-512-maskable.png', 'icons/apple-touch-icon-180.png', 'data/summary.json', 'data/phase2-summary.json'
 ];
 for (const file of required) if (!existsSync(join(docs, file))) failures.push(`missing ${file}`);
 const read = (file) => readFileSync(join(root, file), 'utf8');
@@ -46,7 +46,7 @@ if (manifest.id !== './' || manifest.start_url !== './index.html' || manifest.sc
 for (const field of ['name', 'short_name', 'description', 'theme_color', 'background_color']) if (typeof manifest[field] !== 'string' || !manifest[field]) failures.push(`manifest missing ${field}`);
 if (manifest.display !== 'standalone' || manifest.prefer_related_applications !== false) failures.push('manifest install fields incorrect');
 for (const icon of manifest.icons || []) if (!existsSync(join(docs, icon.src.replace(/^\.\//, '')))) failures.push(`manifest icon missing: ${icon.src}`);
-for (const asset of ['./index.html', './tcm.html', './styles.css', './app.js', './manifest.webmanifest', './data/summary.json', './i18n/en.json', './i18n/zh-CN.json', './i18n/zh-TW.json', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-512-maskable.png', './icons/apple-touch-icon-180.png']) if (!sw.includes(asset)) failures.push(`service worker precache missing: ${asset}`);
+for (const asset of ['./index.html', './tcm.html', './styles.css', './app.js', './manifest.webmanifest', './data/summary.json', './data/phase2-summary.json', './i18n/en.json', './i18n/zh-CN.json', './i18n/zh-TW.json', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-512-maskable.png', './icons/apple-touch-icon-180.png']) if (!sw.includes(asset)) failures.push(`service worker precache missing: ${asset}`);
 if (!sw.includes("request.method !== 'GET'") || !sw.includes('url.origin !== self.location.origin') || !sw.includes("request.mode === 'navigate'") || !sw.includes("'./index.html'") || !sw.includes("'./tcm.html'") || !sw.includes('caches.delete')) failures.push('service worker safety/fallback/cleanup hook missing');
 if (!html.includes('manifest.webmanifest') || !tcm.includes('manifest.webmanifest') || !html.includes('apple-touch-icon-180.png') || !tcm.includes('apple-touch-icon-180.png') || !app.includes('serviceWorker') || !app.includes('beforeinstallprompt') || !app.includes("'online'") || !app.includes("'offline'")) failures.push('PWA HTML/app hooks missing');
 if ([html, tcm].some((page) => page.includes('href="../') || page.includes('src="../'))) failures.push('parent-relative HTML asset link found');
@@ -59,4 +59,18 @@ if (!app.includes("['A', 'B', 'C']") || !app.includes('data/summary.json') || !a
 if (!app.includes("startsWith('zh-hant')") || !app.includes("startsWith('zh-hans')")) failures.push('BCP-47 Chinese locale family mapping missing');
 
 if (failures.length) { console.error(failures.join('\n')); process.exit(1); }
-console.log('PWA QA passed: manifest, icons, locale parity/coverage, safe paths, service worker, hooks, links, and Phase 1 invariants are valid.');
+
+const phase2 = JSON.parse(readFileSync(join(root, 'docs/data/phase2-summary.json'), 'utf8'));
+if (phase2.total_cells !== 300 || !Number.isInteger(phase2.valid_cells) || phase2.valid_cells < 0 || phase2.valid_cells > 300) failures.push('Phase 2 public progress shape is invalid');
+if (phase2.valid_cells < 300 && phase2.verdict !== null) failures.push('Phase 2 public verdict must remain null before 300/300');
+if (phase2.success_count > phase2.valid_cells || phase2.unrelated_edit_count < 0) failures.push('Phase 2 public progress counts are invalid');
+if (!html.includes('id="phase2"') || !html.includes('id="phase2-progress-value"') || !html.includes('data-i18n="phase2.pending"')) failures.push('Phase 2 site hooks are missing');
+if (!app.includes("const phase2DataUrl = 'data/phase2-summary.json'" ) || !app.includes('renderPhase2') || !app.includes('loadPhase2')) failures.push('Phase 2 dynamic loader is missing');
+if (!sw.includes("'./data/phase2-summary.json'") || !sw.includes("endsWith('/data/phase2-summary.json')")) failures.push('Phase 2 service-worker data strategy is missing');
+for (const [locale, dictionary] of locales) {
+  for (const key of ['phase2.eyebrow','phase2.title','phase2.intro','phase2.cells','phase2.success','phase2.scope','phase2.verdict','phase2.pending','phase2.warningTitle','phase2.warning','phase2.protocolLink','phase2.summaryLink','phase2.evidenceLink','phase2.recoveryLink','nav.phase2']) {
+    if (!dictionary[key]) failures.push(`missing Phase 2 locale key ${locale}: ${key}`);
+  }
+}
+if (failures.length) { console.error(failures.join('\n')); process.exit(1); }
+console.log(`PWA QA passed: manifest, icons, locale parity/coverage, offline hooks, TCM links, Phase 1 invariants, and Phase 2 ${phase2.valid_cells}/300 pending-state contract are valid.`);
