@@ -80,8 +80,10 @@ const metrics = {
   target_changed: targetChanged, unrelated_files_changed: unrelated, unrelated_edit_count: unrelated.length,
   agent_test_invocations: testInvocations, test_retry_count: Math.max(0, testInvocations - 1),
   test_retry_count_definition: 'Operational proxy: max(0, completed agent test-command events - 1); not provider retry count.',
+  harness_valid: agentExit === 0,
   task_success: finalExit === 0 && targetChanged && unrelated.length === 0 && agentExit === 0
 };
 put(evidence('metrics.json'), JSON.stringify(metrics, null, 2) + '\n');
 console.log(JSON.stringify(metrics, null, 2));
 if (agent.error) console.error(agent.error.message);
+if (agentExit !== 0) process.exit(3);
