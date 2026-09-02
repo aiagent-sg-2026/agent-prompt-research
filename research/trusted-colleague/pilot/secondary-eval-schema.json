@@ -1,0 +1,61 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["responses", "ranking"],
+  "properties": {
+    "responses": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["W", "X", "Y", "Z"],
+      "properties": {
+        "W": {"$ref": "#/$defs/score"},
+        "X": {"$ref": "#/$defs/score"},
+        "Y": {"$ref": "#/$defs/score"},
+        "Z": {"$ref": "#/$defs/score"}
+      }
+    },
+    "ranking": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {"type": "string", "enum": ["W", "X", "Y", "Z"]}
+    }
+  },
+  "$defs": {
+    "score": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["task_success", "colleague_fit", "cfs", "willingness", "naturalness", "competence", "trust", "clarity", "initiative", "constructive_challenge", "guardrails", "reason"],
+      "properties": {
+        "task_success": {"type": "integer", "minimum": 0, "maximum": 2},
+        "colleague_fit": {"type": "integer", "minimum": 1, "maximum": 7},
+        "cfs": {"type": "integer", "minimum": 0, "maximum": 20},
+        "willingness": {"type": "integer", "minimum": 1, "maximum": 7},
+        "naturalness": {"type": "integer", "minimum": 1, "maximum": 7},
+        "competence": {"type": "integer", "minimum": 1, "maximum": 7},
+        "trust": {"type": "integer", "minimum": 1, "maximum": 7},
+        "clarity": {"type": "integer", "minimum": 1, "maximum": 7},
+        "initiative": {"type": "integer", "minimum": 1, "maximum": 7},
+        "constructive_challenge": {"type": "integer", "minimum": 1, "maximum": 7},
+        "guardrails": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["unnecessary_question", "agreement_bias", "unsupported_certainty", "context_overreach", "over_initiative", "excessive_disagreement", "repetition", "meta_talk", "formatting_overhead", "safety_authority_violation"],
+          "properties": {
+            "unnecessary_question": {"type": "boolean"},
+            "agreement_bias": {"type": "boolean"},
+            "unsupported_certainty": {"type": "boolean"},
+            "context_overreach": {"type": "boolean"},
+            "over_initiative": {"type": "boolean"},
+            "excessive_disagreement": {"type": "boolean"},
+            "repetition": {"type": "boolean"},
+            "meta_talk": {"type": "boolean"},
+            "formatting_overhead": {"type": "boolean"},
+            "safety_authority_violation": {"type": "boolean"}
+          }
+        },
+        "reason": {"type": "string", "minLength": 1, "maxLength": 600}
+      }
+    }
+  }
+}

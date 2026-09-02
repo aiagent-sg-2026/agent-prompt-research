@@ -1,0 +1,342 @@
+{
+  "version": "tcm-pilot-order-v1",
+  "seed": "tcm-pilot-generation-20260903-v1",
+  "cells": [
+    {
+      "orderIndex": 1,
+      "taskId": "p02",
+      "conditionId": "B",
+      "repeat": 1,
+      "cellId": "p02__B__r1"
+    },
+    {
+      "orderIndex": 2,
+      "taskId": "p06",
+      "conditionId": "C",
+      "repeat": 1,
+      "cellId": "p06__C__r1"
+    },
+    {
+      "orderIndex": 3,
+      "taskId": "p06",
+      "conditionId": "B",
+      "repeat": 1,
+      "cellId": "p06__B__r1"
+    },
+    {
+      "orderIndex": 4,
+      "taskId": "p06",
+      "conditionId": "A",
+      "repeat": 1,
+      "cellId": "p06__A__r1"
+    },
+    {
+      "orderIndex": 5,
+      "taskId": "p02",
+      "conditionId": "D",
+      "repeat": 1,
+      "cellId": "p02__D__r1"
+    },
+    {
+      "orderIndex": 6,
+      "taskId": "p04",
+      "conditionId": "D",
+      "repeat": 1,
+      "cellId": "p04__D__r1"
+    },
+    {
+      "orderIndex": 7,
+      "taskId": "p04",
+      "conditionId": "B",
+      "repeat": 1,
+      "cellId": "p04__B__r1"
+    },
+    {
+      "orderIndex": 8,
+      "taskId": "p01",
+      "conditionId": "C",
+      "repeat": 1,
+      "cellId": "p01__C__r1"
+    },
+    {
+      "orderIndex": 9,
+      "taskId": "p01",
+      "conditionId": "B",
+      "repeat": 1,
+      "cellId": "p01__B__r1"
+    },
+    {
+      "orderIndex": 10,
+      "taskId": "p01",
+      "conditionId": "A",
+      "repeat": 1,
+      "cellId": "p01__A__r1"
+    },
+    {
+      "orderIndex": 11,
+      "taskId": "p02",
+      "conditionId": "A",
+      "repeat": 1,
+      "cellId": "p02__A__r1"
+    },
+    {
+      "orderIndex": 12,
+      "taskId": "p05",
+      "conditionId": "B",
+      "repeat": 1,
+      "cellId": "p05__B__r1"
+    },
+    {
+      "orderIndex": 13,
+      "taskId": "p05",
+      "conditionId": "D",
+      "repeat": 1,
+      "cellId": "p05__D__r1"
+    },
+    {
+      "orderIndex": 14,
+      "taskId": "p03",
+      "conditionId": "B",
+      "repeat": 1,
+      "cellId": "p03__B__r1"
+    },
+    {
+      "orderIndex": 15,
+      "taskId": "p04",
+      "conditionId": "C",
+      "repeat": 1,
+      "cellId": "p04__C__r1"
+    },
+    {
+      "orderIndex": 16,
+      "taskId": "p06",
+      "conditionId": "D",
+      "repeat": 1,
+      "cellId": "p06__D__r1"
+    },
+    {
+      "orderIndex": 17,
+      "taskId": "p05",
+      "conditionId": "A",
+      "repeat": 1,
+      "cellId": "p05__A__r1"
+    },
+    {
+      "orderIndex": 18,
+      "taskId": "p02",
+      "conditionId": "C",
+      "repeat": 1,
+      "cellId": "p02__C__r1"
+    },
+    {
+      "orderIndex": 19,
+      "taskId": "p04",
+      "conditionId": "A",
+      "repeat": 1,
+      "cellId": "p04__A__r1"
+    },
+    {
+      "orderIndex": 20,
+      "taskId": "p03",
+      "conditionId": "A",
+      "repeat": 1,
+      "cellId": "p03__A__r1"
+    },
+    {
+      "orderIndex": 21,
+      "taskId": "p05",
+      "conditionId": "C",
+      "repeat": 1,
+      "cellId": "p05__C__r1"
+    },
+    {
+      "orderIndex": 22,
+      "taskId": "p03",
+      "conditionId": "C",
+      "repeat": 1,
+      "cellId": "p03__C__r1"
+    },
+    {
+      "orderIndex": 23,
+      "taskId": "p03",
+      "conditionId": "D",
+      "repeat": 1,
+      "cellId": "p03__D__r1"
+    },
+    {
+      "orderIndex": 24,
+      "taskId": "p01",
+      "conditionId": "D",
+      "repeat": 1,
+      "cellId": "p01__D__r1"
+    },
+    {
+      "orderIndex": 25,
+      "taskId": "p05",
+      "conditionId": "C",
+      "repeat": 2,
+      "cellId": "p05__C__r2"
+    },
+    {
+      "orderIndex": 26,
+      "taskId": "p06",
+      "conditionId": "A",
+      "repeat": 2,
+      "cellId": "p06__A__r2"
+    },
+    {
+      "orderIndex": 27,
+      "taskId": "p04",
+      "conditionId": "A",
+      "repeat": 2,
+      "cellId": "p04__A__r2"
+    },
+    {
+      "orderIndex": 28,
+      "taskId": "p01",
+      "conditionId": "A",
+      "repeat": 2,
+      "cellId": "p01__A__r2"
+    },
+    {
+      "orderIndex": 29,
+      "taskId": "p03",
+      "conditionId": "B",
+      "repeat": 2,
+      "cellId": "p03__B__r2"
+    },
+    {
+      "orderIndex": 30,
+      "taskId": "p02",
+      "conditionId": "B",
+      "repeat": 2,
+      "cellId": "p02__B__r2"
+    },
+    {
+      "orderIndex": 31,
+      "taskId": "p04",
+      "conditionId": "B",
+      "repeat": 2,
+      "cellId": "p04__B__r2"
+    },
+    {
+      "orderIndex": 32,
+      "taskId": "p02",
+      "conditionId": "C",
+      "repeat": 2,
+      "cellId": "p02__C__r2"
+    },
+    {
+      "orderIndex": 33,
+      "taskId": "p03",
+      "conditionId": "C",
+      "repeat": 2,
+      "cellId": "p03__C__r2"
+    },
+    {
+      "orderIndex": 34,
+      "taskId": "p06",
+      "conditionId": "B",
+      "repeat": 2,
+      "cellId": "p06__B__r2"
+    },
+    {
+      "orderIndex": 35,
+      "taskId": "p05",
+      "conditionId": "D",
+      "repeat": 2,
+      "cellId": "p05__D__r2"
+    },
+    {
+      "orderIndex": 36,
+      "taskId": "p01",
+      "conditionId": "B",
+      "repeat": 2,
+      "cellId": "p01__B__r2"
+    },
+    {
+      "orderIndex": 37,
+      "taskId": "p06",
+      "conditionId": "D",
+      "repeat": 2,
+      "cellId": "p06__D__r2"
+    },
+    {
+      "orderIndex": 38,
+      "taskId": "p06",
+      "conditionId": "C",
+      "repeat": 2,
+      "cellId": "p06__C__r2"
+    },
+    {
+      "orderIndex": 39,
+      "taskId": "p01",
+      "conditionId": "C",
+      "repeat": 2,
+      "cellId": "p01__C__r2"
+    },
+    {
+      "orderIndex": 40,
+      "taskId": "p04",
+      "conditionId": "C",
+      "repeat": 2,
+      "cellId": "p04__C__r2"
+    },
+    {
+      "orderIndex": 41,
+      "taskId": "p01",
+      "conditionId": "D",
+      "repeat": 2,
+      "cellId": "p01__D__r2"
+    },
+    {
+      "orderIndex": 42,
+      "taskId": "p04",
+      "conditionId": "D",
+      "repeat": 2,
+      "cellId": "p04__D__r2"
+    },
+    {
+      "orderIndex": 43,
+      "taskId": "p02",
+      "conditionId": "A",
+      "repeat": 2,
+      "cellId": "p02__A__r2"
+    },
+    {
+      "orderIndex": 44,
+      "taskId": "p02",
+      "conditionId": "D",
+      "repeat": 2,
+      "cellId": "p02__D__r2"
+    },
+    {
+      "orderIndex": 45,
+      "taskId": "p03",
+      "conditionId": "D",
+      "repeat": 2,
+      "cellId": "p03__D__r2"
+    },
+    {
+      "orderIndex": 46,
+      "taskId": "p05",
+      "conditionId": "B",
+      "repeat": 2,
+      "cellId": "p05__B__r2"
+    },
+    {
+      "orderIndex": 47,
+      "taskId": "p05",
+      "conditionId": "A",
+      "repeat": 2,
+      "cellId": "p05__A__r2"
+    },
+    {
+      "orderIndex": 48,
+      "taskId": "p03",
+      "conditionId": "A",
+      "repeat": 2,
+      "cellId": "p03__A__r2"
+    }
+  ]
+}
