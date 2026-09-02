@@ -1,0 +1,17 @@
+{
+  "id": "./",
+  "name": "Agent Prompt Research",
+  "short_name": "APR Research",
+  "description": "Evidence-backed report from a completed Agent Prompt Research pilot.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "theme_color": "#084b4a",
+  "background_color": "#f7f8f5",
+  "prefer_related_applications": false,
+  "icons": [
+    { "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "./icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

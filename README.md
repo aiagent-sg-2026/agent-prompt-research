@@ -6,7 +6,7 @@ Research question: **Do lean, outcome-first prompts outperform long prescriptive
 
 ## Navigate
 
-- [Report](REPORT.md), [methodology](research/methodology.md), and [research site](docs/index.html).
+- [Report](REPORT.md), [methodology](research/methodology.md), and the [PWA/mobile-first/i18n research site](docs/index.html) (English, 简体中文, 繁體中文).
 - [Official guidance](research/official-guidance.md), [peer-reviewed research](research/peer-reviewed.md), [preprints](research/preprints.md), and [hypotheses](research/hypotheses.md).
 - `experiments/prompts/` — raw A/B/C prompts; `fixtures/` — deterministic Node fixtures.
 - `experiments/run-one.mjs` — one run; `experiments/run-matrix.mjs --run` — frozen sequential matrix (official runs are complete; do not rerun them casually).
