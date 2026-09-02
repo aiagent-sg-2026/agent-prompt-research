@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "excluded_from_formal_results": true,
+  "cells": [
+    {
+      "task": "t05-parse-pagination-query",
+      "variant": "A",
+      "mode": "smoke",
+      "protocol_hash": "16c0d5f58a941564bed45fa212797c2dafc906d0813b670874a7291ccb40c5ef",
+      "harness_valid": true,
+      "task_success": true,
+      "input_tokens": 99565,
+      "cached_input_tokens": 86528,
+      "output_tokens": 1774,
+      "wall_clock_ms": 60070,
+      "diff_lines": 2,
+      "test_invocations": 1,
+      "test_retry_proxy": 0,
+      "unrelated_edit_count": 0
+    },
+    {
+      "task": "t10-resolve-permissions",
+      "variant": "B",
+      "mode": "smoke",
+      "protocol_hash": "16c0d5f58a941564bed45fa212797c2dafc906d0813b670874a7291ccb40c5ef",
+      "harness_valid": true,
+      "task_success": true,
+      "input_tokens": 112657,
+      "cached_input_tokens": 93440,
+      "output_tokens": 2994,
+      "wall_clock_ms": 84282,
+      "diff_lines": 52,
+      "test_invocations": 1,
+      "test_retry_proxy": 0,
+      "unrelated_edit_count": 0
+    },
+    {
+      "task": "t17-map-with-concurrency-limit",
+      "variant": "C",
+      "mode": "smoke",
+      "protocol_hash": "16c0d5f58a941564bed45fa212797c2dafc906d0813b670874a7291ccb40c5ef",
+      "harness_valid": true,
+      "task_success": true,
+      "input_tokens": 112285,
+      "cached_input_tokens": 99584,
+      "output_tokens": 2440,
+      "wall_clock_ms": 68388,
+      "diff_lines": 41,
+      "test_invocations": 2,
+      "test_retry_proxy": 1,
+      "unrelated_edit_count": 0
+    }
+  ]
+}

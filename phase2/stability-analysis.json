@@ -1,0 +1,9 @@
+{
+  "status": "IN_PROGRESS",
+  "verdict": null,
+  "valid_cells": 0,
+  "task_clusters": 20,
+  "bootstrap_seed": "agent-prompt-phase2-analysis-20260902-v1",
+  "resamples": 10000,
+  "note": "Stability verdict is withheld until exactly 300 valid formal cells."
+}
