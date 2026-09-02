@@ -1,0 +1,71 @@
+
+> test
+> node --test
+
+✔ returns the first resolved value, including falsy values (0.510875ms)
+✖ retries rejection and returns the later value (0.113916ms)
+✖ throws the final error unchanged after retries are exhausted (0.340459ms)
+✖ validates operation and retries (0.403458ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 1
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 35.477811
+
+✖ failing tests:
+
+test at test/retry.test.js:9:1
+✖ retries rejection and returns the later value (0.113916ms)
+  Error: temporary
+      at file:///srv/agent-workstation/workspaces/agent-prompt-research/experiments/runs/t2-retry/C/test/retry.test.js:11:75
+      at retry (file:///srv/agent-workstation/workspaces/agent-prompt-research/experiments/runs/t2-retry/C/src/retry.js:2:10)
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/experiments/runs/t2-retry/C/test/retry.test.js:11:22)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at test/retry.test.js:15:1
+✖ throws the final error unchanged after retries are exhausted (0.340459ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  Error: earlier
+      at async TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/experiments/runs/t2-retry/C/test/retry.test.js:17:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: earlier
+        at file:///srv/agent-workstation/workspaces/agent-prompt-research/experiments/runs/t2-retry/C/test/retry.test.js:17:95
+        at retry (file:///srv/agent-workstation/workspaces/agent-prompt-research/experiments/runs/t2-retry/C/src/retry.js:2:10)
+        at file:///srv/agent-workstation/workspaces/agent-prompt-research/experiments/runs/t2-retry/C/test/retry.test.js:17:30
+        at waitForActual (node:assert:632:21)
+        at strict.rejects (node:assert:769:31)
+        at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/experiments/runs/t2-retry/C/test/retry.test.js:17:16)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19),
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at test/retry.test.js:21:1
+✖ validates operation and retries (0.403458ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (TypeError).
+      at async TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/experiments/runs/t2-retry/C/test/retry.test.js:23:46)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }

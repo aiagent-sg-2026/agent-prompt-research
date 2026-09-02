@@ -1,0 +1,8 @@
+Implemented `normalizeTags` in [src/normalize-tags.js](/srv/agent-workstation/workspaces/agent-prompt-research/experiments/runs/t1-normalize-tags/A/src/normalize-tags.js).
+
+- Validates input and throws `TypeError` when invalid
+- Trims, lowercases, removes empty values
+- Deduplicates while preserving order
+- Does not mutate the input
+
+`npm test`: **passed**. Only the target file changed.

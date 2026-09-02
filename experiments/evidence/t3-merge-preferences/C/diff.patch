@@ -1,0 +1,80 @@
+diff --git a/src/merge-preferences.js b/src/merge-preferences.js
+index 6ada6d2..bbab325 100644
+--- a/src/merge-preferences.js
++++ b/src/merge-preferences.js
+@@ -1,3 +1,74 @@
+ export function mergePreferences(defaults, overrides) {
+-  return { ...defaults, ...overrides };
++  if (!isPlainObject(defaults) || !isPlainObject(overrides)) {
++    throw new TypeError('defaults and overrides must be plain objects');
++  }
++
++  return mergeObjects(defaults, overrides);
++}
++
++function isPlainObject(value) {
++  if (value === null || typeof value !== 'object' || Array.isArray(value)) {
++    return false;
++  }
++
++  const prototype = Object.getPrototypeOf(value);
++  return prototype === Object.prototype || prototype === null;
++}
++
++function mergeObjects(defaults, overrides) {
++  const result = {};
++
++  for (const key of enumerableKeys(defaults)) {
++    setValue(result, key, cloneValue(defaults[key]));
++  }
++
++  for (const key of enumerableKeys(overrides)) {
++    const override = overrides[key];
++
++    if (override === undefined) {
++      if (!Object.prototype.hasOwnProperty.call(result, key)) {
++        setValue(result, key, undefined);
++      }
++      continue;
++    }
++
++    setValue(result, key, isPlainObject(result[key]) && isPlainObject(override)
++      ? mergeObjects(result[key], override)
++      : cloneValue(override));
++  }
++
++  return result;
++}
++
++function cloneValue(value) {
++  if (isPlainObject(value)) {
++    const result = {};
++    for (const key of enumerableKeys(value)) {
++      setValue(result, key, cloneValue(value[key]));
++    }
++    return result;
++  }
++
++  if (Array.isArray(value)) {
++    const result = new Array(value.length);
++    for (const key of enumerableKeys(value)) {
++      setValue(result, key, cloneValue(value[key]));
++    }
++    return result;
++  }
++
++  return value;
++}
++
++function enumerableKeys(value) {
++  return Reflect.ownKeys(value).filter(key => Object.prototype.propertyIsEnumerable.call(value, key));
++}
++
++function setValue(object, key, value) {
++  Object.defineProperty(object, key, {
++    configurable: true,
++    enumerable: true,
++    value,
++    writable: true,
++  });
+ }

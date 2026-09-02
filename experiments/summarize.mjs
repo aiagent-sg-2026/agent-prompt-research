@@ -18,7 +18,9 @@ const byVariant = ['A','B','C'].map(variant => {
     latency_ms: { mean: latency.length ? latency.reduce((a,b) => a+b, 0) / latency.length : null, median: median(latency) },
     changed_files: sum('changed_file_count'), diff_lines: sum('diff_lines'), unrelated_edit_count: sum('unrelated_edit_count'), agent_test_invocations: sum('agent_test_invocations'), test_retry_count: sum('test_retry_count') };
 });
-const output = { status: rows.every(x => x.status === 'PENDING') ? 'PENDING' : 'PARTIAL_OR_COMPLETE', note: 'Descriptive pilot aggregation only; no causal claims.', frozen_order: order.map(([task,variant]) => ({task,variant})), by_variant: byVariant, runs: rows };
+const allPending = rows.every(x => x.status === 'PENDING');
+const allComplete = rows.every(x => x.status !== 'PENDING');
+const output = { status: allPending ? 'PENDING' : allComplete ? 'COMPLETE' : 'PARTIAL', note: 'Descriptive pilot aggregation only; no causal claims.', frozen_order: order.map(([task,variant]) => ({task,variant})), by_variant: byVariant, runs: rows };
 mkdirSync(join(root, 'experiments'), { recursive: true }); mkdirSync(join(root, 'docs', 'data'), { recursive: true });
 writeFileSync(join(root, 'experiments', 'summary.json'), JSON.stringify(output, null, 2) + '\n'); writeFileSync(join(root, 'docs', 'data', 'summary.json'), JSON.stringify(output, null, 2) + '\n');
 const fields = ['task','variant','status','task_success','prompt_chars','input_tokens','cached_input_tokens','output_tokens','wall_clock_ms','changed_file_count','diff_lines','unrelated_edit_count','agent_test_invocations','test_retry_count'];

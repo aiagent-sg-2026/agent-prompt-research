@@ -1,0 +1,32 @@
+{
+  "task": "t1-normalize-tags",
+  "variant": "B",
+  "model": "gpt-5.6-luna",
+  "codex_cli": "0.151.0",
+  "reasoning_effort": "medium",
+  "prompt_chars": 868,
+  "start_iso": "2026-09-02T13:37:27.365Z",
+  "end_iso": "2026-09-02T13:38:04.939Z",
+  "wall_clock_ms": 37573,
+  "codex_exit_code": 0,
+  "baseline_test_exit_code": 1,
+  "final_test_exit_code": 0,
+  "input_tokens": 84515,
+  "cached_input_tokens": 76288,
+  "output_tokens": 877,
+  "changed_files": [
+    "src/normalize-tags.js"
+  ],
+  "changed_file_count": 1,
+  "additions": 5,
+  "deletions": 1,
+  "diff_lines": 6,
+  "target_changed": true,
+  "unrelated_files_changed": [],
+  "unrelated_edit_count": 0,
+  "agent_test_invocations": 1,
+  "test_retry_count": 0,
+  "test_retry_count_definition": "Operational proxy: max(0, completed agent test-command events - 1); not provider retry count.",
+  "harness_valid": true,
+  "task_success": true
+}

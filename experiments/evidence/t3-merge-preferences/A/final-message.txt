@@ -1,0 +1,9 @@
+Implemented `mergePreferences` in [src/merge-preferences.js](/srv/agent-workstation/workspaces/agent-prompt-research/experiments/runs/t3-merge-preferences/A/src/merge-preferences.js).
+
+- Validates root inputs.
+- Recursively merges plain objects.
+- Deep-clones nested objects and arrays.
+- Preserves defaults for `undefined` overrides.
+- Leaves non-plain override values as replacements.
+
+`npm test`: 1 passed, 0 failed. Only the target file changed.

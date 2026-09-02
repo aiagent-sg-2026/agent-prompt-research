@@ -1,0 +1,15 @@
+
+> test
+> node --test
+
+✔ normalizes, filters, deduplicates, preserves order, and does not mutate (0.654917ms)
+✔ rejects non-arrays and non-string elements (0.205667ms)
+✔ handles an empty input (0.063125ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 30.87281

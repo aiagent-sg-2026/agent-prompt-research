@@ -1,0 +1,475 @@
+{
+  "status": "COMPLETE",
+  "note": "Descriptive pilot aggregation only; no causal claims.",
+  "frozen_order": [
+    {
+      "task": "t1-normalize-tags",
+      "variant": "A"
+    },
+    {
+      "task": "t2-retry",
+      "variant": "B"
+    },
+    {
+      "task": "t3-merge-preferences",
+      "variant": "C"
+    },
+    {
+      "task": "t1-normalize-tags",
+      "variant": "B"
+    },
+    {
+      "task": "t2-retry",
+      "variant": "C"
+    },
+    {
+      "task": "t3-merge-preferences",
+      "variant": "A"
+    },
+    {
+      "task": "t1-normalize-tags",
+      "variant": "C"
+    },
+    {
+      "task": "t2-retry",
+      "variant": "A"
+    },
+    {
+      "task": "t3-merge-preferences",
+      "variant": "B"
+    }
+  ],
+  "by_variant": [
+    {
+      "variant": "A",
+      "run_count": 3,
+      "completed_count": 3,
+      "success_count": 3,
+      "success_rate": 1,
+      "prompt_chars": {
+        "total": 2068,
+        "mean": 689.3333333333334
+      },
+      "input_tokens": {
+        "total": 198009,
+        "mean": 66003
+      },
+      "cached_input_tokens": {
+        "total": 173568,
+        "mean": 57856
+      },
+      "output_tokens": {
+        "total": 3784,
+        "mean": 1261.3333333333333
+      },
+      "latency_ms": {
+        "mean": 40665,
+        "median": 39782
+      },
+      "changed_files": {
+        "total": 3,
+        "mean": 1
+      },
+      "diff_lines": {
+        "total": 80,
+        "mean": 26.666666666666668
+      },
+      "unrelated_edit_count": {
+        "total": 0,
+        "mean": 0
+      },
+      "agent_test_invocations": {
+        "total": 3,
+        "mean": 1
+      },
+      "test_retry_count": {
+        "total": 0,
+        "mean": 0
+      }
+    },
+    {
+      "variant": "B",
+      "run_count": 3,
+      "completed_count": 3,
+      "success_count": 3,
+      "success_rate": 1,
+      "prompt_chars": {
+        "total": 2784,
+        "mean": 928
+      },
+      "input_tokens": {
+        "total": 259756,
+        "mean": 86585.33333333333
+      },
+      "cached_input_tokens": {
+        "total": 222720,
+        "mean": 74240
+      },
+      "output_tokens": {
+        "total": 4049,
+        "mean": 1349.6666666666667
+      },
+      "latency_ms": {
+        "mean": 47265.333333333336,
+        "median": 47739
+      },
+      "changed_files": {
+        "total": 3,
+        "mean": 1
+      },
+      "diff_lines": {
+        "total": 52,
+        "mean": 17.333333333333332
+      },
+      "unrelated_edit_count": {
+        "total": 0,
+        "mean": 0
+      },
+      "agent_test_invocations": {
+        "total": 3,
+        "mean": 1
+      },
+      "test_retry_count": {
+        "total": 0,
+        "mean": 0
+      }
+    },
+    {
+      "variant": "C",
+      "run_count": 3,
+      "completed_count": 3,
+      "success_count": 3,
+      "success_rate": 1,
+      "prompt_chars": {
+        "total": 3870,
+        "mean": 1290
+      },
+      "input_tokens": {
+        "total": 292798,
+        "mean": 97599.33333333333
+      },
+      "cached_input_tokens": {
+        "total": 255232,
+        "mean": 85077.33333333333
+      },
+      "output_tokens": {
+        "total": 5964,
+        "mean": 1988
+      },
+      "latency_ms": {
+        "mean": 58231.666666666664,
+        "median": 53546
+      },
+      "changed_files": {
+        "total": 3,
+        "mean": 1
+      },
+      "diff_lines": {
+        "total": 109,
+        "mean": 36.333333333333336
+      },
+      "unrelated_edit_count": {
+        "total": 0,
+        "mean": 0
+      },
+      "agent_test_invocations": {
+        "total": 4,
+        "mean": 1.3333333333333333
+      },
+      "test_retry_count": {
+        "total": 1,
+        "mean": 0.3333333333333333
+      }
+    }
+  ],
+  "runs": [
+    {
+      "task": "t1-normalize-tags",
+      "variant": "A",
+      "model": "gpt-5.6-luna",
+      "codex_cli": "0.151.0",
+      "reasoning_effort": "medium",
+      "prompt_chars": 626,
+      "start_iso": "2026-09-02T13:31:01.568Z",
+      "end_iso": "2026-09-02T13:31:34.618Z",
+      "wall_clock_ms": 33050,
+      "codex_exit_code": 0,
+      "baseline_test_exit_code": 1,
+      "final_test_exit_code": 0,
+      "input_tokens": 55370,
+      "cached_input_tokens": 48128,
+      "output_tokens": 889,
+      "changed_files": [
+        "src/normalize-tags.js"
+      ],
+      "changed_file_count": 1,
+      "additions": 17,
+      "deletions": 1,
+      "diff_lines": 18,
+      "target_changed": true,
+      "unrelated_files_changed": [],
+      "unrelated_edit_count": 0,
+      "agent_test_invocations": 1,
+      "test_retry_count": 0,
+      "test_retry_count_definition": "Operational proxy: max(0, completed agent test-command events - 1); not provider retry count.",
+      "harness_valid": true,
+      "task_success": true
+    },
+    {
+      "task": "t2-retry",
+      "variant": "B",
+      "model": "gpt-5.6-luna",
+      "codex_cli": "0.151.0",
+      "reasoning_effort": "medium",
+      "prompt_chars": 889,
+      "start_iso": "2026-09-02T13:33:59.006Z",
+      "end_iso": "2026-09-02T13:34:55.491Z",
+      "wall_clock_ms": 56484,
+      "codex_exit_code": 0,
+      "baseline_test_exit_code": 1,
+      "final_test_exit_code": 0,
+      "input_tokens": 101227,
+      "cached_input_tokens": 87296,
+      "output_tokens": 1475,
+      "changed_files": [
+        "src/retry.js"
+      ],
+      "changed_file_count": 1,
+      "additions": 15,
+      "deletions": 1,
+      "diff_lines": 16,
+      "target_changed": true,
+      "unrelated_files_changed": [],
+      "unrelated_edit_count": 0,
+      "agent_test_invocations": 1,
+      "test_retry_count": 0,
+      "test_retry_count_definition": "Operational proxy: max(0, completed agent test-command events - 1); not provider retry count.",
+      "harness_valid": true,
+      "task_success": true
+    },
+    {
+      "task": "t3-merge-preferences",
+      "variant": "C",
+      "model": "gpt-5.6-luna",
+      "codex_cli": "0.151.0",
+      "reasoning_effort": "medium",
+      "prompt_chars": 1409,
+      "start_iso": "2026-09-02T13:34:55.746Z",
+      "end_iso": "2026-09-02T13:36:19.087Z",
+      "wall_clock_ms": 83340,
+      "codex_exit_code": 0,
+      "baseline_test_exit_code": 1,
+      "final_test_exit_code": 0,
+      "input_tokens": 130290,
+      "cached_input_tokens": 107520,
+      "output_tokens": 3082,
+      "changed_files": [
+        "src/merge-preferences.js"
+      ],
+      "changed_file_count": 1,
+      "additions": 72,
+      "deletions": 1,
+      "diff_lines": 73,
+      "target_changed": true,
+      "unrelated_files_changed": [],
+      "unrelated_edit_count": 0,
+      "agent_test_invocations": 2,
+      "test_retry_count": 1,
+      "test_retry_count_definition": "Operational proxy: max(0, completed agent test-command events - 1); not provider retry count.",
+      "harness_valid": true,
+      "task_success": true
+    },
+    {
+      "task": "t1-normalize-tags",
+      "variant": "B",
+      "model": "gpt-5.6-luna",
+      "codex_cli": "0.151.0",
+      "reasoning_effort": "medium",
+      "prompt_chars": 868,
+      "start_iso": "2026-09-02T13:37:27.365Z",
+      "end_iso": "2026-09-02T13:38:04.939Z",
+      "wall_clock_ms": 37573,
+      "codex_exit_code": 0,
+      "baseline_test_exit_code": 1,
+      "final_test_exit_code": 0,
+      "input_tokens": 84515,
+      "cached_input_tokens": 76288,
+      "output_tokens": 877,
+      "changed_files": [
+        "src/normalize-tags.js"
+      ],
+      "changed_file_count": 1,
+      "additions": 5,
+      "deletions": 1,
+      "diff_lines": 6,
+      "target_changed": true,
+      "unrelated_files_changed": [],
+      "unrelated_edit_count": 0,
+      "agent_test_invocations": 1,
+      "test_retry_count": 0,
+      "test_retry_count_definition": "Operational proxy: max(0, completed agent test-command events - 1); not provider retry count.",
+      "harness_valid": true,
+      "task_success": true
+    },
+    {
+      "task": "t2-retry",
+      "variant": "C",
+      "model": "gpt-5.6-luna",
+      "codex_cli": "0.151.0",
+      "reasoning_effort": "medium",
+      "prompt_chars": 1251,
+      "start_iso": "2026-09-02T13:38:14.164Z",
+      "end_iso": "2026-09-02T13:39:07.711Z",
+      "wall_clock_ms": 53546,
+      "codex_exit_code": 0,
+      "baseline_test_exit_code": 1,
+      "final_test_exit_code": 0,
+      "input_tokens": 90662,
+      "cached_input_tokens": 82432,
+      "output_tokens": 1736,
+      "changed_files": [
+        "src/retry.js"
+      ],
+      "changed_file_count": 1,
+      "additions": 14,
+      "deletions": 1,
+      "diff_lines": 15,
+      "target_changed": true,
+      "unrelated_files_changed": [],
+      "unrelated_edit_count": 0,
+      "agent_test_invocations": 1,
+      "test_retry_count": 0,
+      "test_retry_count_definition": "Operational proxy: max(0, completed agent test-command events - 1); not provider retry count.",
+      "harness_valid": true,
+      "task_success": true
+    },
+    {
+      "task": "t3-merge-preferences",
+      "variant": "A",
+      "model": "gpt-5.6-luna",
+      "codex_cli": "0.151.0",
+      "reasoning_effort": "medium",
+      "prompt_chars": 792,
+      "start_iso": "2026-09-02T13:39:19.902Z",
+      "end_iso": "2026-09-02T13:40:09.066Z",
+      "wall_clock_ms": 49163,
+      "codex_exit_code": 0,
+      "baseline_test_exit_code": 1,
+      "final_test_exit_code": 0,
+      "input_tokens": 72798,
+      "cached_input_tokens": 64256,
+      "output_tokens": 1731,
+      "changed_files": [
+        "src/merge-preferences.js"
+      ],
+      "changed_file_count": 1,
+      "additions": 42,
+      "deletions": 1,
+      "diff_lines": 43,
+      "target_changed": true,
+      "unrelated_files_changed": [],
+      "unrelated_edit_count": 0,
+      "agent_test_invocations": 1,
+      "test_retry_count": 0,
+      "test_retry_count_definition": "Operational proxy: max(0, completed agent test-command events - 1); not provider retry count.",
+      "harness_valid": true,
+      "task_success": true
+    },
+    {
+      "task": "t1-normalize-tags",
+      "variant": "C",
+      "model": "gpt-5.6-luna",
+      "codex_cli": "0.151.0",
+      "reasoning_effort": "medium",
+      "prompt_chars": 1210,
+      "start_iso": "2026-09-02T13:40:18.510Z",
+      "end_iso": "2026-09-02T13:40:56.319Z",
+      "wall_clock_ms": 37809,
+      "codex_exit_code": 0,
+      "baseline_test_exit_code": 1,
+      "final_test_exit_code": 0,
+      "input_tokens": 71846,
+      "cached_input_tokens": 65280,
+      "output_tokens": 1146,
+      "changed_files": [
+        "src/normalize-tags.js"
+      ],
+      "changed_file_count": 1,
+      "additions": 20,
+      "deletions": 1,
+      "diff_lines": 21,
+      "target_changed": true,
+      "unrelated_files_changed": [],
+      "unrelated_edit_count": 0,
+      "agent_test_invocations": 1,
+      "test_retry_count": 0,
+      "test_retry_count_definition": "Operational proxy: max(0, completed agent test-command events - 1); not provider retry count.",
+      "harness_valid": true,
+      "task_success": true
+    },
+    {
+      "task": "t2-retry",
+      "variant": "A",
+      "model": "gpt-5.6-luna",
+      "codex_cli": "0.151.0",
+      "reasoning_effort": "medium",
+      "prompt_chars": 650,
+      "start_iso": "2026-09-02T13:41:08.122Z",
+      "end_iso": "2026-09-02T13:41:47.904Z",
+      "wall_clock_ms": 39782,
+      "codex_exit_code": 0,
+      "baseline_test_exit_code": 1,
+      "final_test_exit_code": 0,
+      "input_tokens": 69841,
+      "cached_input_tokens": 61184,
+      "output_tokens": 1164,
+      "changed_files": [
+        "src/retry.js"
+      ],
+      "changed_file_count": 1,
+      "additions": 18,
+      "deletions": 1,
+      "diff_lines": 19,
+      "target_changed": true,
+      "unrelated_files_changed": [],
+      "unrelated_edit_count": 0,
+      "agent_test_invocations": 1,
+      "test_retry_count": 0,
+      "test_retry_count_definition": "Operational proxy: max(0, completed agent test-command events - 1); not provider retry count.",
+      "harness_valid": true,
+      "task_success": true
+    },
+    {
+      "task": "t3-merge-preferences",
+      "variant": "B",
+      "model": "gpt-5.6-luna",
+      "codex_cli": "0.151.0",
+      "reasoning_effort": "medium",
+      "prompt_chars": 1027,
+      "start_iso": "2026-09-02T13:42:00.006Z",
+      "end_iso": "2026-09-02T13:42:47.746Z",
+      "wall_clock_ms": 47739,
+      "codex_exit_code": 0,
+      "baseline_test_exit_code": 1,
+      "final_test_exit_code": 0,
+      "input_tokens": 74014,
+      "cached_input_tokens": 59136,
+      "output_tokens": 1697,
+      "changed_files": [
+        "src/merge-preferences.js"
+      ],
+      "changed_file_count": 1,
+      "additions": 29,
+      "deletions": 1,
+      "diff_lines": 30,
+      "target_changed": true,
+      "unrelated_files_changed": [],
+      "unrelated_edit_count": 0,
+      "agent_test_invocations": 1,
+      "test_retry_count": 0,
+      "test_retry_count_definition": "Operational proxy: max(0, completed agent test-command events - 1); not provider retry count.",
+      "harness_valid": true,
+      "task_success": true
+    }
+  ]
+}

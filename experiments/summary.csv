@@ -1,0 +1,10 @@
+task,variant,status,task_success,prompt_chars,input_tokens,cached_input_tokens,output_tokens,wall_clock_ms,changed_file_count,diff_lines,unrelated_edit_count,agent_test_invocations,test_retry_count
+t1-normalize-tags,A,,true,626,55370,48128,889,33050,1,18,0,1,0
+t2-retry,B,,true,889,101227,87296,1475,56484,1,16,0,1,0
+t3-merge-preferences,C,,true,1409,130290,107520,3082,83340,1,73,0,2,1
+t1-normalize-tags,B,,true,868,84515,76288,877,37573,1,6,0,1,0
+t2-retry,C,,true,1251,90662,82432,1736,53546,1,15,0,1,0
+t3-merge-preferences,A,,true,792,72798,64256,1731,49163,1,43,0,1,0
+t1-normalize-tags,C,,true,1210,71846,65280,1146,37809,1,21,0,1,0
+t2-retry,A,,true,650,69841,61184,1164,39782,1,19,0,1,0
+t3-merge-preferences,B,,true,1027,74014,59136,1697,47739,1,30,0,1,0

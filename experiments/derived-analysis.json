@@ -1,0 +1,54 @@
+{
+  "status": "COMPLETE",
+  "all_variants_success_rate": {
+    "A": 1,
+    "B": 1,
+    "C": 1
+  },
+  "mean_input_tokens": {
+    "A": 66003,
+    "B": 86585.33,
+    "C": 97599.33
+  },
+  "mean_output_tokens": {
+    "A": 1261.33,
+    "B": 1349.67,
+    "C": 1988
+  },
+  "mean_latency_ms": {
+    "A": 40665,
+    "B": 47265.33,
+    "C": 58231.67
+  },
+  "median_latency_ms": {
+    "A": 39782,
+    "B": 47739,
+    "C": 53546
+  },
+  "mean_diff_lines": {
+    "A": 26.67,
+    "B": 17.33,
+    "C": 36.33
+  },
+  "total_retries": {
+    "A": 0,
+    "B": 0,
+    "C": 1
+  },
+  "total_unrelated_edits": {
+    "A": 0,
+    "B": 0,
+    "C": 0
+  },
+  "comparisons": {
+    "A_input_reduction_vs_B_pct": 23.77,
+    "A_input_reduction_vs_C_pct": 32.37,
+    "A_latency_reduction_vs_B_pct": 13.96,
+    "A_latency_reduction_vs_C_pct": 30.17,
+    "A_output_reduction_vs_C_pct": 36.55,
+    "A_prompt_char_reduction_vs_C_pct": 46.56,
+    "B_diff_reduction_vs_A_pct": 35,
+    "B_diff_reduction_vs_C_pct": 52.29
+  },
+  "interpretation": "Descriptive n=3 tasks per variant. No significance testing or universal causal claim."
+}

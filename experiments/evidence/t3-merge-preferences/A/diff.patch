@@ -1,0 +1,50 @@
+diff --git a/src/merge-preferences.js b/src/merge-preferences.js
+index 6ada6d2..5a0b03e 100644
+--- a/src/merge-preferences.js
++++ b/src/merge-preferences.js
+@@ -1,3 +1,44 @@
++function isObject(value) {
++  return value !== null && typeof value === 'object';
++}
++
++function isPlainObject(value) {
++  if (!isObject(value) || Array.isArray(value)) return false;
++  const prototype = Object.getPrototypeOf(value);
++  return prototype === Object.prototype || prototype === null;
++}
++
++function cloneValue(value) {
++  if (Array.isArray(value)) return value.map(cloneValue);
++  if (isPlainObject(value)) {
++    const clone = {};
++    for (const key of Object.keys(value)) clone[key] = cloneValue(value[key]);
++    return clone;
++  }
++  return value;
++}
++
++function mergeObjects(defaults, overrides) {
++  const result = {};
++
++  for (const key of Object.keys(defaults)) result[key] = cloneValue(defaults[key]);
++
++  for (const key of Object.keys(overrides)) {
++    const override = overrides[key];
++    if (override === undefined && Object.hasOwn(defaults, key)) continue;
++
++    if (isPlainObject(defaults[key]) && isPlainObject(override)) {
++      result[key] = mergeObjects(defaults[key], override);
++    } else {
++      result[key] = cloneValue(override);
++    }
++  }
++
++  return result;
++}
++
+ export function mergePreferences(defaults, overrides) {
+-  return { ...defaults, ...overrides };
++  if (!isObject(defaults) || Array.isArray(defaults)) throw new TypeError('defaults must be an object');
++  if (!isObject(overrides) || Array.isArray(overrides)) throw new TypeError('overrides must be an object');
++  return mergeObjects(defaults, overrides);
+ }

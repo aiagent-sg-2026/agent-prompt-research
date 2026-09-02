@@ -1,0 +1,16 @@
+
+> test
+> node --test
+
+✔ returns the first resolved value, including falsy values (0.366416ms)
+✔ retries rejection and returns the later value (0.176084ms)
+✔ throws the final error unchanged after retries are exhausted (0.223208ms)
+✔ validates operation and retries (0.766333ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 32.361639

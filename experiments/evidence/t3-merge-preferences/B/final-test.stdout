@@ -1,0 +1,16 @@
+
+> test
+> node --test
+
+✔ recursively merges plain objects and keeps override keys (0.677517ms)
+✔ undefined retains defaults and values are independent (0.079793ms)
+✔ validates both root inputs as non-null non-array objects (0.187796ms)
+✔ non-plain override values replace defaults (0.486554ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33.654857

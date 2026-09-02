@@ -1,0 +1,32 @@
+{
+  "task": "t3-merge-preferences",
+  "variant": "A",
+  "model": "gpt-5.6-luna",
+  "codex_cli": "0.151.0",
+  "reasoning_effort": "medium",
+  "prompt_chars": 792,
+  "start_iso": "2026-09-02T13:39:19.902Z",
+  "end_iso": "2026-09-02T13:40:09.066Z",
+  "wall_clock_ms": 49163,
+  "codex_exit_code": 0,
+  "baseline_test_exit_code": 1,
+  "final_test_exit_code": 0,
+  "input_tokens": 72798,
+  "cached_input_tokens": 64256,
+  "output_tokens": 1731,
+  "changed_files": [
+    "src/merge-preferences.js"
+  ],
+  "changed_file_count": 1,
+  "additions": 42,
+  "deletions": 1,
+  "diff_lines": 43,
+  "target_changed": true,
+  "unrelated_files_changed": [],
+  "unrelated_edit_count": 0,
+  "agent_test_invocations": 1,
+  "test_retry_count": 0,
+  "test_retry_count_definition": "Operational proxy: max(0, completed agent test-command events - 1); not provider retry count.",
+  "harness_valid": true,
+  "task_success": true
+}

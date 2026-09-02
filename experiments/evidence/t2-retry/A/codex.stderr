@@ -1,0 +1,1 @@
+2026-09-02T13:41:33.613782Z ERROR codex_core::tools::router: error=exec_command failed for `/bin/bash -lc 'npm test'`: CreateProcess { message: "Rejected(\"Failed to create unified exec process: No such file or directory (os error 2)\")" }

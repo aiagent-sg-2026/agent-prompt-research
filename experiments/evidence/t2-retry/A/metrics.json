@@ -1,0 +1,32 @@
+{
+  "task": "t2-retry",
+  "variant": "A",
+  "model": "gpt-5.6-luna",
+  "codex_cli": "0.151.0",
+  "reasoning_effort": "medium",
+  "prompt_chars": 650,
+  "start_iso": "2026-09-02T13:41:08.122Z",
+  "end_iso": "2026-09-02T13:41:47.904Z",
+  "wall_clock_ms": 39782,
+  "codex_exit_code": 0,
+  "baseline_test_exit_code": 1,
+  "final_test_exit_code": 0,
+  "input_tokens": 69841,
+  "cached_input_tokens": 61184,
+  "output_tokens": 1164,
+  "changed_files": [
+    "src/retry.js"
+  ],
+  "changed_file_count": 1,
+  "additions": 18,
+  "deletions": 1,
+  "diff_lines": 19,
+  "target_changed": true,
+  "unrelated_files_changed": [],
+  "unrelated_edit_count": 0,
+  "agent_test_invocations": 1,
+  "test_retry_count": 0,
+  "test_retry_count_definition": "Operational proxy: max(0, completed agent test-command events - 1); not provider retry count.",
+  "harness_valid": true,
+  "task_success": true
+}

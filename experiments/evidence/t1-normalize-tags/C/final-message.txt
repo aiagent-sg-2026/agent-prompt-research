@@ -1,0 +1,8 @@
+Implemented `normalizeTags` in [src/normalize-tags.js](/srv/agent-workstation/workspaces/agent-prompt-research/experiments/runs/t1-normalize-tags/C/src/normalize-tags.js).
+
+- Validates array input and string elements
+- Trims, lowercases, filters empty tags
+- Deduplicates while preserving order
+- Preserves input immutability
+
+Evidence: `npm test` passes, and only `src/normalize-tags.js` changed.

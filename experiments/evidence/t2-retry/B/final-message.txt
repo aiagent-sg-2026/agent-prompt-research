@@ -1,0 +1,8 @@
+Implemented `async retry` in [src/retry.js](/srv/agent-workstation/workspaces/agent-prompt-research/experiments/runs/t2-retry/B/src/retry.js).
+
+- Validates operation and retries.
+- Performs `retries + 1` attempts.
+- Preserves falsy success values.
+- Rethrows the final error unchanged.
+- `npm test`: 1 passing.
+- Diff contains only `src/retry.js`.

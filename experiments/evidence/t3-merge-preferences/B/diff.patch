@@ -1,0 +1,37 @@
+diff --git a/src/merge-preferences.js b/src/merge-preferences.js
+index 6ada6d2..e53cec3 100644
+--- a/src/merge-preferences.js
++++ b/src/merge-preferences.js
+@@ -1,3 +1,31 @@
++function isPlainObject(value) {
++  if (value === null || typeof value !== 'object') return false;
++  const prototype = Object.getPrototypeOf(value);
++  return prototype === Object.prototype || prototype === null;
++}
++
++function cloneValue(value) {
++  if (Array.isArray(value)) return value.map(cloneValue);
++  if (!isPlainObject(value)) return value;
++
++  const result = {};
++  for (const key of Object.keys(value)) result[key] = cloneValue(value[key]);
++  return result;
++}
++
+ export function mergePreferences(defaults, overrides) {
+-  return { ...defaults, ...overrides };
++  if (!isPlainObject(defaults) || !isPlainObject(overrides)) {
++    throw new TypeError('defaults and overrides must be plain objects');
++  }
++
++  const result = {};
++  for (const key of new Set([...Object.keys(defaults), ...Object.keys(overrides)])) {
++    const override = overrides[key];
++    result[key] = override === undefined && key in defaults
++      ? cloneValue(defaults[key])
++      : isPlainObject(defaults[key]) && isPlainObject(override)
++        ? mergePreferences(defaults[key], override)
++        : cloneValue(override === undefined ? defaults[key] : override);
++  }
++  return result;
+ }
