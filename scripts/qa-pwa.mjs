@@ -5,7 +5,7 @@ const root = resolve(dirname(new URL(import.meta.url).pathname), '..');
 const docs = join(root, 'docs');
 const failures = [];
 const required = [
-  'manifest.webmanifest', 'sw.js', 'PWA.md', 'i18n/en.json', 'i18n/zh-CN.json', 'i18n/zh-TW.json',
+  'manifest.webmanifest', 'sw.js', 'PWA.md', 'tcm.html', 'i18n/en.json', 'i18n/zh-CN.json', 'i18n/zh-TW.json',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-512-maskable.png', 'icons/apple-touch-icon-180.png'
 ];
 for (const file of required) if (!existsSync(join(docs, file))) failures.push(`missing ${file}`);
@@ -19,6 +19,7 @@ const flatten = (value, prefix = '', result = {}) => {
   return result;
 };
 const html = read('docs/index.html');
+const tcm = read('docs/tcm.html');
 const app = read('docs/app.js');
 const sw = read('docs/sw.js');
 const manifest = JSON.parse(read('docs/manifest.webmanifest'));
@@ -29,10 +30,11 @@ for (const [locale, dictionary] of locales) {
   if (JSON.stringify(keys) !== JSON.stringify(enKeys)) failures.push(`locale key mismatch: ${locale}`);
   if (Object.values(dictionary).some((value) => typeof value !== 'string' || !value.trim())) failures.push(`empty/non-string translation: ${locale}`);
 }
-const markerKeys = [...html.matchAll(/data-i18n="([^"]+)"/g)].map((match) => match[1]);
-const attrKeys = [...html.matchAll(/data-i18n-attr="([^"]+)"/g)].flatMap((match) => match[1].split(';').map((entry) => entry.split(':')[1]));
+const pages = [html, tcm];
+const markerKeys = pages.flatMap((page) => [...page.matchAll(/data-i18n="([^"]+)"/g)].map((match) => match[1]));
+const attrKeys = pages.flatMap((page) => [...page.matchAll(/data-i18n-attr="([^"]+)"/g)].flatMap((match) => match[1].split(';').map((entry) => entry.split(':')[1])));
 for (const key of [...new Set([...markerKeys, ...attrKeys])]) if (!enKeys.includes(key)) failures.push(`HTML translation key missing: ${key}`);
-for (const key of ['variant.A', 'variant.B', 'variant.C', 'task.t1-normalize-tags', 'task.t2-retry', 'task.t3-merge-preferences', 'common.yes', 'common.no', 'install.button', 'status.online', 'status.offline']) if (!enKeys.includes(key)) failures.push(`required translation key missing: ${key}`);
+for (const key of ['variant.A', 'variant.B', 'variant.C', 'task.t1-normalize-tags', 'task.t2-retry', 'task.t3-merge-preferences', 'common.yes', 'common.no', 'install.button', 'status.online', 'status.offline', 'nav.home', 'nav.tracks', 'tracks.tcmTitle', 'tcm.title', 'tcm.noResults']) if (!enKeys.includes(key)) failures.push(`required translation key missing: ${key}`);
 
 const pngSizes = { 'icons/icon-192.png': 192, 'icons/icon-512.png': 512, 'icons/icon-512-maskable.png': 512, 'icons/apple-touch-icon-180.png': 180 };
 for (const [file, expected] of Object.entries(pngSizes)) {
@@ -44,10 +46,10 @@ if (manifest.id !== './' || manifest.start_url !== './index.html' || manifest.sc
 for (const field of ['name', 'short_name', 'description', 'theme_color', 'background_color']) if (typeof manifest[field] !== 'string' || !manifest[field]) failures.push(`manifest missing ${field}`);
 if (manifest.display !== 'standalone' || manifest.prefer_related_applications !== false) failures.push('manifest install fields incorrect');
 for (const icon of manifest.icons || []) if (!existsSync(join(docs, icon.src.replace(/^\.\//, '')))) failures.push(`manifest icon missing: ${icon.src}`);
-for (const asset of ['./index.html', './styles.css', './app.js', './manifest.webmanifest', './data/summary.json', './i18n/en.json', './i18n/zh-CN.json', './i18n/zh-TW.json', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-512-maskable.png', './icons/apple-touch-icon-180.png']) if (!sw.includes(asset)) failures.push(`service worker precache missing: ${asset}`);
-if (!sw.includes("request.method !== 'GET'") || !sw.includes('url.origin !== self.location.origin') || !sw.includes("caches.match('./index.html')") || !sw.includes('caches.delete')) failures.push('service worker safety/fallback/cleanup hook missing');
-if (!html.includes('manifest.webmanifest') || !html.includes('apple-touch-icon-180.png') || !app.includes('serviceWorker') || !app.includes('beforeinstallprompt') || !app.includes("'online'") || !app.includes("'offline'")) failures.push('PWA HTML/app hooks missing');
-if (html.includes('href="../') || html.includes("src=\"../")) failures.push('parent-relative HTML asset link found');
+for (const asset of ['./index.html', './tcm.html', './styles.css', './app.js', './manifest.webmanifest', './data/summary.json', './i18n/en.json', './i18n/zh-CN.json', './i18n/zh-TW.json', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-512-maskable.png', './icons/apple-touch-icon-180.png']) if (!sw.includes(asset)) failures.push(`service worker precache missing: ${asset}`);
+if (!sw.includes("request.method !== 'GET'") || !sw.includes('url.origin !== self.location.origin') || !sw.includes("request.mode === 'navigate'") || !sw.includes("'./index.html'") || !sw.includes("'./tcm.html'") || !sw.includes('caches.delete')) failures.push('service worker safety/fallback/cleanup hook missing');
+if (!html.includes('manifest.webmanifest') || !tcm.includes('manifest.webmanifest') || !html.includes('apple-touch-icon-180.png') || !tcm.includes('apple-touch-icon-180.png') || !app.includes('serviceWorker') || !app.includes('beforeinstallprompt') || !app.includes("'online'") || !app.includes("'offline'")) failures.push('PWA HTML/app hooks missing');
+if ([html, tcm].some((page) => page.includes('href="../') || page.includes('src="../'))) failures.push('parent-relative HTML asset link found');
 const repoBase = 'https://github.com/aiagent-sg-2026/agent-prompt-research/';
 if (!html.includes(repoBase + 'blob/main/REPORT.md') || !html.includes(repoBase + 'tree/main/experiments/evidence')) failures.push('GitHub artifact links changed or missing');
 const summary = JSON.parse(read('docs/data/summary.json'));

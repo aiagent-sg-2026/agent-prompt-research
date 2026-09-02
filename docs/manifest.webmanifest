@@ -2,7 +2,7 @@
   "id": "./",
   "name": "Agent Prompt Research",
   "short_name": "APR Research",
-  "description": "Evidence-backed report from a completed Agent Prompt Research pilot.",
+  "description": "Evidence-backed research on AI-agent prompt design and human-AI collaboration.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
