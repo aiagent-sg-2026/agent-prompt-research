@@ -1,0 +1,1 @@
+{"name":"t08-build-query-string","private":true,"type":"module","scripts":{"test":"node --test"}}

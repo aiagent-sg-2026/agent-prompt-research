@@ -1,0 +1,678 @@
+[
+  {
+    "id": "t01-normalize-csv-headers",
+    "title": "Normalize CSV headers",
+    "category": "normalization/parsing",
+    "fixture_mode": "implementation",
+    "target": "src/normalize-csv-headers.js",
+    "goal": "Normalize CSV header names into stable JavaScript keys.",
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "Export normalizeCsvHeaders(headers)."
+      },
+      {
+        "id": "R2",
+        "text": "Require headers to be an array of strings; throw TypeError otherwise."
+      },
+      {
+        "id": "R3",
+        "text": "Trim leading and trailing whitespace, lowercase with Unicode lowercasing, and replace each run of non-ASCII-alphanumeric characters with a single underscore."
+      },
+      {
+        "id": "R4",
+        "text": "Remove leading and trailing underscores; an empty normalized header is the empty string."
+      },
+      {
+        "id": "R5",
+        "text": "Preserve input order and do not mutate the input array."
+      },
+      {
+        "id": "R6",
+        "text": "Return an array of normalized strings without deduplicating."
+      }
+    ]
+  },
+  {
+    "id": "t02-calculate-invoice-totals",
+    "title": "Calculate invoice totals",
+    "category": "finance/business calculations",
+    "fixture_mode": "extension",
+    "target": "src/calculate-invoice-totals.js",
+    "goal": "Calculate line totals, tax, and a final invoice total using integer cents.",
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "Export calculateInvoiceTotals(lines, taxRatePercent)."
+      },
+      {
+        "id": "R2",
+        "text": "Require lines to be an array of objects with non-negative integer quantity and unitCents; require taxRatePercent to be a finite non-negative number, otherwise throw TypeError."
+      },
+      {
+        "id": "R3",
+        "text": "Line subtotal is quantity multiplied by unitCents; subtotalCents is the exact sum of line subtotals."
+      },
+      {
+        "id": "R4",
+        "text": "Tax is round-half-up to the nearest cent from subtotalCents * taxRatePercent / 100; use integer arithmetic semantics for the final rounding."
+      },
+      {
+        "id": "R5",
+        "text": "Return {subtotalCents, taxCents, totalCents}, where totalCents is subtotalCents plus taxCents."
+      },
+      {
+        "id": "R6",
+        "text": "Do not mutate input lines."
+      }
+    ]
+  },
+  {
+    "id": "t03-allocate-inventory-fifo",
+    "title": "Allocate inventory FIFO",
+    "category": "inventory/operations",
+    "fixture_mode": "bugfix",
+    "target": "src/allocate-inventory-fifo.js",
+    "goal": "Allocate a requested quantity from inventory lots in first-in-first-out order.",
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "Export allocateInventoryFifo(lots, requested)."
+      },
+      {
+        "id": "R2",
+        "text": "Require lots to be an array and requested to be a non-negative integer; each lot must have a string id and non-negative integer quantity, otherwise throw TypeError."
+      },
+      {
+        "id": "R3",
+        "text": "Consume lots in array order, taking the smallest of remaining lot quantity and remaining requested quantity."
+      },
+      {
+        "id": "R4",
+        "text": "Return {allocations, remaining}, where allocations contains only consumed lots as {id, quantity} and remaining is unmet quantity."
+      },
+      {
+        "id": "R5",
+        "text": "Do not mutate lots and omit zero-quantity allocations."
+      },
+      {
+        "id": "R6",
+        "text": "Return empty allocations and remaining zero for a zero request."
+      }
+    ]
+  },
+  {
+    "id": "t04-match-payments-to-invoices",
+    "title": "Match payments to invoices",
+    "category": "data/state",
+    "fixture_mode": "implementation",
+    "target": "src/match-payments-to-invoices.js",
+    "goal": "Apply payments to invoices deterministically and report unmatched amounts.",
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "Export matchPaymentsToInvoices(invoices, payments)."
+      },
+      {
+        "id": "R2",
+        "text": "Require both arguments to be arrays; invoice and payment records require string id and non-negative integer cents, otherwise throw TypeError."
+      },
+      {
+        "id": "R3",
+        "text": "Process payments in input order and apply each payment to the first invoice in input order that still has an unpaid balance."
+      },
+      {
+        "id": "R4",
+        "text": "Return {matches, unmatchedCents, balances}; each match is {paymentId, invoiceId, cents}, balances is an array of {invoiceId, remainingCents} in invoice order."
+      },
+      {
+        "id": "R5",
+        "text": "A payment may create multiple matches; never create zero-cent matches."
+      },
+      {
+        "id": "R6",
+        "text": "Do not mutate either input array or their records."
+      }
+    ]
+  },
+  {
+    "id": "t05-parse-pagination-query",
+    "title": "Parse pagination query",
+    "category": "normalization/parsing",
+    "fixture_mode": "bugfix",
+    "target": "src/parse-pagination-query.js",
+    "goal": "Parse bounded pagination parameters from a query string or URLSearchParams.",
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "Export parsePaginationQuery(input, defaults = {})."
+      },
+      {
+        "id": "R2",
+        "text": "Accept a string query with or without a leading question mark, or a URLSearchParams instance; reject other inputs with TypeError."
+      },
+      {
+        "id": "R3",
+        "text": "Use page default 1 and limit default 20; defaults may provide positive integer page and limit, with maximum limit default 100."
+      },
+      {
+        "id": "R4",
+        "text": "Parse page and limit as base-10 integers and clamp page to at least 1 and limit to the inclusive range 1..100."
+      },
+      {
+        "id": "R5",
+        "text": "Invalid or missing values use the corresponding default; repeated keys use the first value."
+      },
+      {
+        "id": "R6",
+        "text": "Return a new object {page, limit} and do not mutate inputs."
+      }
+    ]
+  },
+  {
+    "id": "t06-redact-sensitive-fields",
+    "title": "Redact sensitive fields",
+    "category": "policy/security",
+    "fixture_mode": "extension",
+    "target": "src/redact-sensitive-fields.js",
+    "goal": "Deeply redact configured sensitive object fields without changing the source value.",
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "Export redactSensitiveFields(value, fields = ['password','token','secret'])."
+      },
+      {
+        "id": "R2",
+        "text": "Fields must be an array of strings; throw TypeError otherwise."
+      },
+      {
+        "id": "R3",
+        "text": "Recursively copy plain objects and arrays; when an object key exactly matches a configured field, replace its value with '[REDACTED]' without traversing that value."
+      },
+      {
+        "id": "R4",
+        "text": "Preserve primitives and non-plain objects by reference; null remains null."
+      },
+      {
+        "id": "R5",
+        "text": "Return a deep copy for arrays and plain objects and do not mutate the input."
+      },
+      {
+        "id": "R6",
+        "text": "Use the configured field names exactly and case-sensitively."
+      }
+    ]
+  },
+  {
+    "id": "t07-dedupe-events",
+    "title": "Dedupe events",
+    "category": "data/state",
+    "fixture_mode": "implementation",
+    "target": "src/dedupe-events.js",
+    "goal": "Remove duplicate events while retaining the first occurrence order.",
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "Export dedupeEvents(events)."
+      },
+      {
+        "id": "R2",
+        "text": "Require an array of objects each containing a string id and finite numeric timestamp; throw TypeError otherwise."
+      },
+      {
+        "id": "R3",
+        "text": "Events with the same id are duplicates regardless of timestamp; keep the event with the earliest array position."
+      },
+      {
+        "id": "R4",
+        "text": "Return a new array in first-occurrence order and do not mutate events or event records."
+      },
+      {
+        "id": "R5",
+        "text": "An empty input returns an empty array."
+      }
+    ]
+  },
+  {
+    "id": "t08-build-query-string",
+    "title": "Build query string",
+    "category": "normalization/parsing",
+    "fixture_mode": "extension",
+    "target": "src/build-query-string.js",
+    "goal": "Build a deterministic URL query string from scalar and repeated values.",
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "Export buildQueryString(params)."
+      },
+      {
+        "id": "R2",
+        "text": "Require a non-null non-array object; throw TypeError otherwise."
+      },
+      {
+        "id": "R3",
+        "text": "Sort keys by JavaScript default lexicographic order and omit entries whose value is null or undefined."
+      },
+      {
+        "id": "R4",
+        "text": "For array values emit one key-value pair per element in array order; scalar values emit one pair."
+      },
+      {
+        "id": "R5",
+        "text": "Encode keys and values with encodeURIComponent and represent booleans as true or false; convert other non-null values with String."
+      },
+      {
+        "id": "R6",
+        "text": "Return the query without a leading question mark; an empty result is the empty string."
+      }
+    ]
+  },
+  {
+    "id": "t09-resolve-feature-flags",
+    "title": "Resolve feature flags",
+    "category": "policy/security",
+    "fixture_mode": "bugfix",
+    "target": "src/resolve-feature-flags.js",
+    "goal": "Resolve feature flags from defaults, environment, and per-user overrides.",
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "Export resolveFeatureFlags(definitions, environment = {}, user = {})."
+      },
+      {
+        "id": "R2",
+        "text": "Require each of the three arguments to be non-null plain objects; throw TypeError otherwise."
+      },
+      {
+        "id": "R3",
+        "text": "Definitions map flag names to boolean defaults; non-boolean definitions are invalid and throw TypeError."
+      },
+      {
+        "id": "R4",
+        "text": "Start with definition defaults, then apply environment values, then user values; only boolean overrides are accepted and unknown keys are ignored."
+      },
+      {
+        "id": "R5",
+        "text": "Return a new object with definition keys in their original insertion order."
+      },
+      {
+        "id": "R6",
+        "text": "Do not mutate any input object."
+      }
+    ]
+  },
+  {
+    "id": "t10-resolve-permissions",
+    "title": "Resolve permissions",
+    "category": "policy/security",
+    "fixture_mode": "implementation",
+    "target": "src/resolve-permissions.js",
+    "goal": "Resolve allow and deny permission rules with deny precedence.",
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "Export resolvePermissions(rules, requested)."
+      },
+      {
+        "id": "R2",
+        "text": "Require rules to be an array and requested to be an array of strings or {permission, scope} objects; malformed entries throw TypeError."
+      },
+      {
+        "id": "R3",
+        "text": "Each rule has string permission, boolean allow, and optional string scope; invalid records throw TypeError."
+      },
+      {
+        "id": "R4",
+        "text": "A rule applies when its scope is absent or equals the requested entry's scope; requested entries may be strings or {permission, scope} objects."
+      },
+      {
+        "id": "R5",
+        "text": "For each requested entry, the last applicable rule wins, and an explicit deny beats an allow at the same specificity; missing decisions are false."
+      },
+      {
+        "id": "R6",
+        "text": "Return an array of {permission, scope, allowed} in requested order and do not mutate inputs."
+      }
+    ]
+  },
+  {
+    "id": "t11-overlap-date-ranges",
+    "title": "Overlap date ranges",
+    "category": "internationalization",
+    "fixture_mode": "bugfix",
+    "target": "src/overlap-date-ranges.js",
+    "goal": "Compute overlap for ISO date-only inclusive ranges without local timezone behavior.",
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "Export overlapDateRanges(left, right)."
+      },
+      {
+        "id": "R2",
+        "text": "Each range must be [start, end] ISO YYYY-MM-DD strings; invalid dates or start after end throw TypeError."
+      },
+      {
+        "id": "R3",
+        "text": "Interpret dates as calendar dates, not timestamps or local-time Date values."
+      },
+      {
+        "id": "R4",
+        "text": "Return null when ranges do not overlap; otherwise return the inclusive intersection as [max(start), min(end)] in ISO date format."
+      },
+      {
+        "id": "R5",
+        "text": "A one-day intersection is valid."
+      },
+      {
+        "id": "R6",
+        "text": "Do not mutate either input range."
+      }
+    ]
+  },
+  {
+    "id": "t12-aggregate-order-lines",
+    "title": "Aggregate order lines",
+    "category": "data/state",
+    "fixture_mode": "extension",
+    "target": "src/aggregate-order-lines.js",
+    "goal": "Aggregate order lines by SKU while retaining first-seen order.",
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "Export aggregateOrderLines(lines)."
+      },
+      {
+        "id": "R2",
+        "text": "Require an array of objects with non-empty string sku, non-negative integer quantity, and integer unitCents; invalid records throw TypeError."
+      },
+      {
+        "id": "R3",
+        "text": "Group by exact sku in first-seen order and sum quantities."
+      },
+      {
+        "id": "R4",
+        "text": "For each group retain the first line's unitCents and calculate totalCents as summed quantity times that unitCents."
+      },
+      {
+        "id": "R5",
+        "text": "Return {sku, quantity, unitCents, totalCents} objects and do not mutate inputs."
+      },
+      {
+        "id": "R6",
+        "text": "Return an empty array for an empty input."
+      }
+    ]
+  },
+  {
+    "id": "t13-apply-tiered-discount",
+    "title": "Apply tiered discount",
+    "category": "finance/business calculations",
+    "fixture_mode": "implementation",
+    "target": "src/apply-tiered-discount.js",
+    "goal": "Apply the highest eligible percentage discount to a subtotal in cents.",
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "Export applyTieredDiscount(subtotalCents, tiers)."
+      },
+      {
+        "id": "R2",
+        "text": "Require subtotalCents to be a non-negative integer and tiers to be an array of {minimumCents, percent}; invalid values throw TypeError."
+      },
+      {
+        "id": "R3",
+        "text": "A tier is eligible when subtotalCents is at least minimumCents; percent is finite and in the inclusive range 0..100."
+      },
+      {
+        "id": "R4",
+        "text": "Choose the eligible tier with the greatest minimumCents; ties use first array order."
+      },
+      {
+        "id": "R5",
+        "text": "Discount cents is round-half-up subtotalCents * percent / 100 and finalCents is subtotalCents minus discountCents."
+      },
+      {
+        "id": "R6",
+        "text": "Return {percent, discountCents, finalCents}; use percent 0 when no tier is eligible and do not mutate tiers."
+      }
+    ]
+  },
+  {
+    "id": "t14-canonicalize-headers",
+    "title": "Canonicalize headers",
+    "category": "normalization/parsing",
+    "fixture_mode": "bugfix",
+    "target": "src/canonicalize-headers.js",
+    "goal": "Canonicalize HTTP-like header names and values while preserving meaningful duplicates.",
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "Export canonicalizeHeaders(headers)."
+      },
+      {
+        "id": "R2",
+        "text": "Require a non-null plain object whose values are strings or arrays of strings; invalid values throw TypeError."
+      },
+      {
+        "id": "R3",
+        "text": "Trim header names and values, lowercase names, and collapse each value's internal ASCII whitespace run to one space."
+      },
+      {
+        "id": "R4",
+        "text": "Sort output entries by lowercase header name using default lexicographic order."
+      },
+      {
+        "id": "R5",
+        "text": "For array values output one entry per value in original array order; preserve duplicate names as separate entries."
+      },
+      {
+        "id": "R6",
+        "text": "Return an array of {name, value} and do not mutate headers."
+      }
+    ]
+  },
+  {
+    "id": "t15-plan-upload-chunks",
+    "title": "Plan upload chunks",
+    "category": "inventory/operations",
+    "fixture_mode": "extension",
+    "target": "src/plan-upload-chunks.js",
+    "goal": "Plan contiguous upload chunks with a bounded chunk size.",
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "Export planUploadChunks(totalBytes, chunkSize)."
+      },
+      {
+        "id": "R2",
+        "text": "Require both arguments to be positive integers; otherwise throw TypeError."
+      },
+      {
+        "id": "R3",
+        "text": "Return an array of {index, offset, size} covering exactly 0 through totalBytes without gaps or overlap."
+      },
+      {
+        "id": "R4",
+        "text": "Each size is at most chunkSize, indexes start at 0, and offsets are zero-based."
+      },
+      {
+        "id": "R5",
+        "text": "The final chunk may be smaller; exact multiples do not receive an extra empty chunk."
+      },
+      {
+        "id": "R6",
+        "text": "Do not use randomness or mutate any input."
+      }
+    ]
+  },
+  {
+    "id": "t16-create-ttl-cache",
+    "title": "Create TTL cache",
+    "category": "data/state",
+    "fixture_mode": "implementation",
+    "target": "src/create-ttl-cache.js",
+    "goal": "Create a small TTL cache using an injected clock.",
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "Export createTtlCache(ttlMs, now)."
+      },
+      {
+        "id": "R2",
+        "text": "Require ttlMs to be a non-negative finite number and now to be a function; otherwise throw TypeError."
+      },
+      {
+        "id": "R3",
+        "text": "Return an object with get(key), set(key, value), has(key), and delete(key) methods."
+      },
+      {
+        "id": "R4",
+        "text": "A value is valid while now() minus its set time is less than ttlMs; expired entries are treated as absent and removed on access."
+      },
+      {
+        "id": "R5",
+        "text": "set returns the cache object; delete returns whether an entry existed and get returns undefined for absent entries."
+      },
+      {
+        "id": "R6",
+        "text": "Use the injected now function for every expiry check and do not use timers or wall-clock globals."
+      }
+    ]
+  },
+  {
+    "id": "t17-map-with-concurrency-limit",
+    "title": "Map with concurrency limit",
+    "category": "async/concurrency",
+    "fixture_mode": "extension",
+    "target": "src/map-with-concurrency-limit.js",
+    "goal": "Map over inputs with a strict maximum number of active asynchronous workers.",
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "Export async mapWithConcurrencyLimit(items, limit, mapper)."
+      },
+      {
+        "id": "R2",
+        "text": "Require items to be an array, limit to be a positive integer, and mapper to be a function; otherwise reject with TypeError."
+      },
+      {
+        "id": "R3",
+        "text": "Invoke mapper(value, index) for every item and return results in input order."
+      },
+      {
+        "id": "R4",
+        "text": "Never have more than limit mapper calls active at once; start later work as earlier work settles."
+      },
+      {
+        "id": "R5",
+        "text": "If a mapper rejects, reject the returned promise with that error while allowing already-started calls to settle."
+      },
+      {
+        "id": "R6",
+        "text": "Do not mutate items."
+      }
+    ]
+  },
+  {
+    "id": "t18-select-localized-value",
+    "title": "Select localized value",
+    "category": "internationalization",
+    "fixture_mode": "bugfix",
+    "target": "src/select-localized-value.js",
+    "goal": "Select the best localized value using deterministic language fallback.",
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "Export selectLocalizedValue(values, requested, fallback = 'en')."
+      },
+      {
+        "id": "R2",
+        "text": "Require values to be a non-null plain object and requested/fallback to strings; otherwise throw TypeError."
+      },
+      {
+        "id": "R3",
+        "text": "Try an exact requested locale, then its language subtag before trying fallback exact and fallback language subtag."
+      },
+      {
+        "id": "R4",
+        "text": "Locale matching is case-insensitive but keys are returned by their original values object lookup semantics; select the first matching key in values insertion order when normalized locale labels collide."
+      },
+      {
+        "id": "R5",
+        "text": "Return the matching value, including falsy values; return undefined when no locale matches."
+      },
+      {
+        "id": "R6",
+        "text": "Do not mutate values."
+      }
+    ]
+  },
+  {
+    "id": "t19-validate-customer-update",
+    "title": "Validate customer update",
+    "category": "policy/security",
+    "fixture_mode": "implementation",
+    "target": "src/validate-customer-update.js",
+    "goal": "Validate a partial customer update and report stable field errors.",
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "Export validateCustomerUpdate(update)."
+      },
+      {
+        "id": "R2",
+        "text": "Require a non-null plain object; otherwise throw TypeError."
+      },
+      {
+        "id": "R3",
+        "text": "Allowed fields are name, email, phone, and marketingOptIn; unknown fields produce errors."
+      },
+      {
+        "id": "R4",
+        "text": "When present, name is a non-empty trimmed string, email contains exactly one @ with non-empty sides, phone matches optional leading plus followed by 7..15 digits, and marketingOptIn is boolean."
+      },
+      {
+        "id": "R5",
+        "text": "Return {valid, errors}; errors is an array of {field, message} sorted by input field order, with at most one error per field."
+      },
+      {
+        "id": "R6",
+        "text": "Do not mutate update."
+      }
+    ]
+  },
+  {
+    "id": "t20-calculate-reorder-recommendation",
+    "title": "Calculate reorder recommendation",
+    "category": "inventory/operations",
+    "fixture_mode": "extension",
+    "target": "src/calculate-reorder-recommendation.js",
+    "goal": "Calculate reorder quantity from stock, demand, and a safety-stock policy.",
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "Export calculateReorderRecommendation(input)."
+      },
+      {
+        "id": "R2",
+        "text": "Require a plain object with non-negative integer onHand, reserved, reorderPoint, and targetStock; invalid values throw TypeError."
+      },
+      {
+        "id": "R3",
+        "text": "Available stock is max(0, onHand - reserved)."
+      },
+      {
+        "id": "R4",
+        "text": "If available stock is at least reorderPoint, recommend zero; otherwise recommend max(0, targetStock - available stock)."
+      },
+      {
+        "id": "R5",
+        "text": "Return {available, reorder, needsReorder} where needsReorder is reorder greater than zero."
+      },
+      {
+        "id": "R6",
+        "text": "Do not mutate input and do not use randomness or time."
+      }
+    ]
+  }
+]

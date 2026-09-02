@@ -1,0 +1,2 @@
+/** Ordered async worker pool used by bounded import jobs. */
+export async function mapWithConcurrencyLimit(items, limit, mapper) { if (!Array.isArray(items) || !Number.isInteger(limit) || limit < 1 || typeof mapper !== 'function') throw new TypeError('invalid worker pool'); const results = new Array(items.length); let cursor = 0; async function worker() { while (cursor < items.length) { const index = cursor++; results[index] = await mapper(items[index], index); } } await Promise.all(Array.from({ length: Math.min(limit + 1, items.length) }, worker)); return results; }

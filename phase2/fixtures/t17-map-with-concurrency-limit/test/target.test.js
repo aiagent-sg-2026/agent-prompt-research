@@ -1,0 +1,7 @@
+import test from 'node:test'; import assert from 'node:assert/strict'; import { mapWithConcurrencyLimit } from '../src/map-with-concurrency-limit.js';
+// SPEC_REQUIREMENTS: R1,R2,R3,R4,R5,R6
+test('preserves order and caps active work',async()=>{let active=0,max=0; const resolvers=[]; const p=mapWithConcurrencyLimit([1,2,3,4],2,async x=>{active++; max=Math.max(max,active); await new Promise(resolve=>resolvers.push(resolve)); active--; return x*2;}); await new Promise(resolve=>setImmediate(resolve)); assert.equal(resolvers.length,2); while(resolvers.length) { resolvers.shift()(); await new Promise(resolve=>setImmediate(resolve)); } assert.deepEqual(await p,[2,4,6,8]); assert.equal(max,2);});
+test('starts only the initial limit',async()=>{const started=[]; const gates=[]; const p=mapWithConcurrencyLimit([1,2,3],2,async x=>{started.push(x); return new Promise(r=>gates.push(r));}); await new Promise(resolve=>setImmediate(resolve)); assert.deepEqual(started,[1,2]); gates[0](); await new Promise(resolve=>setImmediate(resolve)); assert.deepEqual(started,[1,2,3]); gates[1](); gates[2](); await p;});
+test('passes value and index',async()=>{assert.deepEqual(await mapWithConcurrencyLimit(['a'],1,async(v,i)=>v+i),['a0']);});
+test('rejects mapper errors',async()=>{await assert.rejects(mapWithConcurrencyLimit([1],1,async()=>{throw new Error('boom');}),/boom/);});
+test('rejects bad arguments and does not mutate',async()=>{const x=[1]; await assert.rejects(()=>mapWithConcurrencyLimit(x,0,()=>0),TypeError); assert.deepEqual(x,[1]);});

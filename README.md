@@ -42,3 +42,7 @@ sha256sum -c meta/frozen-input-sha256.txt
 ```
 
 The matrix runner can reproduce the protocol in a fresh environment, but it invokes Codex and is intentionally not part of the normal read-only verification path. Do not commit or push from this repository as part of verification.
+
+## Phase 2
+
+Phase 2 is a deterministic randomized, balanced experiment of **20 realistic, reproducible synthetic engineering tasks** inspired by application/ERP/backend workflows × 3 prompt variants × 5 repeats = 300 formal cells. These fixtures are not production customer code and are not statistically representative of all coding work. The five repeats are nested repeated measurements inside 20 task clusters. It includes three excluded smoke cells, resumable bounded serial execution, raw formal evidence, nullable-aware token metrics, and a preregistered 10,000-resample task-cluster bootstrap verdict. It is **NOT COMPLETE** until all 300 formal cells are harness-valid and the preregistered stability analysis has run.

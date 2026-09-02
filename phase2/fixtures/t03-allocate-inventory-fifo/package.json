@@ -1,0 +1,1 @@
+{"name":"t03-allocate-inventory-fifo","private":true,"type":"module","scripts":{"test":"node --test"}}

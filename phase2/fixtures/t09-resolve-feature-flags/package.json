@@ -1,0 +1,1 @@
+{"name":"t09-resolve-feature-flags","private":true,"type":"module","scripts":{"test":"node --test"}}

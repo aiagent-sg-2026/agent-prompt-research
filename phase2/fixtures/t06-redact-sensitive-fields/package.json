@@ -1,0 +1,1 @@
+{"name":"t06-redact-sensitive-fields","private":true,"type":"module","scripts":{"test":"node --test"}}

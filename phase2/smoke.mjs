@@ -1,0 +1,2 @@
+import { join, resolve } from 'node:path'; import { spawnSync } from 'node:child_process';
+const root=resolve(new URL('.',import.meta.url).pathname); for(const [task,variant] of [['t05-parse-pagination-query','A'],['t10-resolve-permissions','B'],['t17-map-with-concurrency-limit','C']]){const r=spawnSync(process.execPath,[join(root,'run-one.mjs'),'--task',task,'--variant',variant,'--smoke'],{stdio:'inherit'});if(r.status!==0)process.exit(r.status??1);}

@@ -1,0 +1,3 @@
+/** Consolidates order lines for downstream fulfillment batches. */
+function valid(line) { return line && typeof line.sku === 'string' && line.sku.length > 0 && Number.isInteger(line.quantity) && line.quantity >= 0 && Number.isInteger(line.unitCents) && line.unitCents >= 0; }
+export function aggregateOrderLines(lines) { if (!Array.isArray(lines) || lines.some(line => !valid(line))) throw new TypeError('invalid order line'); const groups = new Map(); for (const line of lines) { const group = groups.get(line.sku) ?? { sku: line.sku, quantity: 0, unitCents: line.unitCents, totalCents: 0 }; group.quantity += line.quantity; group.unitCents = line.unitCents; group.totalCents = group.quantity * group.unitCents; groups.set(line.sku, group); } return [...groups.values()]; }

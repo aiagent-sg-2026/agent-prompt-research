@@ -1,0 +1,1 @@
+{"name":"t19-validate-customer-update","private":true,"type":"module","scripts":{"test":"node --test"}}

@@ -1,0 +1,1 @@
+{"name":"t10-resolve-permissions","private":true,"type":"module","scripts":{"test":"node --test"}}

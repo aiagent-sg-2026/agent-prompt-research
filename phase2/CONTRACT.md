@@ -1,0 +1,15 @@
+# Phase 2 experiment contract
+
+Phase 2 tests whether the Phase 1 observation is stable on **20 realistic, reproducible synthetic engineering tasks** inspired by common application, ERP, backend, data, security, i18n, and async workflows. They are not production customer code and are not statistically representative of all coding work. The formal design is 20 tasks × 3 prompt variants × 5 repeats = 300 cells, in five balanced randomized blocks of 60 cells. Cells run sequentially and each gets a fresh fixture and local git repository.
+
+Primary outcome: `task_success` (independent final tests pass, Codex exits zero, only the allowed target changes). Secondary outcomes: input tokens, cached input tokens, output tokens, latency, diff lines, unrelated edits, and the test-invocation retry proxy.
+
+Infrastructure-invalid attempts are excluded from outcome data: baseline unexpectedly passes, spawn/lock/executable failure, missing essential evidence, or nonzero Codex process exit. A valid agent failure remains a valid cell with `task_success=false`. No post-hoc task dropping is allowed.
+
+Analysis reports run-level summaries, five-repeat per-task summaries, task-level win/tie/loss counts, and deterministic 10,000-resample task-cluster bootstrap 95% intervals for pairwise success-rate differences and efficiency ratios/differences. The fixed analysis seed is `agent-prompt-phase2-analysis-20260902-v1`. Five repeats are clustered by the 20 tasks, not treated as 100 independent tasks.
+
+The pre-registered Phase 1 stability support criterion is: A is not materially worse in success than B and C (lower bound of each task-cluster bootstrap difference A-comparator is no lower than -0.05), and A has lower task-level mean input tokens and latency than each comparator on at least 12 of 20 tasks, with aggregate A/comparator ratios below 1. The Phase 1 B-diff pattern is tracked separately and is not part of this criterion. If the criterion fails, the verdict is `NOT_STABLE` or `MIXED` as appropriate. The deterministic decision rule is: `SUPPORT` only when every success and efficiency condition holds; `MIXED` when A meets the success condition against both comparators but misses one or more efficiency conditions; otherwise `NOT_STABLE`. No post-hoc task dropping, cell dropping, or outcome redefinition is permitted.
+
+The task-specification audit is part of the protocol: every requirement exercised by a fixture test is represented in that task's `requirements` array, including validation, ordering, mutation, edge-case, and exact-output semantics. QA checks the 20 unique IDs/targets, test import markers, and assertion-failing baselines before a freeze.
+
+Bootstrap analysis uses exactly 10,000 deterministic resamples of the 20 task clusters with seed `agent-prompt-phase2-analysis-20260902-v1`. Pairwise A-B, A-C, and B-C success differences and input/latency ratios and differences are reported with percentile 95% intervals. Token values may be null; ratios use only available paired task means and are marked unavailable when a denominator is zero.

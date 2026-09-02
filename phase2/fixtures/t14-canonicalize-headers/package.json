@@ -1,0 +1,1 @@
+{"name":"t14-canonicalize-headers","private":true,"type":"module","scripts":{"test":"node --test"}}

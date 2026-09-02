@@ -1,0 +1,4 @@
+/** Calendar-only range math; lexical comparison is safe for strict ISO dates. */
+const date = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && (() => { const [y,m,d] = value.split('-').map(Number); const probe = new Date(Date.UTC(y,m-1,d)); return probe.getUTCFullYear() === y && probe.getUTCMonth() === m-1 && probe.getUTCDate() === d; })();
+function validRange(range) { return Array.isArray(range) && range.length === 2 && date(range[0]) && date(range[1]) && range[0] <= range[1]; }
+export function overlapDateRanges(left, right) { if (!validRange(left) || !validRange(right)) throw new TypeError('invalid date range'); const start = left[0] > right[0] ? left[0] : right[0]; const end = left[1] < right[1] ? left[1] : right[1]; return start < end ? [start, end] : null; }

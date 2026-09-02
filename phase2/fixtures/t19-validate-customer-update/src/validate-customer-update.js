@@ -1,0 +1,5 @@
+/** Stable validation boundary for PATCH requests to the customer service. */
+const allowed = new Set(['name', 'email', 'phone', 'marketingOptIn']);
+const plain = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+function message(field, value) { if (field === 'name') return typeof value === 'string' && value.trim() ? null : 'name must be a non-empty string'; if (field === 'email') return typeof value === 'string' && value.split('@').length === 2 && value.split('@').every(Boolean) ? null : 'email must contain exactly one @ with non-empty sides'; if (field === 'phone') return typeof value === 'string' && /^\+?\d{8,15}$/.test(value) ? null : 'phone must contain 7 to 15 digits'; if (field === 'marketingOptIn') return typeof value === 'boolean' ? null : 'marketingOptIn must be boolean'; return 'unknown field'; }
+export function validateCustomerUpdate(update) { if (!plain(update)) throw new TypeError('update must be plain'); const errors = []; for (const [field, value] of Object.entries(update)) { const error = message(field, value); if (error) errors.push({ field, message: error }); } return { valid: errors.length === 0, errors }; }

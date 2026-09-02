@@ -1,0 +1,4 @@
+/** Audit-safe structural copy for logging request payloads. */
+const plain = value => value !== null && typeof value === 'object' && (Object.getPrototypeOf(value) === Object.prototype || Object.getPrototypeOf(value) === null);
+function copy(value, fields) { if (Array.isArray(value)) return value.map(item => copy(item, fields)); if (!plain(value)) return value; const out = {}; for (const [key, item] of Object.entries(value)) out[key] = fields.includes(key) ? '[REDACTED]' : (plain(item) ? { ...item } : copy(item, fields)); return out; }
+export function redactSensitiveFields(value, fields = ['password', 'token', 'secret']) { if (!Array.isArray(fields) || fields.some(field => typeof field !== 'string')) throw new TypeError('fields must be strings'); return copy(value, fields); }

@@ -1,0 +1,1 @@
+{"name":"t02-calculate-invoice-totals","private":true,"type":"module","scripts":{"test":"node --test"}}

@@ -1,0 +1,1 @@
+{"name":"t07-dedupe-events","private":true,"type":"module","scripts":{"test":"node --test"}}
