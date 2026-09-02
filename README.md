@@ -1,8 +1,17 @@
 # Agent Prompt Research
 
-An evidence-separated, reproducible engineering pilot on instruction density for modern coding agents.
+An evidence-separated research project on modern AI-agent instruction design and human-AI collaboration.
 
-Research question: **Do lean, outcome-first prompts outperform long prescriptive prompts for modern reasoning and coding agents?** This is a small bounded pilot, not proof that short prompts are universally better.
+Track 1 research question: **Do lean, outcome-first prompts outperform long prescriptive prompts for modern reasoning and coding agents?** This is a small bounded pilot, not proof that short prompts are universally better.
+
+## Research tracks
+
+This repository keeps related questions separate so one experiment cannot silently become evidence for another.
+
+- **Track 1 — Instruction Density:** When do lean, outcome-first prompts outperform longer prescriptive prompts? Phase 1 is a completed bounded pilot; later phases have their own frozen protocols and evidence.
+- **Track 2 — Trusted Colleague Model (TCM):** How should an AI agent communicate and collaborate like a competent, context-aware colleague without pretending to be human? Status: **PRE-PILOT**; protocol and conditions exist, but there are no TCM experimental results yet. See [`research/trusted-colleague/`](research/trusted-colleague/) and the [TCM research page](docs/tcm.html).
+
+TCM does not modify or reinterpret the instruction-density experiment inputs or outcomes. Cross-track synthesis is allowed only after each track has independent evidence.
 
 ## Navigate
 
@@ -27,6 +36,8 @@ node experiments/summarize.mjs
 node experiments/derive-analysis.mjs
 node scripts/qa-scaffold.mjs
 node scripts/qa-site.mjs
+node scripts/qa-pwa.mjs
+node scripts/qa-tcm.mjs
 sha256sum -c meta/frozen-input-sha256.txt
 ```
 

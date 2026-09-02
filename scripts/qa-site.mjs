@@ -2,15 +2,24 @@ import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 
 const root = resolve(dirname(new URL(import.meta.url).pathname), '..');
-const required = ['docs/index.html', 'docs/styles.css', 'docs/app.js', 'docs/data/summary.json', 'docs/.nojekyll'];
+const required = ['docs/index.html', 'docs/tcm.html', 'docs/styles.css', 'docs/app.js', 'docs/data/summary.json', 'docs/.nojekyll'];
 const failures = [];
 for (const file of required) if (!existsSync(join(root, file))) failures.push(`missing ${file}`);
 
 const html = readFileSync(join(root, 'docs/index.html'), 'utf8');
+const tcm = readFileSync(join(root, 'docs/tcm.html'), 'utf8');
 const app = readFileSync(join(root, 'docs/app.js'), 'utf8');
 for (const marker of ['Key results', 'Experiment comparison', 'Task-level results', 'External evidence tiers', 'Prompt decision framework', 'Limitations', 'Reproducibility and links']) {
   if (!html.includes(marker)) failures.push(`missing essential section: ${marker}`);
 }
+
+for (const marker of ['Trusted Colleague Model', 'PRE-PILOT', 'Four experimental conditions', 'Experimental protocol', 'Evidence foundations']) {
+  if (!tcm.includes(marker)) failures.push(`missing TCM section/marker: ${marker}`);
+}
+if (!html.includes('tcm.html')) failures.push('main site does not link TCM track');
+if (!tcm.includes('index.html') || !tcm.includes('research/trusted-colleague/protocol-v0.1.md')) failures.push('TCM navigation/research links missing');
+if (tcm.includes('href="../')) failures.push('TCM site contains parent-relative links');
+
 for (const asset of ['styles.css', 'app.js']) if (!html.includes(asset)) failures.push(`missing relative asset reference: ${asset}`);
 if (!app.includes('data/summary.json')) failures.push('missing relative asset reference: data/summary.json');
 if (html.includes('href="../')) failures.push('site contains parent-relative artifact links that break from a /docs GitHub Pages source');
