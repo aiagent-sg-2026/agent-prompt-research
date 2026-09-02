@@ -1,0 +1,70 @@
+
+> test
+> node --test
+
+✖ accepts a valid partial update (1.326046ms)
+✔ reports one stable error per field (0.109959ms)
+✖ validates phone boundaries (0.299251ms)
+✔ requires boolean marketing choice (0.099084ms)
+✔ validates object and does not mutate (0.346793ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 3
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 36.74242
+
+✖ failing tests:
+
+test at test/target.test.js:3:1
+✖ accepts a valid partial update (1.326046ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   errors: [
+  +     {
+  +       field: 'phone',
+  +       message: 'phone must contain 7 to 15 digits'
+  +     }
+  +   ],
+  +   valid: false
+  -   errors: [],
+  -   valid: true
+    }
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/056-1-t19-validate-customer-update-B/test/target.test.js:3:50)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { valid: false, errors: [ [Object] ] },
+    expected: { valid: true, errors: [] },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at test/target.test.js:5:1
+✖ validates phone boundaries (0.299251ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/056-1-t19-validate-customer-update-B/test/target.test.js:5:47)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

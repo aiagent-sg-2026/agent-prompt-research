@@ -1,0 +1,7 @@
+Implemented the canonical contract in [src/aggregate-order-lines.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/054-1-t12-aggregate-order-lines-B/src/aggregate-order-lines.js).
+
+- Aggregates exact SKUs in first-seen order.
+- Retains first `unitCents`.
+- Validates records and avoids input mutation.
+- `npm test`: 1 passed, 0 failed.
+- Scope: only the allowed target changed; diff check clean.

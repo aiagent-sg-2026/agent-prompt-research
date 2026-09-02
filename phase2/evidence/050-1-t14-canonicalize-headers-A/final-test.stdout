@@ -1,0 +1,17 @@
+
+> test
+> node --test
+
+✔ trims and lowercases names (0.717044ms)
+✔ collapses ASCII whitespace (0.067292ms)
+✔ sorts names (0.062626ms)
+✔ retains repeated array values (0.578211ms)
+✔ validates values and does not mutate (0.229042ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 32.115988

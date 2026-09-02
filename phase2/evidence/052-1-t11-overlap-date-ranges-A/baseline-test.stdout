@@ -1,0 +1,69 @@
+
+> test
+> node --test
+
+✖ returns inclusive intersection (1.022046ms)
+✔ returns null for separated ranges (0.099ms)
+✖ accepts same-day ranges (0.15075ms)
+✔ rejects impossible dates (0.175667ms)
+✔ rejects non ISO and reversed ranges (0.067125ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 3
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 36.303378
+
+✖ failing tests:
+
+test at test/target.test.js:3:1
+✖ returns inclusive intersection (1.022046ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + null
+  - [
+  -   '2026-01-10',
+  -   '2026-01-10'
+  - ]
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/052-1-t11-overlap-date-ranges-A/test/target.test.js:3:50)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: [ '2026-01-10', '2026-01-10' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at test/target.test.js:5:1
+✖ accepts same-day ranges (0.15075ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + null
+  - [
+  -   '2026-02-01',
+  -   '2026-02-01'
+  - ]
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/052-1-t11-overlap-date-ranges-A/test/target.test.js:5:43)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: [ '2026-02-01', '2026-02-01' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

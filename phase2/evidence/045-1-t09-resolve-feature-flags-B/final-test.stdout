@@ -1,0 +1,17 @@
+
+> test
+> node --test
+
+✔ starts with definitions (0.750627ms)
+✔ applies environment then user (0.069751ms)
+✔ ignores unknown and nonboolean overrides (0.089917ms)
+✔ preserves definition order (0.42021ms)
+✔ validates maps and definitions (0.174209ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 32.370657

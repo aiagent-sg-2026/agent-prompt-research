@@ -1,0 +1,8 @@
+Implemented the contract in [src/canonicalize-headers.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/050-1-t14-canonicalize-headers-A/src/canonicalize-headers.js).
+
+- Correct ascending lexicographic sorting
+- Strict plain-object and string validation
+- ASCII whitespace normalization
+- Duplicate preservation and immutability
+
+Verification passed: fixture tests and supplemental contract checks. Only the allowed target changed.

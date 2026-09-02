@@ -1,0 +1,44 @@
+diff --git a/src/resolve-feature-flags.js b/src/resolve-feature-flags.js
+index 286b1bd..2290608 100644
+--- a/src/resolve-feature-flags.js
++++ b/src/resolve-feature-flags.js
+@@ -1,8 +1,35 @@
+ /** Layered feature configuration: definition, deployment environment, then account. */
+-const plain = value => value !== null && typeof value === 'object' && !Array.isArray(value) && Object.getPrototypeOf(value) === Object.prototype;
++const plain = value => {
++  if (value === null || typeof value !== 'object') return false;
++  const prototype = Object.getPrototypeOf(value);
++  return prototype === Object.prototype || prototype === null;
++};
++
+ export function resolveFeatureFlags(definitions, environment = {}, user = {}) {
+-  if (![definitions, environment, user].every(plain)) throw new TypeError('flag maps must be plain objects'); const result = {};
+-  for (const [name, value] of Object.entries(definitions)) { if (typeof value !== 'boolean') throw new TypeError('definition must be boolean'); result[name] = value; }
+-  for (const layer of [user, environment]) for (const [name, value] of Object.entries(layer)) if (name in result && typeof value === 'boolean') result[name] = value;
++  if (![definitions, environment, user].every(plain)) {
++    throw new TypeError('flag maps must be plain objects');
++  }
++
++  const result = {};
++  for (const [name, value] of Object.entries(definitions)) {
++    if (typeof value !== 'boolean') {
++      throw new TypeError('definition must be boolean');
++    }
++    Object.defineProperty(result, name, {
++      configurable: true,
++      enumerable: true,
++      value,
++      writable: true,
++    });
++  }
++
++  for (const layer of [environment, user]) {
++    for (const [name, value] of Object.entries(layer)) {
++      if (Object.prototype.hasOwnProperty.call(result, name) && typeof value === 'boolean') {
++        result[name] = value;
++      }
++    }
++  }
++
+   return result;
+ }

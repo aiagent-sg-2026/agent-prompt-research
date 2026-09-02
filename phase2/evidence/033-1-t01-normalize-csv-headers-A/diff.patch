@@ -1,0 +1,30 @@
+diff --git a/src/normalize-csv-headers.js b/src/normalize-csv-headers.js
+index e3ca09f..626a90c 100644
+--- a/src/normalize-csv-headers.js
++++ b/src/normalize-csv-headers.js
+@@ -1,5 +1,22 @@
+ /** CSV header normalization used by import pipelines. */
+-const NON_WORD_RUN = /[^a-z0-9]+/gi;
+-function assertHeaderList(headers) { if (!Array.isArray(headers) || headers.some(value => typeof value !== 'string')) throw new TypeError('headers must be strings'); }
+-function normalizeHeader(header) { return header.trim().toLocaleLowerCase().replace(NON_WORD_RUN, '_').replace(/^_+|_+$/g, ''); }
++const NON_ALPHANUMERIC_RUN = /[^\p{Letter}\p{Number}]+/gu;
++
++function assertHeaderList(headers) {
++  if (!Array.isArray(headers)) throw new TypeError('headers must be an array of strings');
++
++  for (let index = 0; index < headers.length; index += 1) {
++    if (!(index in headers) || typeof headers[index] !== 'string') {
++      throw new TypeError('headers must be an array of strings');
++    }
++  }
++}
++
++function normalizeHeader(header) {
++  return header
++    .trim()
++    .toLowerCase()
++    .replace(NON_ALPHANUMERIC_RUN, '_')
++    .replace(/^_+|_+$/g, '');
++}
++
+ export function normalizeCsvHeaders(headers) { assertHeaderList(headers); return headers.map(normalizeHeader); }

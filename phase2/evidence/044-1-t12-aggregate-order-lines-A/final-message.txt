@@ -1,0 +1,9 @@
+Implemented the requested aggregation in [src/aggregate-order-lines.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/044-1-t12-aggregate-order-lines-A/src/aggregate-order-lines.js).
+
+- Validates inputs per contract.
+- Preserves first-seen SKU order and first unit price.
+- Sums quantities and computes totals.
+- Does not mutate inputs.
+- Empty input returns `[]`.
+
+Verification: `npm test` passed. Only the allowed target file changed.

@@ -1,0 +1,97 @@
+
+> test
+> node --test
+
+✔ sums line subtotals (0.624502ms)
+✖ rounds exact half cent up (0.927628ms)
+✖ rounds just below and above half cent correctly (0.141917ms)
+✖ returns total as subtotal plus tax (0.160709ms)
+✔ validates all inputs (0.191042ms)
+✔ does not mutate lines (0.066584ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 3
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 35.775216
+
+✖ failing tests:
+
+test at test/target.test.js:4:1
+✖ rounds exact half cent up (0.927628ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      subtotalCents: 1,
+  +   taxCents: 0,
+  +   totalCents: 1
+  -   taxCents: 1,
+  -   totalCents: 2
+    }
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/038-1-t02-calculate-invoice-totals-A/test/target.test.js:4:45)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { subtotalCents: 1, taxCents: 0, totalCents: 1 },
+    expected: { subtotalCents: 1, taxCents: 1, totalCents: 2 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at test/target.test.js:5:1
+✖ rounds just below and above half cent correctly (0.141917ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/038-1-t02-calculate-invoice-totals-A/test/target.test.js:5:150)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/target.test.js:6:1
+✖ returns total as subtotal plus tax (0.160709ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      subtotalCents: 30,
+  +   taxCents: 2,
+  +   totalCents: 32
+  -   taxCents: 3,
+  -   totalCents: 33
+    }
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/038-1-t02-calculate-invoice-totals-A/test/target.test.js:6:54)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { subtotalCents: 30, taxCents: 2, totalCents: 32 },
+    expected: { subtotalCents: 30, taxCents: 3, totalCents: 33 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

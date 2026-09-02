@@ -1,0 +1,17 @@
+
+> test
+> node --test
+
+✔ sorts keys (0.530377ms)
+✔ encodes scalar values (0.081042ms)
+✔ repeats arrays in order (0.0675ms)
+✔ omits nullish and handles empty (0.059625ms)
+✔ validates object shape (0.54521ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 32.008366

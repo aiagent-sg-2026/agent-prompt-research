@@ -1,0 +1,36 @@
+diff --git a/src/redact-sensitive-fields.js b/src/redact-sensitive-fields.js
+index e725d6b..3f305bf 100644
+--- a/src/redact-sensitive-fields.js
++++ b/src/redact-sensitive-fields.js
+@@ -1,4 +1,28 @@
+ /** Audit-safe structural copy for logging request payloads. */
+-const plain = value => value !== null && typeof value === 'object' && (Object.getPrototypeOf(value) === Object.prototype || Object.getPrototypeOf(value) === null);
+-function copy(value, fields) { if (Array.isArray(value)) return value.map(item => copy(item, fields)); if (!plain(value)) return value; const out = {}; for (const [key, item] of Object.entries(value)) out[key] = fields.includes(key) ? '[REDACTED]' : (plain(item) ? { ...item } : copy(item, fields)); return out; }
+-export function redactSensitiveFields(value, fields = ['password', 'token', 'secret']) { if (!Array.isArray(fields) || fields.some(field => typeof field !== 'string')) throw new TypeError('fields must be strings'); return copy(value, fields); }
++const isPlainObject = value => value !== null
++  && typeof value === 'object'
++  && (Object.getPrototypeOf(value) === Object.prototype || Object.getPrototypeOf(value) === null);
++
++function copy(value, fields) {
++  if (Array.isArray(value)) return value.map(item => copy(item, fields));
++  if (!isPlainObject(value)) return value;
++
++  const result = Object.create(Object.getPrototypeOf(value));
++  for (const key of Object.keys(value)) {
++    const copiedValue = fields.includes(key) ? '[REDACTED]' : copy(value[key], fields);
++    Object.defineProperty(result, key, {
++      value: copiedValue,
++      enumerable: true,
++      configurable: true,
++      writable: true,
++    });
++  }
++  return result;
++}
++
++export function redactSensitiveFields(value, fields = ['password', 'token', 'secret']) {
++  if (!Array.isArray(fields) || fields.some(field => typeof field !== 'string')) {
++    throw new TypeError('fields must be strings');
++  }
++  return copy(value, fields);
++}

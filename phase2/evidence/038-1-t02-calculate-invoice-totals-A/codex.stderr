@@ -1,0 +1,1 @@
+2026-09-02T22:40:41.727757Z ERROR codex_core::tools::router: error=exec_command failed for `/bin/bash -lc "sed -n '1,260p' test/target.test.js && npm test && git diff --check && git status --short && git diff -- src/calculate-invoice-totals.js"`: CreateProcess { message: "Rejected(\"Failed to create unified exec process: No such file or directory (os error 2)\")" }

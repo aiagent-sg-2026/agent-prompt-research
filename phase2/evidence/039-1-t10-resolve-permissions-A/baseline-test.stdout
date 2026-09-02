@@ -1,0 +1,40 @@
+
+> test
+> node --test
+
+✔ resolves string requests (0.654128ms)
+✔ uses scope and last rule (0.085834ms)
+✖ global rule applies to scoped request (0.393668ms)
+✔ missing decisions deny (0.346668ms)
+✔ preserves request order and validates (0.232876ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 34.216001
+
+✖ failing tests:
+
+test at test/target.test.js:5:1
+✖ global rule applies to scoped request (0.393668ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/039-1-t10-resolve-permissions-A/test/target.test.js:5:57)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

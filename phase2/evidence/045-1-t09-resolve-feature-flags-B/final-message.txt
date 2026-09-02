@@ -1,0 +1,8 @@
+Implemented the canonical feature-flag resolver in [src/resolve-feature-flags.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/045-1-t09-resolve-feature-flags-B/src/resolve-feature-flags.js).
+
+- Precedence: definitions → environment → user
+- Validates plain-object inputs and boolean definitions
+- Ignores unknown/non-boolean overrides
+- Preserves definition order and avoids mutation
+- Tests: `npm test` — 1 passed, 0 failed
+- Scope: only `src/resolve-feature-flags.js` changed

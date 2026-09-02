@@ -1,0 +1,5 @@
+Implemented FIFO inventory allocation in [src/allocate-inventory-fifo.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/047-1-t03-allocate-inventory-fifo-C/src/allocate-inventory-fifo.js).
+
+- Final tests: passed
+- Changed scope: only the allowed target file
+- Summary: fixed oldest-first traversal and strengthened lot validation, preserving immutability and zero-allocation behavior.

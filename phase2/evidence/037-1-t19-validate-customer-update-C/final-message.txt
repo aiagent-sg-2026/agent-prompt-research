@@ -1,0 +1,8 @@
+Implemented the customer update validator in [src/validate-customer-update.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/037-1-t19-validate-customer-update-C/src/validate-customer-update.js).
+
+- Enforces plain non-null objects.
+- Validates allowed fields and unknown fields.
+- Corrects phone validation to 7–15 digits.
+- Preserves input order, one error per field, and immutability.
+- Final tests: 1 passed, 0 failed.
+- Changed files: only the allowed target.

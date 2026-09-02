@@ -1,0 +1,42 @@
+
+> test
+> node --test
+
+✔ sorts keys (0.339668ms)
+✖ encodes scalar values (0.529335ms)
+✔ repeats arrays in order (0.077834ms)
+✔ omits nullish and handles empty (0.053333ms)
+✔ validates object shape (0.178584ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31.836413
+
+✖ failing tests:
+
+test at test/target.test.js:4:1
+✖ encodes scalar values (0.529335ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'n=4&flag=true&x%20y=a%2Fb'
+  - 'flag=true&n=4&x%20y=a%2Fb'
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/035-1-t08-build-query-string-C/test/target.test.js:4:41)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'n=4&flag=true&x%20y=a%2Fb',
+    expected: 'flag=true&n=4&x%20y=a%2Fb',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

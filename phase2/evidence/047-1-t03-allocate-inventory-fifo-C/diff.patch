@@ -1,0 +1,26 @@
+diff --git a/src/allocate-inventory-fifo.js b/src/allocate-inventory-fifo.js
+index 9ffe129..c04cb21 100644
+--- a/src/allocate-inventory-fifo.js
++++ b/src/allocate-inventory-fifo.js
+@@ -1,8 +1,18 @@
+ /** Warehouse allocation policy: lots are already ordered oldest first. */
+ const validLot = lot => lot && typeof lot.id === 'string' && Number.isInteger(lot.quantity) && lot.quantity >= 0;
+-function validate(lots, requested) { if (!Array.isArray(lots) || !Number.isInteger(requested) || requested < 0 || lots.some(lot => !validLot(lot))) throw new TypeError('invalid inventory request'); }
++function validate(lots, requested) {
++  if (!Array.isArray(lots) || !Number.isInteger(requested) || requested < 0) throw new TypeError('invalid inventory request');
++  for (const lot of lots) if (!validLot(lot)) throw new TypeError('invalid inventory request');
++}
+ export function allocateInventoryFifo(lots, requested) {
+-  validate(lots, requested); let remaining = requested; const allocations = [];
+-  for (const lot of [...lots].reverse()) { if (!remaining) break; const quantity = Math.min(lot.quantity, remaining); if (quantity > 0) allocations.push({ id: lot.id, quantity }); remaining -= quantity; }
++  validate(lots, requested);
++  let remaining = requested;
++  const allocations = [];
++  for (const lot of lots) {
++    if (!remaining) break;
++    const quantity = Math.min(lot.quantity, remaining);
++    if (quantity > 0) allocations.push({ id: lot.id, quantity });
++    remaining -= quantity;
++  }
+   return { allocations, remaining };
+ }

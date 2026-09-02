@@ -1,0 +1,45 @@
+
+> test
+> node --test
+
+✔ trims and lowercases names (0.733336ms)
+✔ collapses ASCII whitespace (0.073875ms)
+✖ sorts names (0.618377ms)
+✔ retains repeated array values (0.455169ms)
+✔ validates values and does not mutate (0.224209ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 37.395886
+
+✖ failing tests:
+
+test at test/target.test.js:5:1
+✖ sorts names (0.618377ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  +   'z',
+      'a',
+  -   'z'
+    ]
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/040-1-t14-canonicalize-headers-B/test/target.test.js:5:31)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'z', 'a' ],
+    expected: [ 'a', 'z' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

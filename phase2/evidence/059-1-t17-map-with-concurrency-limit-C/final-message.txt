@@ -1,0 +1,6 @@
+Implemented the concurrency fix in [src/map-with-concurrency-limit.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/059-1-t17-map-with-concurrency-limit-C/src/map-with-concurrency-limit.js).
+
+- Corrected worker count to enforce the strict `limit`.
+- Preserved validation, ordering, rejection handling, and non-mutation behavior.
+- Final tests: `1` suite passed, `0` failures.
+- Changed scope: only the allowed target file.

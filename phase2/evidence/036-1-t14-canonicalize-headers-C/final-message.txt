@@ -1,0 +1,10 @@
+Implemented the canonical header behavior in [src/canonicalize-headers.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/036-1-t14-canonicalize-headers-C/src/canonicalize-headers.js).
+
+- Enforces plain-object input and string values.
+- Normalizes names and ASCII whitespace.
+- Preserves duplicate array entries.
+- Sorts entries lexicographically by name.
+- Does not mutate input.
+
+Final tests: `npm test` — 1 passed, 0 failed.  
+Changed scope: only `src/canonicalize-headers.js`.

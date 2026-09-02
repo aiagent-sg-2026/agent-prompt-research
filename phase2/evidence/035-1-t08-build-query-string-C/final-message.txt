@@ -1,0 +1,5 @@
+Implemented and verified the canonical contract.
+
+- Final tests: `npm test` — 1 passed, 0 failed
+- Changed scope: only `src/build-query-string.js`
+- Added deterministic lexicographic key sorting while preserving validation, encoding, nullish omission, and array repetition behavior.

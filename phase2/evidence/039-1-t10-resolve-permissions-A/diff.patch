@@ -1,0 +1,61 @@
+diff --git a/src/resolve-permissions.js b/src/resolve-permissions.js
+index af99a87..321d08c 100644
+--- a/src/resolve-permissions.js
++++ b/src/resolve-permissions.js
+@@ -1,8 +1,52 @@
+ /** Permission resolver for tenant-scoped API requests. */
+ const plain = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+-function entry(value) { return typeof value === 'string' ? { permission: value, scope: undefined } : value; }
+-function validRule(rule) { return plain(rule) && typeof rule.permission === 'string' && typeof rule.allow === 'boolean' && (rule.scope === undefined || typeof rule.scope === 'string'); }
++
++function requestedEntry(value) {
++  return typeof value === 'string' ? { permission: value, scope: undefined } : value;
++}
++
++function validRule(rule) {
++  return plain(rule)
++    && typeof rule.permission === 'string'
++    && typeof rule.allow === 'boolean'
++    && (rule.scope === undefined || typeof rule.scope === 'string');
++}
++
++function validRequested(value) {
++  const item = requestedEntry(value);
++  return plain(item)
++    && typeof item.permission === 'string'
++    && (item.scope === undefined || typeof item.scope === 'string');
++}
++
+ export function resolvePermissions(rules, requested) {
+-  if (!Array.isArray(rules) || !Array.isArray(requested) || rules.some(rule => !validRule(rule)) || requested.some(value => { const x = entry(value); return !plain(x) || typeof x.permission !== 'string' || (x.scope !== undefined && typeof x.scope !== 'string'); })) throw new TypeError('invalid permission');
+-  return requested.map(value => { const item = entry(value); let allowed = false; for (const rule of rules) if (rule.permission === item.permission && rule.scope === item.scope) allowed = rule.allow; return { permission: item.permission, scope: item.scope, allowed }; });
++  if (!Array.isArray(rules) || !Array.isArray(requested)
++    || rules.some(rule => !validRule(rule))
++    || requested.some(value => !validRequested(value))) {
++    throw new TypeError('invalid permission');
++  }
++
++  return requested.map(value => {
++    const item = requestedEntry(value);
++    let specificity = -1;
++    let allowed = false;
++    let denied = false;
++
++    for (const rule of rules) {
++      if (rule.permission !== item.permission
++        || (rule.scope !== undefined && rule.scope !== item.scope)) continue;
++
++      const ruleSpecificity = rule.scope === undefined ? 0 : 1;
++      if (ruleSpecificity > specificity) {
++        specificity = ruleSpecificity;
++        allowed = rule.allow;
++        denied = !rule.allow;
++      } else if (ruleSpecificity === specificity) {
++        denied ||= !rule.allow;
++        if (!denied) allowed = rule.allow;
++      }
++    }
++
++    return { permission: item.permission, scope: item.scope, allowed: specificity >= 0 && !denied && allowed };
++  });
+ }

@@ -1,0 +1,44 @@
+
+> test
+> node --test
+
+✖ exports and normalizes punctuation (1.242047ms)
+✔ empty normalized header is stable (0.099792ms)
+✔ preserves order and duplicates (0.058583ms)
+✔ rejects non string lists (0.475294ms)
+✔ returns a new array (0.173459ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 34.717927
+
+✖ failing tests:
+
+test at test/target.test.js:3:1
+✖ exports and normalizes punctuation (1.242047ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      'first_name',
+      'e_mail',
+  +   ''
+  -   '税_額'
+    ]
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/033-1-t01-normalize-csv-headers-A/test/target.test.js:3:54)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'first_name', 'e_mail', '' ],
+    expected: [ 'first_name', 'e_mail', '税_額' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

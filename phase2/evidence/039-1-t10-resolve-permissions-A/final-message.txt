@@ -1,0 +1,9 @@
+Implemented `resolvePermissions` in [src/resolve-permissions.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/039-1-t10-resolve-permissions-A/src/resolve-permissions.js).
+
+- Added validation for rules and requested entries.
+- Added global/scope-specific rule matching.
+- Enforced specificity and deny precedence.
+- Preserved order and input immutability.
+- `npm test`: 1 passing.
+- Additional assertions passed.
+- Only the allowed target file changed.

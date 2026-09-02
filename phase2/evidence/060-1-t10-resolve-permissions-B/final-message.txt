@@ -1,0 +1,8 @@
+Implemented `resolvePermissions` in [src/resolve-permissions.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/060-1-t10-resolve-permissions-B/src/resolve-permissions.js).
+
+Evidence:
+
+- Fixture tests: 1 passed, 0 failed.
+- Focused validation, precedence, and immutability checks passed.
+- `git diff --check`: clean.
+- Changed scope: only `src/resolve-permissions.js`; no evaluator-owned files changed.

@@ -14,3 +14,7 @@ The cell was then rerun once with the same frozen input and protocol hash and pr
 ## Formal cell 21 connector re-entry
 
 A second connector re-entry occurred at cell 21. One active evidence directory was moved while the original run was still executing, leaving its result non-atomic; another duplicate was rejected by the singleton lock. The non-atomic run snapshot and both moved partial directories are preserved under `recovery-evidence/021-connector-interference/` and excluded. A later clean run from the unchanged frozen protocol produced the sole eligible cell-21 metrics (`harness_valid=true`, exact identity/hash, target-only scope, final tests passed).
+
+## Cell 60 incomplete connector-side attempt
+
+Before the valid formal cell 60 result, a connector-side batch process ended after the agent had modified the transient run directory but before run-one completed codex/final-test/diff/metrics evidence. The partial evidence and orphan run snapshot are preserved under `phase2/recovery-evidence/060-incomplete-attempt/`. That incomplete attempt is excluded. Cell 60 was rerun from the same frozen input under the outer supervisor lock and only the complete exact-protocol-hash result counts.

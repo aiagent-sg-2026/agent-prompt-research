@@ -1,0 +1,8 @@
+Implemented in [src/select-localized-value.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/057-1-t18-select-localized-value-A/src/select-localized-value.js).
+
+- Added strict plain-object and string validation.
+- Corrected exact → language → fallback exact → fallback language order.
+- Preserved case-insensitive insertion-order matching and falsy/`undefined` values.
+- No mutation or fixture changes.
+
+Verification: `npm test` passed; additional edge-case checks passed.

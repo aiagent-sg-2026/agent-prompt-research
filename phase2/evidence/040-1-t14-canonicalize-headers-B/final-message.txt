@@ -1,0 +1,12 @@
+Implemented canonical header normalization in [src/canonicalize-headers.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/040-1-t14-canonicalize-headers-B/src/canonicalize-headers.js).
+
+- Validates plain objects and string values/arrays.
+- Trims, lowercases, collapses ASCII whitespace.
+- Sorts names lexicographically while preserving duplicates/order.
+- Does not mutate input.
+
+Evidence:
+
+- `npm test`: 1 passed, 0 failed.
+- `git diff --check`: passed.
+- Changed files: only `src/canonicalize-headers.js`.

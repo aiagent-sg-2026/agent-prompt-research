@@ -1,0 +1,5 @@
+Implemented the canonical query serializer in [src/build-query-string.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/041-1-t08-build-query-string-B/src/build-query-string.js).
+
+- `npm test`: 1 passed, 0 failed
+- Supports validation, sorted keys, nullish omission, repeated arrays, encoding, booleans, and empty output.
+- Scope evidence: only `src/build-query-string.js` changed.

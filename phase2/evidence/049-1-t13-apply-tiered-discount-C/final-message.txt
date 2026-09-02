@@ -1,0 +1,9 @@
+Implemented the tiered discount contract in [src/apply-tiered-discount.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/049-1-t13-apply-tiered-discount-C/src/apply-tiered-discount.js).
+
+- Validates inputs and tiers with `TypeError`
+- Selects the highest eligible tier, preserving first-order ties
+- Applies round-half-up discount calculation
+- Preserves input tiers and handles no eligible tier
+
+Final tests: `npm test` — 1 passed, 0 failed.  
+Changed scope: only the allowed target file.

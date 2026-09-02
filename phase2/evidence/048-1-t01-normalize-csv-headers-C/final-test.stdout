@@ -1,0 +1,17 @@
+
+> test
+> node --test
+
+✔ exports and normalizes punctuation (1.035712ms)
+✔ empty normalized header is stable (0.064875ms)
+✔ preserves order and duplicates (0.056542ms)
+✔ rejects non string lists (0.159459ms)
+✔ returns a new array (0.103584ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 36.612088

@@ -1,0 +1,6 @@
+Implemented the pagination parser fix.
+
+- Corrected limit maximum from `99` to inclusive `100`.
+- Final tests: `npm test` — passed.
+- Changed only: `src/parse-pagination-query.js`.
+- No evaluator-owned files changed.

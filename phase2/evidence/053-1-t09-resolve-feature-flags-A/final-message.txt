@@ -1,0 +1,8 @@
+Implemented in [src/resolve-feature-flags.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/053-1-t09-resolve-feature-flags-A/src/resolve-feature-flags.js).
+
+- Correct precedence: definitions → environment → user
+- Validates plain-object inputs and boolean definitions
+- Ignores unknown/non-boolean overrides
+- Preserves definition order without mutating inputs
+
+Verification: `npm test` passed; `git diff --check` passed. Only the allowed target changed.

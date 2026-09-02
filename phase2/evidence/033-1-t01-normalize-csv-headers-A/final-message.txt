@@ -1,0 +1,7 @@
+Implemented in [src/normalize-csv-headers.js]( /srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/033-1-t01-normalize-csv-headers-A/src/normalize-csv-headers.js ).
+
+- Added strict array-of-strings validation.
+- Added Unicode-aware lowercasing and normalization.
+- Preserves order, duplicates, and input immutability.
+- `npm test`: 5/5 assertions passed.
+- No fixture files changed.

@@ -1,0 +1,7 @@
+Implemented in [src/calculate-invoice-totals.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/038-1-t02-calculate-invoice-totals-A/src/calculate-invoice-totals.js).
+
+- Added integer quotient/remainder half-up tax rounding.
+- Preserved validation and immutability requirements.
+- Verified decimal/scientific tax-rate edge cases.
+- `npm test`: all 6 tests passed.
+- Only the allowed target file changed.

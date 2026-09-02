@@ -1,0 +1,47 @@
+
+> test
+> node --test
+
+✖ redacts nested plain objects (1.044587ms)
+✔ redacts arrays without mutation (0.106042ms)
+✔ preserves primitives and dates by reference (0.559877ms)
+✔ uses exact custom names (0.081042ms)
+✔ does not traverse redacted values (0.078ms)
+✔ validates field list (0.162376ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 34.236498
+
+✖ failing tests:
+
+test at test/target.test.js:3:1
+✖ redacts nested plain objects (1.044587ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      password: '[REDACTED]',
+      profile: {
+        name: 'A',
+  +     token: 'y'
+  -     token: '[REDACTED]'
+      }
+    }
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/046-1-t06-redact-sensitive-fields-B/test/target.test.js:3:48)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { password: '[REDACTED]', profile: { token: 'y', name: 'A' } },
+    expected: { password: '[REDACTED]', profile: { token: '[REDACTED]', name: 'A' } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,8 @@
+Implemented the canonical contract in [src/redact-sensitive-fields.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/046-1-t06-redact-sensitive-fields-B/src/redact-sensitive-fields.js).
+
+- Deeply redacts configured fields without mutating input.
+- Preserves primitives/non-plain objects by reference.
+- Validates field arrays and preserves null prototypes.
+- Tests: `npm test` — 1 passed, 0 failed.
+- Scope: only `src/redact-sensitive-fields.js` changed.
+- `git diff --check` passed.

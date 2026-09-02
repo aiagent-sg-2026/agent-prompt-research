@@ -1,0 +1,17 @@
+
+> test
+> node --test
+
+✔ accepts a valid partial update (0.772212ms)
+✔ reports one stable error per field (0.164042ms)
+✔ validates phone boundaries (0.108083ms)
+✔ requires boolean marketing choice (0.424835ms)
+✔ validates object and does not mutate (0.193751ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31.840868

@@ -1,0 +1,2 @@
+2026-09-02T22:54:03.676240Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit
+2026-09-02T22:54:12.141865Z ERROR codex_core::tools::router: error=exec_command failed for `/bin/bash -lc "sed -n '1,260p' test/target.test.js && sed -n '1,200p' package.json && git status --short && git diff -- src/resolve-feature-flags.js"`: CreateProcess { message: "Rejected(\"Failed to create unified exec process: No such file or directory (os error 2)\")" }

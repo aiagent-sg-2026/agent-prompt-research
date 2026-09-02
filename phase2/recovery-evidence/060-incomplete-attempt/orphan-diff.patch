@@ -1,0 +1,54 @@
+diff --git a/src/resolve-permissions.js b/src/resolve-permissions.js
+index af99a87..33150fa 100644
+--- a/src/resolve-permissions.js
++++ b/src/resolve-permissions.js
+@@ -1,8 +1,45 @@
+ /** Permission resolver for tenant-scoped API requests. */
+ const plain = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+-function entry(value) { return typeof value === 'string' ? { permission: value, scope: undefined } : value; }
+-function validRule(rule) { return plain(rule) && typeof rule.permission === 'string' && typeof rule.allow === 'boolean' && (rule.scope === undefined || typeof rule.scope === 'string'); }
++
++function validRule(rule) {
++  return plain(rule) &&
++    typeof rule.permission === 'string' &&
++    typeof rule.allow === 'boolean' &&
++    (rule.scope === undefined || typeof rule.scope === 'string');
++}
++
++function validRequest(value) {
++  if (typeof value === 'string') return true;
++  return plain(value) &&
++    typeof value.permission === 'string' &&
++    (value.scope === undefined || typeof value.scope === 'string');
++}
++
+ export function resolvePermissions(rules, requested) {
+-  if (!Array.isArray(rules) || !Array.isArray(requested) || rules.some(rule => !validRule(rule)) || requested.some(value => { const x = entry(value); return !plain(x) || typeof x.permission !== 'string' || (x.scope !== undefined && typeof x.scope !== 'string'); })) throw new TypeError('invalid permission');
+-  return requested.map(value => { const item = entry(value); let allowed = false; for (const rule of rules) if (rule.permission === item.permission && rule.scope === item.scope) allowed = rule.allow; return { permission: item.permission, scope: item.scope, allowed }; });
++  if (!Array.isArray(rules) || !Array.isArray(requested) ||
++      rules.some(rule => !validRule(rule)) ||
++      requested.some(value => !validRequest(value))) {
++    throw new TypeError('invalid permission');
++  }
++
++  return requested.map(value => {
++    const item = typeof value === 'string' ? { permission: value, scope: undefined } : value;
++    let decision;
++    let specificity = -1;
++
++    for (const rule of rules) {
++      if (rule.permission !== item.permission ||
++          (rule.scope !== undefined && rule.scope !== item.scope)) continue;
++
++      const ruleSpecificity = rule.scope === undefined ? 0 : 1;
++      if (ruleSpecificity > specificity ||
++          (ruleSpecificity === specificity &&
++            (decision === undefined || rule.allow === false || decision === false))) {
++        decision = rule.allow;
++        specificity = ruleSpecificity;
++      }
++    }
++
++    return { permission: item.permission, scope: item.scope, allowed: decision ?? false };
++  });
+ }

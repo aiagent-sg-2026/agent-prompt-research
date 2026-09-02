@@ -1,0 +1,36 @@
+diff --git a/src/parse-pagination-query.js b/src/parse-pagination-query.js
+index 431ba24..eb53ef6 100644
+--- a/src/parse-pagination-query.js
++++ b/src/parse-pagination-query.js
+@@ -1,10 +1,27 @@
+ /** Defensive parser for list endpoints; no Date or global state is involved. */
++const MAX_LIMIT = 100;
+ const positive = value => Number.isInteger(value) && value > 0;
+-function defaultValue(value, fallback) { return positive(value) ? value : fallback; }
+-function firstInteger(params, key, fallback) { const raw = params.get(key); if (raw === null || !/^[+-]?\d+$/.test(raw)) return fallback; const parsed = Number.parseInt(raw, 10); return Number.isInteger(parsed) ? parsed : fallback; }
++
++function defaultValue(value, fallback) {
++  return positive(value) ? value : fallback;
++}
++
++function firstInteger(params, key, fallback) {
++  const raw = params.get(key);
++  if (raw === null || !/^[+-]?\d+$/.test(raw)) return fallback;
++
++  const parsed = Number.parseInt(raw, 10);
++  return Number.isInteger(parsed) ? parsed : fallback;
++}
++
+ export function parsePaginationQuery(input, defaults = {}) {
+   if (!(typeof input === 'string' || input instanceof URLSearchParams)) throw new TypeError('query must be string or URLSearchParams');
+   const params = typeof input === 'string' ? new URLSearchParams(input.replace(/^\?/, '')) : input;
+-  const pageDefault = defaultValue(defaults.page, 1); const limitDefault = Math.min(100, defaultValue(defaults.limit, 20));
+-  return { page: Math.max(1, firstInteger(params, 'page', pageDefault)), limit: Math.min(99, Math.max(1, firstInteger(params, 'limit', limitDefault))) };
++  const pageDefault = defaultValue(defaults.page, 1);
++  const limitDefault = Math.min(MAX_LIMIT, defaultValue(defaults.limit, 20));
++
++  return {
++    page: Math.max(1, firstInteger(params, 'page', pageDefault)),
++    limit: Math.min(MAX_LIMIT, Math.max(1, firstInteger(params, 'limit', limitDefault))),
++  };
+ }

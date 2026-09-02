@@ -1,0 +1,45 @@
+
+> test
+> node --test
+
+✔ accepts query string forms (0.812003ms)
+✔ accepts URLSearchParams and first repeated value (0.079375ms)
+✖ clamps page and limit (0.645628ms)
+✔ uses defaults for invalid values (0.536669ms)
+✔ validates input and does not mutate params (0.166417ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 35.631041
+
+✖ failing tests:
+
+test at test/target.test.js:5:1
+✖ clamps page and limit (0.645628ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   limit: 99,
+  -   limit: 100,
+      page: 1
+    }
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/055-1-t05-parse-pagination-query-A/test/target.test.js:5:41)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { page: 1, limit: 99 },
+    expected: { page: 1, limit: 100 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

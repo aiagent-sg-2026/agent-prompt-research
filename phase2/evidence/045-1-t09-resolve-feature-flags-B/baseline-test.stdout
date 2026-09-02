@@ -1,0 +1,45 @@
+
+> test
+> node --test
+
+✔ starts with definitions (0.749669ms)
+✖ applies environment then user (0.562877ms)
+✔ ignores unknown and nonboolean overrides (0.063083ms)
+✔ preserves definition order (0.49271ms)
+✔ validates maps and definitions (0.211668ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 34.183039
+
+✖ failing tests:
+
+test at test/target.test.js:4:1
+✖ applies environment then user (0.562877ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   a: true,
+  -   a: false,
+      b: true
+    }
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/045-1-t09-resolve-feature-flags-B/test/target.test.js:4:49)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { a: true, b: true },
+    expected: { a: false, b: true },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,7 @@
+Implemented in [src/overlap-date-ranges.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/052-1-t11-overlap-date-ranges-A/src/overlap-date-ranges.js).
+
+- Fixed inclusive one-day intersections.
+- Added timezone-independent calendar validation.
+- Preserved input immutability and required errors.
+- `npm test`: 5 passed, 0 failed.
+- Only the allowed target file changed.

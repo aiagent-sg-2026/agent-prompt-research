@@ -1,0 +1,139 @@
+
+> test
+> node --test
+
+✖ plans bounded chunks (1.129172ms)
+✖ covers exact multiple without empty chunk (0.162167ms)
+✖ starts at zero (0.482835ms)
+✖ has contiguous offsets (0.097167ms)
+✔ validates positive integers (0.194043ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 1
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 34.742301
+
+✖ failing tests:
+
+test at test/target.test.js:3:1
+✖ plans bounded chunks (1.129172ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      {
+        index: 0,
+        offset: 0,
+        size: 4
+  ...
+      },
+  +   {
+  +     index: 3,
+  +     offset: 10,
+  +     size: 0
+  +   }
+    ]
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/034-1-t15-plan-upload-chunks-B/test/target.test.js:3:40)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { index: 0, offset: 0, size: 4 }, { index: 1, offset: 4, size: 4 }, { index: 2, offset: 8, size: 2 }, { index: 3, offset: 10, size: 0 } ],
+    expected: [ { index: 0, offset: 0, size: 4 }, { index: 1, offset: 4, size: 4 }, { index: 2, offset: 8, size: 2 } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at test/target.test.js:4:1
+✖ covers exact multiple without empty chunk (0.162167ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      4,
+      4,
+  +   0
+    ]
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/034-1-t15-plan-upload-chunks-B/test/target.test.js:4:61)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 4, 4, 0 ],
+    expected: [ 4, 4 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at test/target.test.js:5:1
+✖ starts at zero (0.482835ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      {
+        index: 0,
+        offset: 0,
+        size: 3
+      },
+  +   {
+  +     index: 1,
+  +     offset: 3,
+  +     size: 0
+  +   }
+    ]
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/034-1-t15-plan-upload-chunks-B/test/target.test.js:5:34)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { index: 0, offset: 0, size: 3 }, { index: 1, offset: 3, size: 0 } ],
+    expected: [ { index: 0, offset: 0, size: 3 } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at test/target.test.js:6:1
+✖ has contiguous offsets (0.097167ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      0,
+      3,
+      6,
+      9,
+  +   11
+    ]
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/034-1-t15-plan-upload-chunks-B/test/target.test.js:6:80)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 0, 3, 6, 9, 11 ],
+    expected: [ 0, 3, 6, 9 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

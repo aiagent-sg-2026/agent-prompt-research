@@ -1,0 +1,9 @@
+Implemented `dedupeEvents` in `src/dedupe-events.js`.
+
+- Validates input and event records.
+- Retains first occurrence by `id` and preserves order.
+- Returns a new array without mutation.
+- Handles empty input.
+
+Tests: `npm test` — 1 passed.  
+Scope: only `src/dedupe-events.js` changed.

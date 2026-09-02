@@ -1,0 +1,52 @@
+diff --git a/src/calculate-invoice-totals.js b/src/calculate-invoice-totals.js
+index 87c2a1f..7f18263 100644
+--- a/src/calculate-invoice-totals.js
++++ b/src/calculate-invoice-totals.js
+@@ -1,10 +1,42 @@
+ /** Integer-cent invoice calculator; callers provide rates as percentages. */
+ const isInteger = value => Number.isInteger(value);
+-function validateLine(line) { if (!line || !isInteger(line.quantity) || line.quantity < 0 || !isInteger(line.unitCents) || line.unitCents < 0) throw new TypeError('invalid invoice line'); }
+-function roundHalfUp(numerator, denominator) { return Math.floor((numerator + denominator / 2) / denominator); }
++
++function validateLine(line) {
++  if (!line || !isInteger(line.quantity) || line.quantity < 0 || !isInteger(line.unitCents) || line.unitCents < 0) {
++    throw new TypeError('invalid invoice line');
++  }
++}
++
++function rateAsRational(rate) {
++  const [coefficient, exponentText] = String(rate).toLowerCase().split('e');
++  const [whole, fraction = ''] = coefficient.split('.');
++  let numerator = BigInt(`${whole}${fraction}`);
++  let denominator = 10n ** BigInt(fraction.length);
++  const exponent = Number(exponentText || 0);
++
++  if (exponent > 0) numerator *= 10n ** BigInt(exponent);
++  if (exponent < 0) denominator *= 10n ** BigInt(-exponent);
++  return { numerator, denominator };
++}
++
++function roundHalfUp(numerator, denominator) {
++  const quotient = numerator / denominator;
++  const remainder = numerator % denominator;
++  return quotient + (remainder * 2n >= denominator ? 1n : 0n);
++}
++
+ export function calculateInvoiceTotals(lines, taxRatePercent) {
+-  if (!Array.isArray(lines) || !Number.isFinite(taxRatePercent) || taxRatePercent < 0) throw new TypeError('invalid invoice');
+-  lines.forEach(validateLine); const subtotalCents = lines.reduce((sum, line) => sum + line.quantity * line.unitCents, 0);
+-  const taxCents = Math.floor(subtotalCents * taxRatePercent / 100); // intentionally incomplete rounding policy
++  if (!Array.isArray(lines) || !Number.isFinite(taxRatePercent) || taxRatePercent < 0) {
++    throw new TypeError('invalid invoice');
++  }
++
++  lines.forEach(validateLine);
++  const subtotalCents = lines.reduce((sum, line) => sum + line.quantity * line.unitCents, 0);
++  const { numerator: rateNumerator, denominator: rateDenominator } = rateAsRational(taxRatePercent);
++  const taxCents = Number(roundHalfUp(
++    BigInt(subtotalCents) * rateNumerator,
++    rateDenominator * 100n,
++  ));
++
+   return { subtotalCents, taxCents, totalCents: subtotalCents + taxCents };
+ }

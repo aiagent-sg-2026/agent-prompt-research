@@ -1,0 +1,18 @@
+
+> test
+> node --test
+
+✔ sums line subtotals (0.444169ms)
+✔ rounds exact half cent up (0.295084ms)
+✔ rounds just below and above half cent correctly (0.067084ms)
+✔ returns total as subtotal plus tax (0.446668ms)
+✔ validates all inputs (0.190834ms)
+✔ does not mutate lines (0.064792ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33.24758

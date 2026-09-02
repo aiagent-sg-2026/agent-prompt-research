@@ -1,0 +1,55 @@
+
+> test
+> node --test
+
+✖ consumes oldest lots first (1.182754ms)
+✔ reports shortage (0.097834ms)
+✔ omits zero lots (0.345001ms)
+✔ zero request is empty (0.058708ms)
+✔ validates and does not mutate (0.179251ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 34.269997
+
+✖ failing tests:
+
+test at test/target.test.js:3:1
+✖ consumes oldest lots first (1.182754ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      allocations: [
+        {
+  +       id: 'b',
+  +       quantity: 5
+  -       id: 'a',
+  -       quantity: 3
+        },
+        {
+  +       id: 'a',
+  +       quantity: 1
+  -       id: 'b',
+  -       quantity: 3
+        }
+      ],
+      remaining: 0
+    }
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/047-1-t03-allocate-inventory-fifo-C/test/target.test.js:3:46)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { allocations: [ [Object], [Object] ], remaining: 0 },
+    expected: { allocations: [ [Object], [Object] ], remaining: 0 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
