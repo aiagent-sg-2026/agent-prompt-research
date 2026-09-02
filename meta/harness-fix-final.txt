@@ -1,0 +1,23 @@
+Implemented minimal scaffold repairs.
+
+Changed files:
+
+- `experiments/run-one.mjs`
+  - Stores evidence externally under `experiments/evidence/TASK/VARIANT`.
+  - Removes temporary `final-message.txt` before measuring status/diff.
+  - Measures staged and unstaged changes via `git diff HEAD`.
+  - Preserves detection of genuine unrelated agent files.
+- `fixtures/t2-retry/test/retry.test.js`
+  - Replaced `assert.throws` with async `assert.rejects`.
+- `scripts/qa-scaffold.mjs`
+  - Added baseline-failure and A/B/C prompt existence checks.
+
+Prompt and fixture audit found no fairness changes necessary.
+
+Checks run:
+
+- Node syntax checks passed.
+- Shell syntax check passed.
+- Scaffold QA passed: all 3 baselines fail and all prompt variants exist.
+- Confirmed `experiments/evidence` contains no official run results.
+- Did not run `experiments/run-matrix.mjs --run`.

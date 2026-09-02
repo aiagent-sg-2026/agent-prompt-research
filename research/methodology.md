@@ -20,7 +20,7 @@ B. Structured medium: same facts plus more explicit investigation and verificati
 C. Long prescriptive: same task facts but expanded step-by-step process and repeated reminders; no extra solution hint may be added.
 
 ## Tasks
-Use at least three small deterministic JavaScript coding tasks with tests. Each task should require inspection and an edit, and include unrelated files so scope discipline can be measured.
+Three dependency-free Node.js fixtures use the built-in test runner. Each starts with a failing baseline, has one allowed production target, comprehensive deterministic tests, and unrelated source/documentation files for scope measurement: normalize tags, retry, and recursively merge preferences.
 
 ## Metrics
 - deterministic test pass/fail
@@ -30,6 +30,8 @@ Use at least three small deterministic JavaScript coding tasks with tests. Each 
 - files changed and diff size
 - whether unrelated files changed
 - final report claims vs actual tests
+
+The frozen interleaved order is t1/A, t2/B, t3/C, t1/B, t2/C, t3/A, t1/C, t2/A, t3/B. Runs are sequential and invoke the writer lock for every Codex call. Missing provider usage is recorded as null.
 
 ## Interpretation
 Primary: task success. Secondary: token efficiency, latency, scope discipline. A shorter prompt is better only if it preserves required correctness and evidence. A longer prompt is justified when it materially increases reliability or encodes a required procedure.
