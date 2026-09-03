@@ -1,0 +1,24 @@
+Start with one thin, end-to-end workflow: **AI-assisted purchase-order exception resolution**.
+
+The first slice should include:
+
+- A responsive dashboard showing mocked procurement exceptions.
+- An exception detail view with PO, invoice, vendor, amount, and approval history.
+- A clearly labeled AI panel that explains the likely issue, cites only visible mock data, and suggests actions.
+- User actions such as “Approve,” “Request correction,” and “Dismiss,” updating local browser state only.
+- A review flow optimized for mobile, with installable-PWA structure and offline-safe mock content.
+- Internationalization from the start: externalized labels, date/number/currency formatting, and one additional locale fixture.
+
+Validation questions:
+
+- Do users understand the exception quickly?
+- Does the AI explanation reduce investigation effort?
+- Are suggested actions trusted and useful?
+- Which information is missing before a user can act?
+- Does the workflow remain usable on a phone?
+
+Keep the boundary explicit throughout the UI: **“Static demo — simulated data and AI responses.”**
+
+Out of scope for this slice: authentication, backend services, API keys, real AI calls, production data, ERP integrations, persistence beyond the browser session, and real approvals.
+
+Success means a user can open a mocked exception, understand the recommendation, take a simulated action, and explain whether this would improve their ERP workflow.

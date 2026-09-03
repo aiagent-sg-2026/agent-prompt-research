@@ -1,0 +1,26 @@
+{
+  "harness_valid": true,
+  "protocol_hash": "dbe3c84e08553ab938c567f134bd4fff2c001b22128756e9acf0c9dec59dfedf",
+  "task_id": "p03",
+  "category": "constructive-disagreement",
+  "condition_id": "B",
+  "repeat": 2,
+  "order_index": 29,
+  "model": "gpt-5.6-luna",
+  "codex_cli": "0.151.0",
+  "reasoning_effort": "medium",
+  "sandbox": "read-only",
+  "turns_completed": 1,
+  "expected_turns": 1,
+  "latency_ms": 11884,
+  "response_chars": 1282,
+  "response_words": 173,
+  "tool_call_count": 0,
+  "token_totals": {
+    "input_tokens": 13192,
+    "cached_input_tokens": 11008,
+    "output_tokens": 300,
+    "available_turns": 1
+  },
+  "completed_at": "2026-09-03T02:34:23.188Z"
+}

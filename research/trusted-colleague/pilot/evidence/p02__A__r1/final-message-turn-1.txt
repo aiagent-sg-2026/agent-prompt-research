@@ -1,0 +1,11 @@
+Choose **hybrid BM25 + dense retrieval** as the default.
+
+The 60% exact-ID/error-code workload is well served by BM25, while dense retrieval materially improves coverage for the 40% paraphrased questions. Preserve BM25 as a strong component or first-stage candidate source so exact matches remain reliable; combine or rerank with dense results.
+
+Trade-offs:
+
+- **Benefits:** better paraphrase recall and broader question coverage; BM25 still handles identifiers and error codes precisely.
+- **Costs:** more indexing and operational complexity, tuning requirements, and higher query latency.
+- **Uncertainty:** without a latency SLO or labeled benchmark, this is an engineering default—not evidence of measured recall or latency.
+
+If latency simplicity is the overriding constraint, choose BM25; otherwise, hybrid better matches the mixed workload.

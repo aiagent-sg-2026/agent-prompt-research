@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a06515-2704-7d81-9c68-a886c48400e0"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"Unit tests and static checks pass, so the implementation shows no known issues within those validation scopes.\n\nHowever, the live production/API path was not exercised. We therefore cannot confirm deployment behavior, integrations, migrations, security controls, observability, rollback, load handling, or production-like end-to-end behavior. This is evidence-limited readiness—not production certification."}}
+{"type":"turn.completed","usage":{"input_tokens":13198,"cached_input_tokens":8960,"cache_write_input_tokens":0,"output_tokens":74,"reasoning_output_tokens":0}}

@@ -1,0 +1,26 @@
+Start with one end-to-end workflow: **AI-assisted purchase-order exception review**.
+
+Build a static, browser-first slice that lets a user:
+
+1. Open a responsive ERP dashboard.
+2. See a small mocked list of purchase orders with statuses and exception counts.
+3. Select an order and view vendor, line items, delivery date, and a highlighted discrepancy.
+4. Open an “AI explanation” panel containing prewritten analysis, confidence, and recommended next steps.
+5. Accept, dismiss, or edit the recommendation locally in the browser.
+6. See the order status update within the demo session.
+
+Include:
+
+- Responsive layouts for desktop and mobile.
+- PWA-ready structure and offline-capable static assets.
+- All visible strings stored in a simple localization dictionary, with English plus one placeholder second locale.
+- Clearly labeled demo/mock data.
+- Local component state only; no API calls, credentials, backend, production data, or integrations.
+
+The first slice should validate three questions:
+
+- Can users understand the ERP exception quickly?
+- Does the AI explanation increase confidence in the recommended action?
+- Is the workflow usable on both desktop and mobile?
+
+Success criteria: a tester can identify an exception, understand the explanation, and complete or revise the recommended action in under two minutes without being told how the interface works.

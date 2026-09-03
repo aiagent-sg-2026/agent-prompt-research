@@ -1,0 +1,26 @@
+{
+  "harness_valid": true,
+  "protocol_hash": "dbe3c84e08553ab938c567f134bd4fff2c001b22128756e9acf0c9dec59dfedf",
+  "task_id": "p01",
+  "category": "technical-diagnosis",
+  "condition_id": "B",
+  "repeat": 1,
+  "order_index": 9,
+  "model": "gpt-5.6-luna",
+  "codex_cli": "0.151.0",
+  "reasoning_effort": "medium",
+  "sandbox": "read-only",
+  "turns_completed": 1,
+  "expected_turns": 1,
+  "latency_ms": 13644,
+  "response_chars": 869,
+  "response_words": 126,
+  "tool_call_count": 0,
+  "token_totals": {
+    "input_tokens": 13211,
+    "cached_input_tokens": 11008,
+    "output_tokens": 247,
+    "available_turns": 1
+  },
+  "completed_at": "2026-09-03T02:26:35.726Z"
+}

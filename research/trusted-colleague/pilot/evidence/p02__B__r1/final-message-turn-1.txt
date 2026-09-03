@@ -1,0 +1,12 @@
+Choose hybrid BM25+dense retrieval as the default.
+
+The workload is evenly enough split that optimizing only for exact matches would leave substantial value on the table: BM25 should handle the 60% of queries containing policy IDs and error codes, while dense retrieval improves coverage for the 40% paraphrased questions. Use BM25 as the precision and identifier-sensitive component, with dense results blended or used for controlled fallback.
+
+Trade-offs:
+
+- Better expected paraphrase recall and broader query coverage.
+- Higher indexing, tuning, operational, and query-latency costs.
+- Requires safeguards so dense matches do not displace exact BM25 matches for IDs or error codes.
+- Without a latency SLO or labeled benchmark, this is an engineering default—not evidence of measured recall or latency, and not production approval.
+
+If simplicity and lowest latency are the overriding priorities, choose BM25 initially and add dense retrieval after evaluation.

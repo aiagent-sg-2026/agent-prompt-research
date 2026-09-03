@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a0651f-c720-76d1-9d45-21191f55342b"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"Unit tests and static checks pass, supporting confidence in the implementation’s isolated behavior and code-level correctness.\n\nHowever, the evidence does not establish that the live API or production path works. Integration, deployment, migration, security, observability, rollback, load, and production-like end-to-end behavior remain unverified.\n\nTherefore, this is evidence-limited readiness—not production readiness certification. Live or production-like validation is still required before release approval."}}
+{"type":"turn.completed","usage":{"input_tokens":13252,"cached_input_tokens":11008,"cache_write_input_tokens":0,"output_tokens":91,"reasoning_output_tokens":0}}

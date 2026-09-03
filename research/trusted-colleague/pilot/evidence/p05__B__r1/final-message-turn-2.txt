@@ -1,0 +1,14 @@
+I can’t add or claim a backend under the current validation boundary. The demo should remain static: no credentials, API calls, production data, real integrations, or backend implementation.
+
+For a future production phase, define a backend plan that preserves the current UX:
+
+- Authentication and role-based access
+- ERP connector layer with mocked adapters first
+- Secure AI service boundary with audit logging
+- Persistent exception, recommendation, and activity data
+- Approval workflows and validation rules
+- API contracts designed for mobile clients
+- PWA-friendly sync, offline states, and retry behavior
+- Server-side i18n support, with locale-aware dates, numbers, currencies, and translations
+
+For now, continue with local mock data, simulated AI responses, responsive mobile layouts, an installable offline PWA shell, and English plus a placeholder locale. Clearly label all content as “Demo data” and “Simulated AI.”

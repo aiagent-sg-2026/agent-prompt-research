@@ -1,0 +1,12 @@
+The current validation boundary does not allow adding a backend or making the demo “real.” We should keep the implementation browser-only, with no credentials, API calls, production data, persistence, or integrations.
+
+To prepare for a future backend without weakening the validation scope:
+
+- Keep mock data behind a local repository interface, such as `getExceptions()` and `getRecommendation()`.
+- Use scripted AI responses and simulated actions that require confirmation.
+- Define future API contracts as documentation only; do not implement or call them.
+- Preserve the responsive app shell, touch-friendly controls, installable-PWA-ready structure, offline-safe local assets, and mobile navigation patterns.
+- Store all visible labels, messages, statuses, and scripted responses in locale dictionaries, starting with one language and leaving room for additional locales.
+- Clearly label all actions as simulated and ensure success metrics are estimates.
+
+The next implementation slice should therefore be a mobile-first static demo with clean seams for a future repository/API layer, while the validation question remains: can an operations user understand an exception, trust the recommendation, and know what to do within one minute?

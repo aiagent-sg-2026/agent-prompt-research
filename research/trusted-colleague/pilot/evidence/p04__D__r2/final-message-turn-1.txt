@@ -1,0 +1,25 @@
+Simplify it with a mobile-first, progressive-disclosure layout:
+
+1. **Header**
+   - Name and party type
+   - Status/segment badge
+   - One primary action
+
+2. **At-a-glance summary**
+   - Contact method
+   - Account/credit status
+   - Outstanding balance
+   - Next important action
+
+3. **Expandable sections**
+   - Contact & addresses
+   - Financials: tax IDs, credit, invoices
+   - Recent activity
+   - Relationship notes
+   - Segmentation
+
+4. **Audit & compliance**
+   - Keep available in a clearly labeled, collapsed “Compliance and audit” section.
+   - Show a brief “last updated” indicator without exposing every metadata field upfront.
+
+Use tabs or accordions, prioritize the most actionable information, and move secondary details behind “View more.” This reduces scanning effort without permanently removing any information.

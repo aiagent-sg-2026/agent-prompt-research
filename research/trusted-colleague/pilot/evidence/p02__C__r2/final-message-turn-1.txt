@@ -1,0 +1,9 @@
+Choose BM25 as the default retrieval strategy.
+
+Why:
+
+- 60% of queries depend on exact policy/article IDs and error codes, where lexical matching is the safer fit.
+- It preserves identifiers and error-code coverage without dense retrieval potentially smoothing over important exact distinctions.
+- It is simpler, lower-latency, and easier to operate and tune.
+
+Trade-off: BM25 may miss some paraphrased questions in the remaining 40%. Hybrid BM25+dense retrieval would likely improve paraphrase recall, but adds indexing, tuning, operational complexity, and latency. Since no latency SLO or labeled benchmark is available, the prudent engineering default is BM25, with hybrid as a follow-up if evaluation shows unacceptable paraphrase misses.

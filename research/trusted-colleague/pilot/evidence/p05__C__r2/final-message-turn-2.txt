@@ -1,0 +1,12 @@
+I can’t add a real backend within the agreed validation boundary. The safe next slice is a backend-ready static prototype that preserves the same UX while keeping all behavior local and simulated.
+
+Include:
+
+- A typed local data layer with interfaces for purchase orders, exceptions, AI explanations, decisions, and audit events.
+- Repository-style functions backed by deterministic in-memory fixtures, making future API replacement straightforward.
+- No credentials, network calls, production data, persistence, or real approvals.
+- Mobile-first responsive layouts with touch-friendly controls, offline-friendly PWA shell, install metadata, and clear loading/empty/error states simulated locally.
+- Externalized UI strings with at least two locales, including translated navigation, exception details, actions, statuses, and accessibility labels.
+- Persistent visual labels: “Demo data,” “Simulated AI,” and “No real transaction.”
+
+The implementation question remains: can an operations user understand an exception and make a confident decision in under two minutes? A genuine backend should be a separate, explicitly authorized phase after this UX validation succeeds.

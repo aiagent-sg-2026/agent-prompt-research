@@ -1,0 +1,11 @@
+For historical finance transactions, avoid overwriting or deleting the original row. Use an append-only correction workflow:
+
+1. Preserve the original transaction unchanged.
+2. Add a compensating reversal or adjustment entry.
+3. Insert the corrected transaction as a new row.
+4. Link the entries with a correction ID or `supersedes_transaction_id`.
+5. Record who made the correction, when, why, approval status, and supporting evidence.
+6. Ensure reports use the effective, non-reversed transaction set without hiding the audit history.
+7. Reconcile balances and obtain authorization before posting; use a transaction or controlled migration with validation and rollback.
+
+Before implementation, confirm the schema, authorization model, retention requirements, accounting treatment, and downstream-report behavior. Only use an UPDATE for explicitly approved, non-financial metadata corrections—not for changing the financial facts of an audited transaction.

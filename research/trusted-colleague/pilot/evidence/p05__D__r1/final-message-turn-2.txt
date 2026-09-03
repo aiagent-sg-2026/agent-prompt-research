@@ -1,0 +1,12 @@
+The validation boundary should remain unchanged: no backend, credentials, API calls, production data, or real integrations yet.
+
+To prepare for a future backend while preserving the safe static demo:
+
+- Keep the current purchase-order exception workflow powered by a local mock data repository.
+- Define typed interfaces for orders, exceptions, AI explanations, recommendations, and status updates.
+- Isolate data access behind repository functions so a future backend adapter can replace mocks without changing the UI.
+- Keep actions local and visibly labeled as demo-only.
+- Preserve responsive desktop/mobile layouts, installable PWA structure, offline static assets, and English plus placeholder locale dictionaries.
+- Add loading, error, and offline-state designs as simulated UI states—not real network behavior.
+
+The next implementation slice should therefore be a backend-ready frontend contract and mock repository, not an actual backend. This keeps UX and business-value validation safe while reducing future migration work.

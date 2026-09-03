@@ -1,0 +1,8 @@
+The duplicates are likely caused by two independent one-to-many joins:
+
+- One invoice has multiple `invoice_lines`.
+- The same invoice has multiple `customer_tags`.
+
+Joining both directly creates a multiplicative result: each invoice line is paired with each customer tag. `SELECT DISTINCT` may hide identical projected rows, but it can discard meaningful differences and mask the underlying cardinality problem.
+
+Safest next step: define the report’s intended grain as one row per invoice, then aggregate or pre-aggregate each child relationship before joining. For example, summarize invoice lines by `invoice_id` and aggregate tags by `invoice_id`, then join those one-row-per-invoice results to `invoices`. Validate the design with representative invoices, especially ones having multiple lines and multiple tags, before replacing the report query.

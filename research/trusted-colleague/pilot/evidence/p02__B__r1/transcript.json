@@ -1,0 +1,27 @@
+{
+  "task_id": "p02",
+  "category": "engineering-decision",
+  "condition_id": "B",
+  "repeat": 1,
+  "order_index": 1,
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "medium",
+  "turns": [
+    {
+      "turn": 1,
+      "user": "Choose a default retrieval strategy for our help-center search: BM25 or hybrid BM25+dense retrieval. The workload is 60% exact policy/article IDs and error codes, 40% paraphrased questions. BM25 is simpler and lower latency; hybrid improves paraphrase recall but adds indexing, tuning, and latency cost. Make a decision and state the trade-offs.",
+      "assistant": "Choose hybrid BM25+dense retrieval as the default.\n\nThe workload is evenly enough split that optimizing only for exact matches would leave substantial value on the table: BM25 should handle the 60% of queries containing policy IDs and error codes, while dense retrieval improves coverage for the 40% paraphrased questions. Use BM25 as the precision and identifier-sensitive component, with dense results blended or used for controlled fallback.\n\nTrade-offs:\n\n- Better expected paraphrase recall and broader query coverage.\n- Higher indexing, tuning, operational, and query-latency costs.\n- Requires safeguards so dense matches do not displace exact BM25 matches for IDs or error codes.\n- Without a latency SLO or labeled benchmark, this is an engineering default—not evidence of measured recall or latency, and not production approval.\n\nIf simplicity and lowest latency are the overriding priorities, choose BM25 initially and add dense retrieval after evaluation.",
+      "latency_ms": 14818,
+      "response_chars": 964,
+      "response_words": 142,
+      "token_usage": {
+        "input_tokens": 14964,
+        "cached_input_tokens": 8960,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 186,
+        "reasoning_output_tokens": 0
+      },
+      "tool_call_count": 0
+    }
+  ]
+}

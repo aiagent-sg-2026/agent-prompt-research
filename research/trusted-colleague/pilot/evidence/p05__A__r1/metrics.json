@@ -1,0 +1,26 @@
+{
+  "harness_valid": true,
+  "protocol_hash": "dbe3c84e08553ab938c567f134bd4fff2c001b22128756e9acf0c9dec59dfedf",
+  "task_id": "p05",
+  "category": "context-continuity",
+  "condition_id": "A",
+  "repeat": 1,
+  "order_index": 17,
+  "model": "gpt-5.6-luna",
+  "codex_cli": "0.151.0",
+  "reasoning_effort": "medium",
+  "sandbox": "read-only",
+  "turns_completed": 2,
+  "expected_turns": 2,
+  "latency_ms": 31388,
+  "response_chars": 3454,
+  "response_words": 494,
+  "tool_call_count": 0,
+  "token_totals": {
+    "input_tokens": 26889,
+    "cached_input_tokens": 17920,
+    "output_tokens": 751,
+    "available_turns": 2
+  },
+  "completed_at": "2026-09-03T02:29:58.087Z"
+}

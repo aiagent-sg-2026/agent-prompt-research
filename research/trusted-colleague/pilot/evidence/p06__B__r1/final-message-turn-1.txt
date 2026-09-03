@@ -1,0 +1,3 @@
+Unit tests and static checks pass, so the implementation shows no known issues within those validation scopes.
+
+However, the live production/API path was not exercised. We therefore cannot confirm deployment behavior, integrations, migrations, security controls, observability, rollback, load handling, or production-like end-to-end behavior. This is evidence-limited readiness—not production certification.

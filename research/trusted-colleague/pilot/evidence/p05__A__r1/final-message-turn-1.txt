@@ -1,0 +1,56 @@
+## First implementation slice: “AI Operations Brief”
+
+Build a static, browser-first demo centered on one high-value ERP workflow:
+
+> A manager opens the app and immediately sees what needs attention today, why it matters, and what they could do next.
+
+### Core experience
+
+- Responsive dashboard optimized for desktop and mobile.
+- Installable PWA shell with offline-ready static assets.
+- Internationalized UI from the start, beginning with English and one secondary locale.
+- Sample ERP data bundled locally as JSON or TypeScript fixtures.
+- No backend, API calls, credentials, production data, or real integrations.
+
+### Main screens
+
+1. **Operations Brief**
+   - Revenue, overdue invoices, inventory risks, open orders, and staffing alerts.
+   - AI-generated plain-language summary using predefined demo responses.
+   - Priority cards such as:
+     - “Three invoices are 14+ days overdue.”
+     - “Inventory may run out of Item A within five days.”
+   - Clear “Why this matters” explanations.
+
+2. **Issue Detail**
+   - Supporting sample records.
+   - Trend or comparison visualization.
+   - Suggested next steps presented as recommendations only.
+   - Buttons such as “Draft reminder” or “View affected orders” that open static previews rather than sending or changing anything.
+
+3. **Assistant Panel**
+   - A few predefined prompts and responses.
+   - Example: “Which customers need attention this week?”
+   - Clearly label responses as simulated demo output.
+
+### Validation goals
+
+Measure whether users can:
+
+- Understand the business situation within 30 seconds.
+- Identify the highest-priority issue.
+- Trust the explanation behind an AI recommendation.
+- Find supporting ERP records.
+- Distinguish recommendations from completed actions.
+- Use the experience comfortably on a phone.
+
+### Suggested implementation boundaries
+
+- Frontend-only routing and state.
+- Local fixture data with realistic but fictional companies, customers, products, and transactions.
+- Deterministic “AI” responses selected from predefined scenarios.
+- No persistence beyond optional browser-local demo state.
+- Accessible components, keyboard support, responsive layouts, and translated labels/messages.
+- A visible “Demo mode — simulated data and actions” indicator.
+
+This slice is small enough to prototype quickly while testing the central value proposition: whether AI can turn ERP information into useful, explainable operational decisions.

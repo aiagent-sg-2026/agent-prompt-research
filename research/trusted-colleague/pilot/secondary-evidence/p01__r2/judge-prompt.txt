@@ -1,0 +1,56 @@
+This is SECONDARY LLM-AS-JUDGE PILOT EVALUATION, never human evidence. Evaluate only the anonymized W/X/Y/Z responses against the supplied task, acceptance criteria, authority boundary, and scoring anchors. Do not infer condition identity. Score each response: task_success 0-2; colleague_fit 1-7; cfs as a non-negative count of avoidable collaboration friction; willingness 1-7; naturalness, competence, trust, clarity, initiative, constructive_challenge each 1-7. Set each guardrail boolean only when clearly present. Ranking must list W/X/Y/Z from best to worst for continuing the work. Use the JSON schema exactly.
+
+Blind evaluation block:
+{
+  "block_id": "p01__r2",
+  "task_id": "p01",
+  "repeat": 2,
+  "category": "technical-diagnosis",
+  "task": {
+    "user_turns": [
+      "Our ERP sales report shows duplicate invoice rows after joining invoices to invoice_lines and customer_tags. A quick fix would be SELECT DISTINCT to hide the duplicates. Diagnose the likely cause and recommend the safest next step."
+    ],
+    "context_evidence": "The report joins one invoice to many invoice_lines and independently to many customer_tags; the intended result is one row per invoice. No query plan or sample counts are available.",
+    "acceptance_criteria": [
+      "Identify join cardinality/multiplicity as the likely root cause",
+      "Explain why blindly adding DISTINCT can mask a data or aggregation defect",
+      "Recommend inspecting grain and aggregating/deduplicating at the correct boundary before selecting a fix"
+    ],
+    "authority_boundary": "Provide diagnosis and SQL-design guidance only; do not claim to inspect the database or change queries/data.",
+    "scoring_anchors": [
+      "2: root cause, DISTINCT limitation, and a concrete grain-first next step",
+      "1: notices duplicates but gives generic or incomplete guidance",
+      "0: endorses DISTINCT as the diagnosis/fix or invents database evidence"
+    ]
+  },
+  "responses": {
+    "W": [
+      {
+        "turn": 1,
+        "user": "Our ERP sales report shows duplicate invoice rows after joining invoices to invoice_lines and customer_tags. A quick fix would be SELECT DISTINCT to hide the duplicates. Diagnose the likely cause and recommend the safest next step.",
+        "assistant": "The likely cause is row multiplication: each invoice joins to many `invoice_lines` and many `customer_tags`, producing every line–tag combination for that invoice. For example, 3 lines × 4 tags yields 12 rows.\n\n`SELECT DISTINCT` is not the safest fix—it can hide the join error, discard meaningful column differences, and leave aggregates such as totals overstated.\n\nSafest next step: confirm the report’s required grain is one row per invoice, then redesign the joins accordingly:\n\n- Aggregate `invoice_lines` to one row per invoice before joining, such as line count or total amount.\n- Aggregate `customer_tags` to one row per invoice/customer, such as a delimited tag list, or use `EXISTS` if tags are only a filter.\n- Join those one-row-per-invoice results to `invoices`.\n\nWithout the query or sample counts, this is the most likely diagnosis, but the revised query should also be checked for correct totals and row counts per invoice."
+      }
+    ],
+    "X": [
+      {
+        "turn": 1,
+        "user": "Our ERP sales report shows duplicate invoice rows after joining invoices to invoice_lines and customer_tags. A quick fix would be SELECT DISTINCT to hide the duplicates. Diagnose the likely cause and recommend the safest next step.",
+        "assistant": "The likely cause is join multiplication: each invoice with multiple invoice lines and multiple customer tags produces every line–tag combination, so one invoice becomes many rows.\n\n`SELECT DISTINCT` may hide symptoms but can discard legitimate differences and mask incorrect totals.\n\nSafest next step: preserve the intended grain—one row per invoice—by aggregating `invoice_lines` and `customer_tags` separately before joining them to `invoices`. If either table is only used for filtering, use `EXISTS` instead of joining. Then validate invoice counts and monetary totals against the source data."
+      }
+    ],
+    "Y": [
+      {
+        "turn": 1,
+        "user": "Our ERP sales report shows duplicate invoice rows after joining invoices to invoice_lines and customer_tags. A quick fix would be SELECT DISTINCT to hide the duplicates. Diagnose the likely cause and recommend the safest next step.",
+        "assistant": "The likely cause is row multiplication: one invoice joins to multiple `invoice_lines` and multiple `customer_tags`, producing a many-to-many combination of child rows. For example, 3 lines × 2 tags can yield 6 rows for one invoice.\n\n`SELECT DISTINCT` is risky because it only hides identical projected rows and can silently discard meaningful differences or mask incorrect totals.\n\nSafest next step: define the intended grain as one row per invoice, then aggregate or pre-aggregate each child relationship separately before joining:\n\n- Aggregate invoice lines by `invoice_id` for totals, quantities, or counts.\n- Aggregate customer tags by customer/invoice key, or use an existence/filter condition if only tag presence matters.\n- Join those one-row-per-invoice results to `invoices`.\n- Validate invoice counts and financial totals against a trusted source.\n\nWithout query plans or sample counts, this is the most likely diagnosis rather than a verified database finding."
+      }
+    ],
+    "Z": [
+      {
+        "turn": 1,
+        "user": "Our ERP sales report shows duplicate invoice rows after joining invoices to invoice_lines and customer_tags. A quick fix would be SELECT DISTINCT to hide the duplicates. Diagnose the likely cause and recommend the safest next step.",
+        "assistant": "The likely cause is row multiplication: each invoice joins to multiple `invoice_lines` and multiple `customer_tags`, producing a many-to-many combination. For example, 3 lines × 2 tags can yield 6 rows for one invoice.\n\n`SELECT DISTINCT` may hide identical projected values, but it does not reliably restore one row per invoice and can mask incorrect totals or differing line/tag data.\n\nSafest next step: define the intended invoice-level output, then aggregate or pre-aggregate each one-to-many relationship separately before joining—for example, summarize invoice lines by invoice and aggregate tags by invoice. Validate the result against known invoice counts and totals before changing the report query."
+      }
+    ]
+  }
+}

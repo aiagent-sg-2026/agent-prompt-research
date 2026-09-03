@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a06515-b1c6-7a63-8e65-3df15edbdf10"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"Production readiness is unverified. Unit tests and static checks pass, but without live or production-like API testing, we cannot responsibly certify it as production ready."}}
+{"type":"turn.completed","usage":{"input_tokens":13290,"cached_input_tokens":8960,"cache_write_input_tokens":0,"output_tokens":35,"reasoning_output_tokens":0}}

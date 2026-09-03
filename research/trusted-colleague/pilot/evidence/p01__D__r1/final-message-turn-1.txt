@@ -1,0 +1,5 @@
+The likely cause is join fanout: each invoice line is being combined with each matching customer tag, producing multiple rows per invoice. `SELECT DISTINCT` may hide symptoms while silently masking legitimate differences and can be expensive.
+
+Safest next step: define the report grain as one row per invoice, then pre-aggregate `invoice_lines` and `customer_tags` separately before joining them to `invoices`. If either table is only used for filtering, use `EXISTS` instead of joining it.
+
+Validate the revised query against invoices with multiple lines and multiple tags, and confirm that line totals and tag values are not multiplied.

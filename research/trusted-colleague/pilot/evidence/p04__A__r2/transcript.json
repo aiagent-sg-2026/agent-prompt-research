@@ -1,0 +1,27 @@
+{
+  "task_id": "p04",
+  "category": "ambiguous-request",
+  "condition_id": "A",
+  "repeat": 2,
+  "order_index": 27,
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "medium",
+  "turns": [
+    {
+      "turn": 1,
+      "user": "This AI customer/party modal is too much, make it simpler.",
+      "assistant": "Simplify it with a mobile-first, progressive-disclosure layout:\n\n1. **Header**\n   - Name, party type, status, and one primary action.\n   - Keep contact details immediately accessible.\n\n2. **Overview**\n   - Relationship health or credit status\n   - Open invoice total and count\n   - Most recent activity\n\n3. **Expandable sections**\n   - Contact & addresses\n   - Financial details: tax identifiers, credit status, invoices\n   - Activity\n   - Relationship notes\n   - Segmentation\n   - Actions\n\n4. **Audit & compliance**\n   - Keep audit metadata and tax identifiers available in a clearly labeled “Compliance & audit” section, collapsed by default.\n\nUse summary cards, short labels, and a single-column layout. Avoid showing every field at once; reveal details only when requested. This is reversible because all existing information remains available, just reorganized behind expandable sections.",
+      "latency_ms": 12357,
+      "response_chars": 893,
+      "response_words": 123,
+      "token_usage": {
+        "input_tokens": 13191,
+        "cached_input_tokens": 11008,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 215,
+        "reasoning_output_tokens": 25
+      },
+      "tool_call_count": 0
+    }
+  ]
+}

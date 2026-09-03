@@ -1,0 +1,16 @@
+Make the modal a compact summary with progressive disclosure:
+
+- Header: party name, type, status, and one primary action.
+- Key details: phone/email, primary address, credit status, and outstanding balance.
+- Alerts: only urgent items, such as overdue invoices or compliance concerns.
+- Expandable sections:
+  - Contact & addresses
+  - Financials
+  - Recent activity
+  - Relationship notes
+  - Segmentation
+  - Audit & compliance
+- Move secondary actions into an overflow menu.
+- Keep audit and compliance data available, but collapsed by default rather than removed.
+
+For mobile, use a bottom sheet or full-screen detail view with clear section accordions. The exact “key details” should be validated against the modal’s main user role, since no role-specific priority was provided.

@@ -1,0 +1,10 @@
+Simplify it into a focused, mobile-first summary:
+
+- Header: name, party type, status, and one primary action.
+- Key facts: phone/email, relationship owner, segment, and credit status.
+- Financial snapshot: open invoice total and overdue count.
+- Recent activity: show the latest 2–3 items, with “View all.”
+- Addresses, tax identifiers, relationship notes, and audit metadata: move into collapsible sections or a secondary “Details” view.
+- Actions: limit to the most common 2–3 actions; place the rest under “More.”
+
+Use progressive disclosure so the modal answers “Who is this, what needs attention, and what can I do?” immediately, while retaining all compliance and audit information behind clearly labeled sections.

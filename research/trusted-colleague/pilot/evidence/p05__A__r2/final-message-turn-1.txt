@@ -1,0 +1,65 @@
+## First implementation slice: “AI-assisted cash-flow triage”
+
+Build one narrow end-to-end workflow that demonstrates business value without requiring real ERP connectivity:
+
+### Core scenario
+
+A finance manager opens a responsive ERP dashboard and asks:
+
+> “Which invoices need attention this week, and what should I do next?”
+
+The demo presents seeded invoice and payment data, then guides the user through prioritization and recommended actions.
+
+### Included experience
+
+- Responsive browser-first dashboard, designed to work well on mobile
+- English-language UI with a lightweight internationalization structure from the start
+- Seeded fictional company, customers, invoices, payment statuses, and currencies
+- KPI cards:
+  - Outstanding receivables
+  - Overdue amount
+  - Invoices due this week
+  - Cash-flow risk
+- Invoice table with filters for status, customer, currency, and due date
+- Simulated AI assistant with a fixed set of supported questions
+- AI response containing:
+  - Prioritized invoices
+  - Plain-language reasoning
+  - Suggested next steps
+  - Links back to the relevant records
+- Detail drawer or page for reviewing an invoice
+- Simulated actions such as “Draft reminder,” “Mark for review,” and “View customer”—all local UI state only
+- Empty, loading, error, and mobile layouts
+
+### Suggested demo flow
+
+1. User lands on the dashboard.
+2. The dashboard highlights overdue receivables.
+3. User selects “Ask AI” or chooses a suggested prompt.
+4. The assistant ranks three invoices by urgency.
+5. User opens one invoice and views the explanation.
+6. User generates a simulated reminder draft.
+7. User returns to the dashboard and sees the local status update.
+
+### Explicitly out of scope
+
+- Backend or database
+- API keys, model calls, authentication, or credentials
+- Production or personally identifiable data
+- Real ERP, email, accounting, or payment integrations
+- Persisting data beyond the browser session
+- Sending reminders or modifying external records
+
+### Validation targets
+
+Test whether users can quickly answer:
+
+- What requires attention?
+- Why is it important?
+- What action should I take?
+- Do the AI recommendations feel trustworthy and useful?
+- Is the workflow understandable on a phone?
+
+### Slice acceptance criteria
+
+The slice is ready for UX validation when a user can complete the full flow using only seeded data, on desktop and mobile-sized screens, with no network-dependent functionality and no ambiguity about simulated versus real actions.

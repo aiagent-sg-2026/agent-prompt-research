@@ -1,0 +1,11 @@
+Simplify it around the user’s immediate task:
+
+- Show a compact header: name, party type, status, and one primary action.
+- Put essential contact details and current balance/open invoices first.
+- Move addresses, tax IDs, credit status, activity, relationship notes, segmentation, and audit metadata into collapsible sections.
+- Use tabs or an accordion: Overview, Finance, Activity, Compliance.
+- Keep compliance and audit information available, but visually secondary and clearly labeled.
+- On mobile, use a full-screen sheet with a sticky header and bottom action bar.
+- Limit visible actions to the most relevant 2–3; place the rest under “More.”
+
+This preserves all information while reducing initial cognitive load. Validate the hierarchy with task-based testing before making the changes permanent.

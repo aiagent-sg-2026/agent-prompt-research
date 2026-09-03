@@ -1,0 +1,21 @@
+For historical finance data, avoid updating or deleting the original row. Use an append-only correction workflow:
+
+1. Preserve the original transaction unchanged.
+2. Record the error in a correction case with reason, requester, approver, and timestamp.
+3. Post a compensating reversal or adjustment entry linked to the original transaction.
+4. Post the corrected replacement transaction, linked to both the original and correction case.
+5. Ensure debits and credits remain balanced and the correction is idempotent.
+6. Update downstream reports to include the correction entries and expose the audit linkage.
+7. Reconcile the affected period and obtain authorized approval before posting.
+
+A conceptual model is:
+
+```text
+original transaction
+        ↓
+reversal/adjustment entry
+        ↓
+corrected transaction
+```
+
+Whether the correction should affect the original accounting period or the current period depends on your accounting policy and reporting requirements. Since no schema, authorization, or retention policy was supplied, do not implement `UPDATE` or `DELETE` yet. First confirm the correction authority, audit-retention rules, ledger relationships, approval workflow, and downstream-report behavior; then implement the reversal-and-repost process behind those controls.

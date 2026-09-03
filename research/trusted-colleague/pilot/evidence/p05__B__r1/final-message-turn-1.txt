@@ -1,0 +1,21 @@
+Start with one end-to-end workflow: **AI-assisted purchase-order exception handling**.
+
+Build a static, browser-first demo where a user can:
+
+1. Open a dashboard showing mock ERP alerts: delayed orders, price variances, and low stock.
+2. Select one exception to view its details.
+3. Ask a simulated AI assistant, such as “What is the business impact?” or “Suggest next steps.”
+4. Review a clearly labeled, mocked recommendation.
+5. Approve, dismiss, or flag the recommendation—updating only local in-browser state.
+6. See a brief activity history for the current demo session.
+
+Implementation scope:
+
+- React or plain TypeScript with local mock JSON data.
+- No API calls, credentials, backend, persistence, or real integrations.
+- Responsive layouts optimized for desktop and mobile.
+- Installable PWA shell with offline support for the static demo.
+- Internationalization-ready copy, starting with English and one placeholder locale.
+- Explicit “Demo data” and “Simulated AI” labels throughout.
+
+The slice is successful if a test user can understand the exception, ask for help, evaluate the recommendation, and complete a decision in under two minutes. This gives you a focused way to validate navigation, trust, AI usefulness, and mobile behavior before expanding into other ERP workflows.

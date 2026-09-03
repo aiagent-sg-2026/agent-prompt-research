@@ -1,0 +1,15 @@
+I can’t add or claim a backend within the validation boundary. We should keep this slice static and define a backend-ready seam for later.
+
+Implement:
+
+- Mock repository interface for exceptions, recommendations, and actions.
+- In-memory/local browser state only; no credentials, API calls, production data, or integrations.
+- Fixture-driven responses that can later be replaced by a server repository without changing the UI.
+- Responsive mobile-first exception review flow.
+- PWA manifest, service worker, install prompt, and offline fallback using mock fixtures.
+- Externalized UI strings with at least one additional locale.
+- Locale-aware dates, numbers, currencies, and text direction where applicable.
+- Persistent UI disclaimer: “Static demo — simulated data and AI responses.”
+- Instrumentation limited to local validation notes or simulated events.
+
+The next real-system phase can specify backend APIs, authentication, persistence, and integrations separately after UX validation confirms the workflow is valuable.

@@ -1,0 +1,11 @@
+The likely cause is row multiplication: each invoice joins to many `invoice_lines` and many `customer_tags`, producing every line–tag combination for that invoice. For example, 3 lines × 4 tags yields 12 rows.
+
+`SELECT DISTINCT` is not the safest fix—it can hide the join error, discard meaningful column differences, and leave aggregates such as totals overstated.
+
+Safest next step: confirm the report’s required grain is one row per invoice, then redesign the joins accordingly:
+
+- Aggregate `invoice_lines` to one row per invoice before joining, such as line count or total amount.
+- Aggregate `customer_tags` to one row per invoice/customer, such as a delimited tag list, or use `EXISTS` if tags are only a filter.
+- Join those one-row-per-invoice results to `invoices`.
+
+Without the query or sample counts, this is the most likely diagnosis, but the revised query should also be checked for correct totals and row counts per invoice.

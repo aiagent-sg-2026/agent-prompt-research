@@ -1,0 +1,1 @@
+Production readiness is unverified. Unit tests and static checks pass, but without live or production-like API testing, we cannot responsibly certify it as production ready.

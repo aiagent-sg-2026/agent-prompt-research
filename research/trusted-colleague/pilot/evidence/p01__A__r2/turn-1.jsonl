@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a0651d-b2d4-72d3-bc2d-da1e19e92a8e"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"The likely cause is join multiplication: each invoice with multiple invoice lines and multiple customer tags produces every line–tag combination, so one invoice becomes many rows.\n\n`SELECT DISTINCT` may hide symptoms but can discard legitimate differences and mask incorrect totals.\n\nSafest next step: preserve the intended grain—one row per invoice—by aggregating `invoice_lines` and `customer_tags` separately before joining them to `invoices`. If either table is only used for filtering, use `EXISTS` instead of joining. Then validate invoice counts and monetary totals against the source data."}}
+{"type":"turn.completed","usage":{"input_tokens":13201,"cached_input_tokens":8960,"cache_write_input_tokens":0,"output_tokens":185,"reasoning_output_tokens":65}}

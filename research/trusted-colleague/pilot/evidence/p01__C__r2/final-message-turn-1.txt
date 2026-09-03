@@ -1,0 +1,12 @@
+The likely cause is row multiplication: one invoice joins to multiple `invoice_lines` and multiple `customer_tags`, producing a many-to-many combination of child rows. For example, 3 lines × 2 tags can yield 6 rows for one invoice.
+
+`SELECT DISTINCT` is risky because it only hides identical projected rows and can silently discard meaningful differences or mask incorrect totals.
+
+Safest next step: define the intended grain as one row per invoice, then aggregate or pre-aggregate each child relationship separately before joining:
+
+- Aggregate invoice lines by `invoice_id` for totals, quantities, or counts.
+- Aggregate customer tags by customer/invoice key, or use an existence/filter condition if only tag presence matters.
+- Join those one-row-per-invoice results to `invoices`.
+- Validate invoice counts and financial totals against a trusted source.
+
+Without query plans or sample counts, this is the most likely diagnosis rather than a verified database finding.

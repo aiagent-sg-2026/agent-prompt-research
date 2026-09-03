@@ -1,0 +1,10 @@
+For historical finance transactions, avoid updating or deleting the original row. Use an append-only correction workflow:
+
+1. Preserve the original transaction unchanged.
+2. Create a reversal transaction that references the original transaction ID.
+3. Insert the corrected transaction, also referencing the original and reversal.
+4. Record metadata such as reason, actor, timestamp, approval, and source documentation.
+5. Reconcile the net effect and ensure downstream reports distinguish original, reversal, and corrected entries.
+6. Enforce controls preventing edits or deletion of posted historical transactions.
+
+Because no schema, authorization, or retention policy was provided, the next step is to define those requirements and obtain approval before implementing. Any exceptional update/delete path should require explicit authorization, transaction-level audit logging, backups, and a reviewed migration procedure.

@@ -1,0 +1,47 @@
+{
+  "label": "TCM PILOT ANALYSIS",
+  "protocol_hash": "dbe3c84e08553ab938c567f134bd4fff2c001b22128756e9acf0c9dec59dfedf",
+  "valid_cells": 48,
+  "harness_diagnostics": {
+    "expected_cells": 48,
+    "all_cells_valid": true,
+    "blind_pack_ready": true,
+    "length_by_condition": {
+      "A": {
+        "n": 12,
+        "mean_chars": 1349.3333333333333,
+        "mean_words": 190.66666666666666,
+        "tool_calls": 0
+      },
+      "B": {
+        "n": 12,
+        "mean_chars": 1159.4166666666667,
+        "mean_words": 163.75,
+        "tool_calls": 0
+      },
+      "C": {
+        "n": 12,
+        "mean_chars": 1195.1666666666667,
+        "mean_words": 166.75,
+        "tool_calls": 0
+      },
+      "D": {
+        "n": 12,
+        "mean_chars": 1120.4166666666667,
+        "mean_words": 158.08333333333334,
+        "tool_calls": 0
+      }
+    },
+    "length_max_min_ratio": 1.2061149182920399,
+    "length_confound_warning": "no >35% mean-word spread detected",
+    "tool_use_violation_count": 0,
+    "condition_separation": "HUMAN/SECONDARY REVIEW REQUIRED"
+  },
+  "human_evaluation": "HUMAN_EVALUATION_PENDING",
+  "secondary_evaluation": {
+    "status": "available and secondary-only",
+    "completed_blocks": 12
+  },
+  "pilot_status": "PILOT_READY_FOR_HUMAN_REVIEW",
+  "behavioral_finding": "NONE — confirmatory interpretation requires predeclared human evaluation; secondary judge is diagnostic only."
+}

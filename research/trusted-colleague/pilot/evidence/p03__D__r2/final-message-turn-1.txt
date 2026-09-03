@@ -1,0 +1,22 @@
+Updating or deleting historical finance rows is risky because it can break auditability, reconciliation, and downstream reports. Prefer an append-only correction pattern:
+
+1. Preserve the original transaction unchanged.
+2. Create a reversal or adjustment transaction linked to the original via `corrects_transaction_id`.
+3. Insert the corrected transaction as a new row.
+4. Record who made the correction, when, why, approval/reference ID, and the before/after values.
+5. Recompute or refresh derived balances and reports through controlled, idempotent processes.
+6. Reconcile the affected account and verify that the correction nets to the intended result.
+
+Conceptually:
+
+```text
+original transaction
+        ↓
+reversal of original
+        ↓
+corrected replacement
+```
+
+Use `UPDATE` only for explicitly non-financial metadata or a documented correction workflow that preserves the prior version. Use `DELETE` only under a formal retention/legal policy and with authorization; it should generally be prohibited for posted transactions.
+
+Before implementation, obtain the transaction schema, accounting rules, approval requirements, retention policy, and downstream-report dependencies. Then test the correction workflow on an isolated copy and require an explicit approval gate before production changes.

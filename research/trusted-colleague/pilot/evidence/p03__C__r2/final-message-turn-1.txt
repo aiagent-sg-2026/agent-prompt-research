@@ -1,0 +1,16 @@
+Use an append-only correction pattern rather than updating or deleting the historical row.
+
+1. Preserve the original transaction unchanged.
+2. Create a linked correction or reversal transaction:
+   - reference the original transaction ID;
+   - record the correction reason, author, timestamp, and approval;
+   - apply the opposite entry for a reversal, then add the corrected transaction if needed.
+3. Make reports calculate the effective balance from the original plus approved corrections.
+4. Enforce controls:
+   - database permissions prevent updates/deletes on posted transactions;
+   - corrections require validation and appropriate approval;
+   - links and audit metadata are mandatory;
+   - corrections are idempotent and cannot be applied twice.
+5. Reconcile the corrected ledger against source documents and downstream reports.
+
+Because no schema, authorization, or retention policy was supplied, do not implement a direct `UPDATE` or `DELETE`. First define the transaction, correction, approval, and audit-record schema; document accounting treatment; test reconciliation and reporting impacts; then deploy behind a reviewed migration and authorization gate.

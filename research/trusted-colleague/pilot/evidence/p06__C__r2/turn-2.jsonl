@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a06520-51f4-7352-b2db-2ac18dcb6402"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"Based on the available evidence, we cannot conclude that it is production ready.\n\nUnit tests and static checks pass, but the live API and production-like path remain unverified. Readiness should therefore be treated as undetermined pending appropriate deployment and end-to-end validation."}}
+{"type":"turn.completed","usage":{"input_tokens":13308,"cached_input_tokens":11008,"cache_write_input_tokens":0,"output_tokens":56,"reasoning_output_tokens":0}}

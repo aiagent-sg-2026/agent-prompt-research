@@ -1,0 +1,12 @@
+Choose hybrid BM25+dense retrieval as the default.
+
+The workload is split evenly enough that paraphrase handling matters, while BM25 remains essential for exact policy/article IDs and error codes. Use BM25 as the primary signal and dense retrieval as a complementary candidate source or reranking feature, with exact matches strongly boosted.
+
+Trade-offs:
+
+- Better coverage for paraphrased questions.
+- Preserves precision for identifiers and error codes through lexical matching.
+- Costs more indexing, tuning, operational complexity, and query latency than BM25 alone.
+- Without a latency SLO or labeled benchmark, this is an engineering default—not evidence of measured recall or latency.
+
+If simplicity and latency dominate, choose BM25; otherwise, hybrid is the safer quality-oriented default.

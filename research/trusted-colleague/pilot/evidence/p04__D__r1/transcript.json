@@ -1,0 +1,27 @@
+{
+  "task_id": "p04",
+  "category": "ambiguous-request",
+  "condition_id": "D",
+  "repeat": 1,
+  "order_index": 6,
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "medium",
+  "turns": [
+    {
+      "turn": 1,
+      "user": "This AI customer/party modal is too much, make it simpler.",
+      "assistant": "Simplify it around the user’s immediate task:\n\n- Show a compact header: name, party type, status, and one primary action.\n- Put essential contact details and current balance/open invoices first.\n- Move addresses, tax IDs, credit status, activity, relationship notes, segmentation, and audit metadata into collapsible sections.\n- Use tabs or an accordion: Overview, Finance, Activity, Compliance.\n- Keep compliance and audit information available, but visually secondary and clearly labeled.\n- On mobile, use a full-screen sheet with a sticky header and bottom action bar.\n- Limit visible actions to the most relevant 2–3; place the rest under “More.”\n\nThis preserves all information while reducing initial cognitive load. Validate the hierarchy with task-based testing before making the changes permanent.",
+      "latency_ms": 20010,
+      "response_chars": 805,
+      "response_words": 119,
+      "token_usage": {
+        "input_tokens": 13255,
+        "cached_input_tokens": 8960,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 160,
+        "reasoning_output_tokens": 0
+      },
+      "tool_call_count": 0
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "task_id": "p04",
+  "category": "ambiguous-request",
+  "condition_id": "B",
+  "repeat": 1,
+  "order_index": 7,
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "medium",
+  "turns": [
+    {
+      "turn": 1,
+      "user": "This AI customer/party modal is too much, make it simpler.",
+      "assistant": "Simplify it around the most common decision: “Who is this, and what needs attention?”\n\nProposed modal structure:\n\n1. Header\n   - Name\n   - Customer/party type\n   - Status or risk badge\n   - Close button\n\n2. Key summary\n   - Primary contact\n   - Location\n   - Credit status\n   - Outstanding balance or open invoices\n\n3. Next actions\n   - Contact\n   - View invoices\n   - Edit details\n   - More actions\n\n4. Activity\n   - Recent activity and relationship notes in a compact, collapsible section\n\n5. Details\n   - Addresses, tax identifiers, segmentation, and audit metadata behind “View full details”\n\nKeep compliance and audit information available, but move it out of the default mobile view. Use progressive disclosure, short labels, and a sticky action area so the modal remains useful without overwhelming users.\n\nAssumption: the default view should prioritize servicing and collections workflows; role-specific priorities may require adjusting the summary fields.",
+      "latency_ms": 12870,
+      "response_chars": 964,
+      "response_words": 141,
+      "token_usage": {
+        "input_tokens": 13199,
+        "cached_input_tokens": 8960,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 208,
+        "reasoning_output_tokens": 0
+      },
+      "tool_call_count": 0
+    }
+  ]
+}

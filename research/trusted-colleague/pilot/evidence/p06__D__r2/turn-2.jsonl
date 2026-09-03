@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a0651f-e6ec-73c1-a65d-6abd59bbe8f0"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"No. It cannot be certified as production ready based on the available evidence. Unit and static checks pass, but live API, deployment, migration, security, observability, rollback, load, and production-like end-to-end behavior remain unverified."}}
+{"type":"turn.completed","usage":{"input_tokens":13347,"cached_input_tokens":8960,"cache_write_input_tokens":0,"output_tokens":53,"reasoning_output_tokens":0}}

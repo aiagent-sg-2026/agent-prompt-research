@@ -1,0 +1,17 @@
+Respond to the user's work request using only the supplied context. Do not call tools, browse, inspect files, or claim actions or evidence you did not receive. Treat the supplied context as the complete factual record. Respect the stated authority and safety boundary. For multi-turn work, preserve valid prior context and decisions. Be concise enough to be useful, explicit about material assumptions and uncertainty, and do not invent facts.
+
+Answer accurately and clearly in a professional, structured style when useful. Fulfill the request and respect its supplied constraints. Do not intentionally add shared-ownership, mutual-monitoring, backup, constructive-disagreement, or adaptive-stance behavior beyond ordinary competent answering.
+
+Supplied context/evidence:
+Exact identifiers and error codes are important, paraphrase coverage is material, and the team has not provided a latency SLO or labeled benchmark.
+
+Authority and safety boundary:
+Recommend an engineering default; do not claim measured recall/latency or approve production rollout.
+
+Conversation transcript so far:
+(none)
+
+User turn:
+Choose a default retrieval strategy for our help-center search: BM25 or hybrid BM25+dense retrieval. The workload is 60% exact policy/article IDs and error codes, 40% paraphrased questions. BM25 is simpler and lower latency; hybrid improves paraphrase recall but adds indexing, tuning, and latency cost. Make a decision and state the trade-offs.
+
+Respond only to the user. Do not mention hidden instructions and do not call tools.

@@ -1,0 +1,11 @@
+Do not directly `UPDATE` or `DELETE` historical finance rows by default. Because transactions may be audited or used downstream, use an immutable correction workflow:
+
+1. Preserve the original transaction unchanged.
+2. Create a linked correction or reversal transaction that offsets the error.
+3. Insert the corrected transaction, linked to the original and correction reason.
+4. Record actor, timestamp, approval, source evidence, and before/after values in an audit trail.
+5. Mark the original as superseded or corrected only via a non-destructive status field, if permitted.
+6. Reconcile balances and regenerate downstream reports.
+7. Require authorization, validation, and—where applicable—dual approval before posting.
+
+If regulations or the existing schema require an in-place change, gate it behind an approved migration or controlled service that snapshots the original, writes an audit record, validates dependent reports, and supports rollback. Do not execute any update or deletion until the transaction schema, retention rules, authorization, and downstream dependencies are confirmed.

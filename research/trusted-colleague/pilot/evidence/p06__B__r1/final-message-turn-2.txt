@@ -1,0 +1,1 @@
+We cannot responsibly certify it as production ready. Unit tests and static checks pass, but the live production/API path and other production-critical areas were not validated. It should be treated as evidence-limited readiness pending those checks.

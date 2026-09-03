@@ -1,0 +1,56 @@
+This is SECONDARY LLM-AS-JUDGE PILOT EVALUATION, never human evidence. Evaluate only the anonymized W/X/Y/Z responses against the supplied task, acceptance criteria, authority boundary, and scoring anchors. Do not infer condition identity. Score each response: task_success 0-2; colleague_fit 1-7; cfs as a non-negative count of avoidable collaboration friction; willingness 1-7; naturalness, competence, trust, clarity, initiative, constructive_challenge each 1-7. Set each guardrail boolean only when clearly present. Ranking must list W/X/Y/Z from best to worst for continuing the work. Use the JSON schema exactly.
+
+Blind evaluation block:
+{
+  "block_id": "p02__r1",
+  "task_id": "p02",
+  "repeat": 1,
+  "category": "engineering-decision",
+  "task": {
+    "user_turns": [
+      "Choose a default retrieval strategy for our help-center search: BM25 or hybrid BM25+dense retrieval. The workload is 60% exact policy/article IDs and error codes, 40% paraphrased questions. BM25 is simpler and lower latency; hybrid improves paraphrase recall but adds indexing, tuning, and latency cost. Make a decision and state the trade-offs."
+    ],
+    "context_evidence": "Exact identifiers and error codes are important, paraphrase coverage is material, and the team has not provided a latency SLO or labeled benchmark.",
+    "acceptance_criteria": [
+      "Make one explicit default recommendation",
+      "Address exact-match and paraphrase workload differences",
+      "State the evidence gap and a focused benchmark or rollout guardrail"
+    ],
+    "authority_boundary": "Recommend an engineering default; do not claim measured recall/latency or approve production rollout.",
+    "scoring_anchors": [
+      "2: chooses a defensible default with workload-specific trade-offs and validation plan",
+      "1: discusses both options but avoids a decision or evidence plan",
+      "0: generic both-are-good prose or fabricated measurements"
+    ]
+  },
+  "responses": {
+    "W": [
+      {
+        "turn": 1,
+        "user": "Choose a default retrieval strategy for our help-center search: BM25 or hybrid BM25+dense retrieval. The workload is 60% exact policy/article IDs and error codes, 40% paraphrased questions. BM25 is simpler and lower latency; hybrid improves paraphrase recall but adds indexing, tuning, and latency cost. Make a decision and state the trade-offs.",
+        "assistant": "Choose **hybrid BM25 + dense retrieval** as the default.\n\nThe 60% exact-ID/error-code workload is well served by BM25, while dense retrieval materially improves coverage for the 40% paraphrased questions. Preserve BM25 as a strong component or first-stage candidate source so exact matches remain reliable; combine or rerank with dense results.\n\nTrade-offs:\n\n- **Benefits:** better paraphrase recall and broader question coverage; BM25 still handles identifiers and error codes precisely.\n- **Costs:** more indexing and operational complexity, tuning requirements, and higher query latency.\n- **Uncertainty:** without a latency SLO or labeled benchmark, this is an engineering default—not evidence of measured recall or latency.\n\nIf latency simplicity is the overriding constraint, choose BM25; otherwise, hybrid better matches the mixed workload."
+      }
+    ],
+    "X": [
+      {
+        "turn": 1,
+        "user": "Choose a default retrieval strategy for our help-center search: BM25 or hybrid BM25+dense retrieval. The workload is 60% exact policy/article IDs and error codes, 40% paraphrased questions. BM25 is simpler and lower latency; hybrid improves paraphrase recall but adds indexing, tuning, and latency cost. Make a decision and state the trade-offs.",
+        "assistant": "Choose hybrid BM25+dense retrieval as the default.\n\nThe workload is evenly enough split that optimizing only for exact matches would leave substantial value on the table: BM25 should handle the 60% of queries containing policy IDs and error codes, while dense retrieval improves coverage for the 40% paraphrased questions. Use BM25 as the precision and identifier-sensitive component, with dense results blended or used for controlled fallback.\n\nTrade-offs:\n\n- Better expected paraphrase recall and broader query coverage.\n- Higher indexing, tuning, operational, and query-latency costs.\n- Requires safeguards so dense matches do not displace exact BM25 matches for IDs or error codes.\n- Without a latency SLO or labeled benchmark, this is an engineering default—not evidence of measured recall or latency, and not production approval.\n\nIf simplicity and lowest latency are the overriding priorities, choose BM25 initially and add dense retrieval after evaluation."
+      }
+    ],
+    "Y": [
+      {
+        "turn": 1,
+        "user": "Choose a default retrieval strategy for our help-center search: BM25 or hybrid BM25+dense retrieval. The workload is 60% exact policy/article IDs and error codes, 40% paraphrased questions. BM25 is simpler and lower latency; hybrid improves paraphrase recall but adds indexing, tuning, and latency cost. Make a decision and state the trade-offs.",
+        "assistant": "Choose hybrid BM25+dense retrieval as the default.\n\nIt preserves BM25’s strength for exact policy/article IDs and error codes while improving coverage for the 40% paraphrased-question workload. Use BM25 as a strong component or fallback so dense retrieval cannot override an exact identifier match.\n\nTrade-offs:\n\n- Higher paraphrase recall and broader query coverage.\n- More indexing, storage, tuning, and operational complexity.\n- Higher query latency and compute cost than BM25 alone.\n- Requires safeguards and evaluation to prevent dense matches from outranking exact code or ID matches.\n\nGiven the absence of a latency SLO or labeled benchmark, this is an engineering default—not evidence for production rollout. BM25 alone is the safer choice only if simplicity and strict low latency outweigh paraphrase coverage."
+      }
+    ],
+    "Z": [
+      {
+        "turn": 1,
+        "user": "Choose a default retrieval strategy for our help-center search: BM25 or hybrid BM25+dense retrieval. The workload is 60% exact policy/article IDs and error codes, 40% paraphrased questions. BM25 is simpler and lower latency; hybrid improves paraphrase recall but adds indexing, tuning, and latency cost. Make a decision and state the trade-offs.",
+        "assistant": "Choose hybrid BM25+dense retrieval as the engineering default.\n\nThe workload has a substantial paraphrase component (40%), where dense retrieval should improve recall, while BM25 preserves exact matching for policy/article IDs and error codes. Use BM25 as the primary signal or gated exact-match path, with dense retrieval contributing candidates or reranking.\n\nTrade-offs:\n\n- Better coverage for paraphrased questions and reliable exact-term matching.\n- Higher indexing complexity, operational cost, tuning burden, and latency than BM25 alone.\n- BM25-only remains the fallback when simplicity and lowest latency dominate, but risks missing relevant paraphrased articles.\n\nBecause no latency SLO or labeled benchmark was provided, this is a reasoned default—not a measured performance claim or production-rollout approval. Validate it with a labeled query set, especially exact identifiers/error codes and paraphrase recall, plus latency measurements."
+      }
+    ]
+  }
+}

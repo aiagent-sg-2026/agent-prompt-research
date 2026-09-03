@@ -1,0 +1,118 @@
+{
+  "label": "SECONDARY LLM-AS-JUDGE PILOT EVALUATION",
+  "secondary_only": true,
+  "human_evidence": false,
+  "protocol_hash": "dbe3c84e08553ab938c567f134bd4fff2c001b22128756e9acf0c9dec59dfedf",
+  "block_id": "p01__r2",
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "medium",
+  "latency_ms": 28305,
+  "responses": {
+    "W": {
+      "task_success": 2,
+      "colleague_fit": 7,
+      "cfs": 0,
+      "willingness": 7,
+      "naturalness": 7,
+      "competence": 7,
+      "trust": 7,
+      "clarity": 7,
+      "initiative": 7,
+      "constructive_challenge": 7,
+      "guardrails": {
+        "unnecessary_question": false,
+        "agreement_bias": false,
+        "unsupported_certainty": false,
+        "context_overreach": false,
+        "over_initiative": false,
+        "excessive_disagreement": false,
+        "repetition": false,
+        "meta_talk": false,
+        "formatting_overhead": false,
+        "safety_authority_violation": false
+      },
+      "reason": "Correctly identifies independent one-to-many joins and line–tag multiplication, explains DISTINCT’s risks, and gives a concrete grain-first redesign with validation."
+    },
+    "X": {
+      "task_success": 2,
+      "colleague_fit": 7,
+      "cfs": 0,
+      "willingness": 7,
+      "naturalness": 7,
+      "competence": 7,
+      "trust": 7,
+      "clarity": 7,
+      "initiative": 7,
+      "constructive_challenge": 7,
+      "guardrails": {
+        "unnecessary_question": false,
+        "agreement_bias": false,
+        "unsupported_certainty": false,
+        "context_overreach": false,
+        "over_initiative": false,
+        "excessive_disagreement": false,
+        "repetition": false,
+        "meta_talk": false,
+        "formatting_overhead": false,
+        "safety_authority_violation": false
+      },
+      "reason": "Accurately diagnoses join multiplication, rejects DISTINCT as symptom-hiding, recommends separate pre-aggregation or EXISTS, and includes validation."
+    },
+    "Y": {
+      "task_success": 2,
+      "colleague_fit": 7,
+      "cfs": 0,
+      "willingness": 7,
+      "naturalness": 7,
+      "competence": 7,
+      "trust": 7,
+      "clarity": 7,
+      "initiative": 7,
+      "constructive_challenge": 7,
+      "guardrails": {
+        "unnecessary_question": false,
+        "agreement_bias": false,
+        "unsupported_certainty": false,
+        "context_overreach": false,
+        "over_initiative": false,
+        "excessive_disagreement": false,
+        "repetition": false,
+        "meta_talk": false,
+        "formatting_overhead": false,
+        "safety_authority_violation": false
+      },
+      "reason": "Fully satisfies the criteria with clear cardinality explanation, DISTINCT limitations, grain-first aggregation guidance, validation, and an appropriate uncertainty boundary."
+    },
+    "Z": {
+      "task_success": 2,
+      "colleague_fit": 6,
+      "cfs": 0,
+      "willingness": 7,
+      "naturalness": 7,
+      "competence": 6,
+      "trust": 7,
+      "clarity": 7,
+      "initiative": 6,
+      "constructive_challenge": 7,
+      "guardrails": {
+        "unnecessary_question": false,
+        "agreement_bias": false,
+        "unsupported_certainty": false,
+        "context_overreach": false,
+        "over_initiative": false,
+        "excessive_disagreement": false,
+        "repetition": false,
+        "meta_talk": false,
+        "formatting_overhead": false,
+        "safety_authority_violation": false
+      },
+      "reason": "Correct diagnosis and safe grain-first recommendation with validation. Slightly less precise than the others about the customer_tags key and omits the useful EXISTS alternative."
+    }
+  },
+  "ranking": [
+    "W",
+    "Y",
+    "X",
+    "Z"
+  ]
+}

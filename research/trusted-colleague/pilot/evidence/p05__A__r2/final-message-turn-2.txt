@@ -1,0 +1,52 @@
+I can’t add or claim a real backend within the current validation boundary. I can define a backend-ready evolution plan while keeping the demo safe and static.
+
+### Recommended next slice
+
+Keep the existing seeded local data and introduce clear service interfaces:
+
+- `InvoiceService`
+- `CustomerService`
+- `AssistantService`
+- `ActionService`
+
+Use local mock implementations now, with future backend implementations behind the same interfaces. Do not add credentials, API calls, production data, or external integrations yet.
+
+### Backend-ready design
+
+When the validation succeeds, the backend can provide:
+
+- Invoice, customer, and payment-status APIs
+- User authentication and authorization
+- Persistent action history
+- AI request orchestration and audit logging
+- ERP, email, accounting, and payment adapters
+- Validation, rate limiting, error handling, and observability
+
+The current UI should treat simulated actions explicitly as local-only so users do not mistake them for real changes.
+
+### Mobile/PWA requirements
+
+Add:
+
+- Responsive layouts for phone, tablet, and desktop
+- Installable PWA manifest
+- Service worker for app-shell caching
+- Offline/read-only fallback using seeded or previously cached data
+- Touch-friendly controls and drawers
+- Mobile navigation and compact invoice cards
+- Accessible loading, empty, and error states
+
+Offline actions should remain queued only as local simulations until a real synchronization design is approved.
+
+### Internationalization
+
+Structure all user-facing text through translation keys from the start:
+
+- English as the initial locale
+- Locale-aware dates, numbers, currencies, and pluralization
+- Language selector in the UI
+- Translated validation, loading, empty, and error messages
+- Layout testing for longer translated strings
+- Right-to-left support considered in component styling
+
+This preserves the original UX-validation goal while making the demo straightforward to connect to a real backend later.

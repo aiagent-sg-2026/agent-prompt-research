@@ -1,0 +1,23 @@
+Simplify it with a mobile-first, progressive-disclosure layout:
+
+1. **Header**
+   - Name, party type, status, and one primary action.
+   - Keep contact details immediately accessible.
+
+2. **Overview**
+   - Relationship health or credit status
+   - Open invoice total and count
+   - Most recent activity
+
+3. **Expandable sections**
+   - Contact & addresses
+   - Financial details: tax identifiers, credit status, invoices
+   - Activity
+   - Relationship notes
+   - Segmentation
+   - Actions
+
+4. **Audit & compliance**
+   - Keep audit metadata and tax identifiers available in a clearly labeled “Compliance & audit” section, collapsed by default.
+
+Use summary cards, short labels, and a single-column layout. Avoid showing every field at once; reveal details only when requested. This is reversible because all existing information remains available, just reorganized behind expandable sections.

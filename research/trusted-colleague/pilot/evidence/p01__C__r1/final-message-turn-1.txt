@@ -1,0 +1,11 @@
+The likely cause is a many-to-many row multiplication: each invoice line is combined with each matching customer tag, producing multiple rows for the same invoice.
+
+`SELECT DISTINCT` may hide identical output rows, but it does not reliably restore one row per invoice—especially if line or tag columns differ—and can mask a flawed join.
+
+Safest next step: define the report’s intended grain as one row per invoice, then aggregate or pre-aggregate each one-to-many relationship separately before joining. For example:
+
+- Aggregate invoice lines by `invoice_id` for totals, counts, or other invoice-level fields.
+- Aggregate customer tags by customer or invoice into a single value, or use `EXISTS` if tags are only a filter.
+- Join those already one-row-per-invoice results to `invoices`.
+
+Validate the design with invoices having multiple lines and multiple tags, and confirm that invoice-level totals and row counts remain correct.

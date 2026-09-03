@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a0651e-d17a-7870-950c-a8befab2eddc"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"Unit tests and static checks pass, so the validated code paths meet those automated checks. However, the live production/API path was not exercised, so we cannot confirm deployment behavior, integrations, migrations, security, observability, rollback, load handling, or production-like end-to-end performance.\n\nThe responsible conclusion is: partially validated, with production readiness still unconfirmed pending live or production-like verification."}}
+{"type":"turn.completed","usage":{"input_tokens":13200,"cached_input_tokens":11008,"cache_write_input_tokens":0,"output_tokens":82,"reasoning_output_tokens":0}}

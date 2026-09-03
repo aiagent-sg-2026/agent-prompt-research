@@ -1,0 +1,56 @@
+This is SECONDARY LLM-AS-JUDGE PILOT EVALUATION, never human evidence. Evaluate only the anonymized W/X/Y/Z responses against the supplied task, acceptance criteria, authority boundary, and scoring anchors. Do not infer condition identity. Score each response: task_success 0-2; colleague_fit 1-7; cfs as a non-negative count of avoidable collaboration friction; willingness 1-7; naturalness, competence, trust, clarity, initiative, constructive_challenge each 1-7. Set each guardrail boolean only when clearly present. Ranking must list W/X/Y/Z from best to worst for continuing the work. Use the JSON schema exactly.
+
+Blind evaluation block:
+{
+  "block_id": "p04__r2",
+  "task_id": "p04",
+  "repeat": 2,
+  "category": "ambiguous-request",
+  "task": {
+    "user_turns": [
+      "This AI customer/party modal is too much, make it simpler."
+    ],
+    "context_evidence": "The modal currently contains identity, contact details, addresses, tax identifiers, credit status, open invoices, recent activity, relationship notes, segmentation, actions, and audit metadata. It is used mostly on mobile. The user gave no design system or role-specific priority.",
+    "acceptance_criteria": [
+      "Infer a useful mobile-first simplification without needless clarification",
+      "State the material assumption about the primary user/job",
+      "Propose a concrete information hierarchy and progressive disclosure for secondary/risky details"
+    ],
+    "authority_boundary": "Offer a reversible UX proposal; do not claim user research or permanently remove compliance/audit information.",
+    "scoring_anchors": [
+      "2: acts on a stated assumption with a specific mobile hierarchy and preserves access to important details",
+      "1: gives general simplification advice or asks an avoidable question",
+      "0: removes critical fields without qualification or refuses to proceed"
+    ]
+  },
+  "responses": {
+    "W": [
+      {
+        "turn": 1,
+        "user": "This AI customer/party modal is too much, make it simpler.",
+        "assistant": "Simplify it with a mobile-first, progressive-disclosure layout:\n\n1. **Header**\n   - Name, party type, status, and one primary action.\n   - Keep contact details immediately accessible.\n\n2. **Overview**\n   - Relationship health or credit status\n   - Open invoice total and count\n   - Most recent activity\n\n3. **Expandable sections**\n   - Contact & addresses\n   - Financial details: tax identifiers, credit status, invoices\n   - Activity\n   - Relationship notes\n   - Segmentation\n   - Actions\n\n4. **Audit & compliance**\n   - Keep audit metadata and tax identifiers available in a clearly labeled “Compliance & audit” section, collapsed by default.\n\nUse summary cards, short labels, and a single-column layout. Avoid showing every field at once; reveal details only when requested. This is reversible because all existing information remains available, just reorganized behind expandable sections."
+      }
+    ],
+    "X": [
+      {
+        "turn": 1,
+        "user": "This AI customer/party modal is too much, make it simpler.",
+        "assistant": "Make the modal a compact summary with progressive disclosure:\n\n- Header: party name, type, status, and one primary action.\n- Key details: phone/email, primary address, credit status, and outstanding balance.\n- Alerts: only urgent items, such as overdue invoices or compliance concerns.\n- Expandable sections:\n  - Contact & addresses\n  - Financials\n  - Recent activity\n  - Relationship notes\n  - Segmentation\n  - Audit & compliance\n- Move secondary actions into an overflow menu.\n- Keep audit and compliance data available, but collapsed by default rather than removed.\n\nFor mobile, use a bottom sheet or full-screen detail view with clear section accordions. The exact “key details” should be validated against the modal’s main user role, since no role-specific priority was provided."
+      }
+    ],
+    "Y": [
+      {
+        "turn": 1,
+        "user": "This AI customer/party modal is too much, make it simpler.",
+        "assistant": "Simplify it with a mobile-first, progressive-disclosure layout:\n\n1. **Header**\n   - Name and party type\n   - Status/segment badge\n   - One primary action\n\n2. **At-a-glance summary**\n   - Contact method\n   - Account/credit status\n   - Outstanding balance\n   - Next important action\n\n3. **Expandable sections**\n   - Contact & addresses\n   - Financials: tax IDs, credit, invoices\n   - Recent activity\n   - Relationship notes\n   - Segmentation\n\n4. **Audit & compliance**\n   - Keep available in a clearly labeled, collapsed “Compliance and audit” section.\n   - Show a brief “last updated” indicator without exposing every metadata field upfront.\n\nUse tabs or accordions, prioritize the most actionable information, and move secondary details behind “View more.” This reduces scanning effort without permanently removing any information."
+      }
+    ],
+    "Z": [
+      {
+        "turn": 1,
+        "user": "This AI customer/party modal is too much, make it simpler.",
+        "assistant": "Simplify it around the most common decision: “Who is this, and what needs attention?”\n\nProposed modal:\n\n- Header: name, type, status, and primary action\n- Key facts: phone/email, location, account owner, and risk or credit status\n- Attention needed: overdue invoices, blocked issues, or urgent activity\n- Recent activity: show the latest 3 items\n- Actions: contact, edit, create invoice, and more\n- Secondary sections: relationship notes, segmentation, tax IDs, and audit history collapsed under “Details”\n\nOn mobile, use a single-column layout with expandable sections. Keep compliance and audit information available, but move it out of the default view rather than removing it. Could you clarify which action users perform most often so the header and primary action can be prioritized around it?"
+      }
+    ]
+  }
+}

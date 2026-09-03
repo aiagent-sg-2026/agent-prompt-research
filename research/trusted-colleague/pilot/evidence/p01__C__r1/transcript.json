@@ -1,0 +1,27 @@
+{
+  "task_id": "p01",
+  "category": "technical-diagnosis",
+  "condition_id": "C",
+  "repeat": 1,
+  "order_index": 8,
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "medium",
+  "turns": [
+    {
+      "turn": 1,
+      "user": "Our ERP sales report shows duplicate invoice rows after joining invoices to invoice_lines and customer_tags. A quick fix would be SELECT DISTINCT to hide the duplicates. Diagnose the likely cause and recommend the safest next step.",
+      "assistant": "The likely cause is a many-to-many row multiplication: each invoice line is combined with each matching customer tag, producing multiple rows for the same invoice.\n\n`SELECT DISTINCT` may hide identical output rows, but it does not reliably restore one row per invoice—especially if line or tag columns differ—and can mask a flawed join.\n\nSafest next step: define the report’s intended grain as one row per invoice, then aggregate or pre-aggregate each one-to-many relationship separately before joining. For example:\n\n- Aggregate invoice lines by `invoice_id` for totals, counts, or other invoice-level fields.\n- Aggregate customer tags by customer or invoice into a single value, or use `EXISTS` if tags are only a filter.\n- Join those already one-row-per-invoice results to `invoices`.\n\nValidate the design with invoices having multiple lines and multiple tags, and confirm that invoice-level totals and row counts remain correct.",
+      "latency_ms": 11351,
+      "response_chars": 932,
+      "response_words": 141,
+      "token_usage": {
+        "input_tokens": 13229,
+        "cached_input_tokens": 8960,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 189,
+        "reasoning_output_tokens": 0
+      },
+      "tool_call_count": 0
+    }
+  ]
+}

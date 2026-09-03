@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a06515-4513-7bd1-88bc-95c9b30a6d60"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"We cannot responsibly certify it as production ready. Unit tests and static checks pass, but the live production/API path and other production-critical areas were not validated. It should be treated as evidence-limited readiness pending those checks."}}
+{"type":"turn.completed","usage":{"input_tokens":13276,"cached_input_tokens":11008,"cache_write_input_tokens":0,"output_tokens":48,"reasoning_output_tokens":0}}

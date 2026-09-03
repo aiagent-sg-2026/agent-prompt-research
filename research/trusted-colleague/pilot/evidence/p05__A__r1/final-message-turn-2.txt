@@ -1,0 +1,13 @@
+We should keep the demo within its validation boundary: I can’t add or claim a real backend, credentials, API calls, production data, or integrations yet.
+
+Instead, make the frontend backend-ready:
+
+- Define typed service interfaces for briefs, issue details, assistant prompts, and actions.
+- Implement mock services using local fictional fixtures and deterministic responses.
+- Keep all actions preview-only; no writes or external side effects.
+- Add clear loading, error, empty, and offline states so real services can later replace the mocks.
+- Preserve installable PWA behavior, responsive mobile layouts, cached static assets, and offline fallback.
+- Establish i18n infrastructure from the start, with English plus one secondary locale, translated labels, dates, numbers, currencies, and demo content.
+- Keep a visible “Demo mode — simulated data and actions” indicator.
+
+The next implementation slice should therefore be a backend-compatible static shell with mock service boundaries, rather than an actual backend.

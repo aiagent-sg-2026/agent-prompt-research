@@ -1,0 +1,14 @@
+Do not overwrite or delete historical finance rows by default. Use an append-only correction workflow:
+
+1. Preserve the original transaction unchanged.
+2. Create a linked reversal or correction transaction that offsets the erroneous entry.
+3. Insert the corrected transaction separately, referencing the original and recording:
+   - reason and correction type
+   - actor, timestamp, and approval
+   - source/reference ID
+   - effective and posting dates
+4. Enforce database constraints for balanced amounts, valid references, and idempotent correction keys.
+5. Reconcile the resulting ledger and downstream reports.
+6. Restrict any direct `UPDATE`/`DELETE` to a separately authorized, audited data-repair process—only after confirming schema, authorization, retention, backup, and reporting dependencies.
+
+Before implementation, establish the ledger model and correction policy. Without those, changing or removing the old row risks breaking auditability and producing inconsistent historical reports.

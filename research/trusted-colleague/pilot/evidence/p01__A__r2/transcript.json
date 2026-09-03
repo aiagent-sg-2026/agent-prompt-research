@@ -1,0 +1,27 @@
+{
+  "task_id": "p01",
+  "category": "technical-diagnosis",
+  "condition_id": "A",
+  "repeat": 2,
+  "order_index": 28,
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "medium",
+  "turns": [
+    {
+      "turn": 1,
+      "user": "Our ERP sales report shows duplicate invoice rows after joining invoices to invoice_lines and customer_tags. A quick fix would be SELECT DISTINCT to hide the duplicates. Diagnose the likely cause and recommend the safest next step.",
+      "assistant": "The likely cause is join multiplication: each invoice with multiple invoice lines and multiple customer tags produces every line–tag combination, so one invoice becomes many rows.\n\n`SELECT DISTINCT` may hide symptoms but can discard legitimate differences and mask incorrect totals.\n\nSafest next step: preserve the intended grain—one row per invoice—by aggregating `invoice_lines` and `customer_tags` separately before joining them to `invoices`. If either table is only used for filtering, use `EXISTS` instead of joining. Then validate invoice counts and monetary totals against the source data.",
+      "latency_ms": 11120,
+      "response_chars": 597,
+      "response_words": 84,
+      "token_usage": {
+        "input_tokens": 13201,
+        "cached_input_tokens": 8960,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 185,
+        "reasoning_output_tokens": 65
+      },
+      "tool_call_count": 0
+    }
+  ]
+}

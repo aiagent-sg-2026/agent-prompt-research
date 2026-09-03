@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a06520-27f1-76e0-890a-89e5b43123cf"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"The unit tests and static checks passing supports confidence in the tested code paths and code-quality constraints.\n\nIt does not establish that the live API or production path works. Deployment behavior, migrations, authentication and authorization, integrations, observability, performance, rollback, and production-like end-to-end behavior remain unverified.\n\nTherefore, the responsible conclusion is: the change has partial, evidence-limited validation—not production readiness certification."}}
+{"type":"turn.completed","usage":{"input_tokens":13218,"cached_input_tokens":8960,"cache_write_input_tokens":0,"output_tokens":86,"reasoning_output_tokens":0}}

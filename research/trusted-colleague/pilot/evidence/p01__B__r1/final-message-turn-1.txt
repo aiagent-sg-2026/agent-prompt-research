@@ -1,0 +1,21 @@
+The likely cause is join multiplication: each invoice line is combined with each customer tag, producing multiple rows per invoice—potentially `line_count × tag_count`.
+
+`SELECT DISTINCT` may hide duplicates but can also mask incorrect totals and discard legitimate differences. The safest next step is to confirm the report’s intended grain—one row per invoice—then aggregate or pre-aggregate `invoice_lines` and `customer_tags` separately before joining them to `invoices`.
+
+For example:
+
+```sql
+FROM invoices i
+LEFT JOIN (
+  SELECT invoice_id, ...
+  FROM invoice_lines
+  GROUP BY invoice_id
+) l ON l.invoice_id = i.id
+LEFT JOIN (
+  SELECT customer_id, ...
+  FROM customer_tags
+  GROUP BY customer_id
+) t ON t.customer_id = i.customer_id
+```
+
+Validate the revised query by checking that it returns at most one row per invoice and that financial totals remain correct.

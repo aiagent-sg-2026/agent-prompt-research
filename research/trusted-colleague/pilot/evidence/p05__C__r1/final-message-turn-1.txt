@@ -1,0 +1,29 @@
+Start with one end-to-end workflow: **AI-assisted purchase-order exception handling**.
+
+The demo should let a user:
+
+1. Open a responsive ERP dashboard showing mock purchase orders and alerts.
+2. Select an order with an exception, such as a delayed shipment or price variance.
+3. View a static AI explanation: “What happened,” “Business impact,” and “Recommended action.”
+4. Review the supporting mock records.
+5. Choose a simulated action—approve, request clarification, or escalate—and see the UI update locally.
+6. Undo or reset the scenario.
+
+Implementation scope:
+
+- Browser-first responsive interface, optimized for mobile as a PWA-style experience.
+- Static mock data bundled with the frontend.
+- Local-only state; no backend, API key, credentials, production data, or integrations.
+- One representative ERP domain, with navigation placeholders for Finance, Inventory, Procurement, and Sales.
+- Internationalization-ready copy structure, starting with English and a small language-switcher stub.
+- Explicit “Demo data” and “AI recommendation is simulated” labeling.
+
+Validation questions:
+
+- Can users understand the exception quickly?
+- Do the AI explanation and recommendation feel trustworthy?
+- Is the recommended action useful enough to justify AI assistance?
+- Can the workflow be completed comfortably on a phone?
+- Which business outcome matters most: time saved, fewer errors, or faster escalation?
+
+Success for this slice means users can complete the exception-handling flow without explanation and can clearly describe the value of the AI recommendation.

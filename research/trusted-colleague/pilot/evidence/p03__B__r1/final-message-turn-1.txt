@@ -1,0 +1,34 @@
+For historical finance transactions, avoid updating or deleting the original row. Use an append-only correction workflow:
+
+1. Preserve the original transaction unchanged.
+2. Create a reversing or adjustment transaction linked to the original via `corrects_transaction_id`.
+3. Insert the corrected transaction as a new row, with reason, actor, timestamp, approval, and source/reference metadata.
+4. Execute the reversal and replacement atomically in one database transaction.
+5. Enforce balancing, duplicate-prevention, authorization, and audit-log checks.
+6. Have downstream reports use the original plus correction entries, or a controlled “current view” that derives the corrected state.
+
+Conceptually:
+
+```sql
+BEGIN;
+
+-- Create an auditable reversal; do not delete the original.
+INSERT INTO finance_transactions (
+  amount, account_id, transaction_type,
+  corrects_transaction_id, reason, created_by
+)
+VALUES (..., :original_id, 'REVERSAL', :reason, :actor);
+
+-- Insert the corrected transaction.
+INSERT INTO finance_transactions (
+  amount, account_id, transaction_type,
+  corrects_transaction_id, reason, created_by
+)
+VALUES (..., :original_id, 'CORRECTION', :reason, :actor);
+
+-- Record approval and audit metadata.
+
+COMMIT;
+```
+
+Before implementation, confirm the ledger schema, reporting behavior, retention requirements, and approval authority. If the system legally requires amendments rather than reversal entries, apply that mechanism only through an authorized, auditable migration.

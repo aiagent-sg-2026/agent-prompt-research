@@ -1,0 +1,31 @@
+Simplify it around the most common decision: “Who is this, and what needs attention?”
+
+Proposed modal structure:
+
+1. Header
+   - Name
+   - Customer/party type
+   - Status or risk badge
+   - Close button
+
+2. Key summary
+   - Primary contact
+   - Location
+   - Credit status
+   - Outstanding balance or open invoices
+
+3. Next actions
+   - Contact
+   - View invoices
+   - Edit details
+   - More actions
+
+4. Activity
+   - Recent activity and relationship notes in a compact, collapsible section
+
+5. Details
+   - Addresses, tax identifiers, segmentation, and audit metadata behind “View full details”
+
+Keep compliance and audit information available, but move it out of the default mobile view. Use progressive disclosure, short labels, and a sticky action area so the modal remains useful without overwhelming users.
+
+Assumption: the default view should prioritize servicing and collections workflows; role-specific priorities may require adjusting the summary fields.

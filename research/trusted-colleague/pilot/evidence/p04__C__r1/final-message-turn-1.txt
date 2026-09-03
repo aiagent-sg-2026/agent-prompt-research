@@ -1,0 +1,9 @@
+Simplify it with a mobile-first, progressive-disclosure layout:
+
+- Header: name, party type, status, and one primary action.
+- Summary: key contact, location, relationship segment, credit status, and outstanding invoice total.
+- Activity: recent activity and relationship notes.
+- Actions: grouped into a compact action menu.
+- More details: collapsible sections for addresses, tax identifiers, full invoice list, and audit metadata.
+
+Keep compliance and audit information available, but move it out of the default view. Show only the most decision-relevant fields initially; the exact priority should be validated with the modal’s primary users.

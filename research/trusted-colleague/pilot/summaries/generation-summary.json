@@ -1,0 +1,53 @@
+{
+  "label": "PILOT GENERATION SUMMARY ONLY",
+  "protocol_hash": "dbe3c84e08553ab938c567f134bd4fff2c001b22128756e9acf0c9dec59dfedf",
+  "status": "GENERATION_COMPLETE",
+  "valid_cells": 48,
+  "expected_cells": 48,
+  "pending_cells": 0,
+  "invalid_attempts": 0,
+  "by_condition": {
+    "A": {
+      "valid_cells": 12,
+      "mean_response_chars": 1349.3333333333333,
+      "mean_response_words": 190.66666666666666,
+      "mean_latency_ms": 17586.666666666668,
+      "mean_input_tokens": 17698.5,
+      "mean_output_tokens": 300.9166666666667,
+      "tool_call_count": 0,
+      "multi_turn_completed": 4
+    },
+    "B": {
+      "valid_cells": 12,
+      "mean_response_chars": 1159.4166666666667,
+      "mean_response_words": 163.75,
+      "mean_latency_ms": 17125.583333333332,
+      "mean_input_tokens": 17813.333333333332,
+      "mean_output_tokens": 263.25,
+      "tool_call_count": 0,
+      "multi_turn_completed": 4
+    },
+    "C": {
+      "valid_cells": 12,
+      "mean_response_chars": 1195.1666666666667,
+      "mean_response_words": 166.75,
+      "mean_latency_ms": 22888.083333333332,
+      "mean_input_tokens": 17705.25,
+      "mean_output_tokens": 253.25,
+      "tool_call_count": 0,
+      "multi_turn_completed": 4
+    },
+    "D": {
+      "valid_cells": 12,
+      "mean_response_chars": 1120.4166666666667,
+      "mean_response_words": 158.08333333333334,
+      "mean_latency_ms": 20931.833333333332,
+      "mean_input_tokens": 17745.333333333332,
+      "mean_output_tokens": 270,
+      "tool_call_count": 0,
+      "multi_turn_completed": 4
+    }
+  },
+  "human_behavioral_findings": "PENDING EVALUATION",
+  "note": "Length/token/latency are descriptive generation diagnostics, not evidence that any TCM condition is better."
+}
