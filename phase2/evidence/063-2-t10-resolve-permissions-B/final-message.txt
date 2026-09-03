@@ -1,0 +1,7 @@
+Implemented `resolvePermissions` in [src/resolve-permissions.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/063-2-t10-resolve-permissions-B/src/resolve-permissions.js).
+
+- Global and scoped rules resolve with scoped specificity.
+- Deny takes precedence at equal specificity.
+- Validation, ordering, immutability, and default-deny behavior preserved.
+- Tests: `1 passed, 0 failed`
+- Scope: only `src/resolve-permissions.js` changed.

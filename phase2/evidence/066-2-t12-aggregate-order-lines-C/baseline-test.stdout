@@ -1,0 +1,72 @@
+
+> test
+> node --test
+
+✖ groups exact SKUs (1.167629ms)
+✖ retains first unit price (0.135542ms)
+✔ supports zero quantities and empty input (0.427918ms)
+✔ does not mutate lines (0.066167ms)
+✔ validates records (0.349668ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 3
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 37.650714
+
+✖ failing tests:
+
+test at test/target.test.js:3:1
+✖ groups exact SKUs (1.167629ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      {
+        quantity: 5,
+        sku: 'a',
+  +     totalCents: 35,
+  +     unitCents: 7
+  -     totalCents: 25,
+  -     unitCents: 5
+      },
+      {
+        quantity: 1,
+        sku: 'b',
+        totalCents: 9,
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/066-2-t12-aggregate-order-lines-C/test/target.test.js:3:37)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { sku: 'a', quantity: 5, unitCents: 7, totalCents: 35 }, { sku: 'b', quantity: 1, unitCents: 9, totalCents: 9 } ],
+    expected: [ { sku: 'a', quantity: 5, unitCents: 5, totalCents: 25 }, { sku: 'b', quantity: 1, unitCents: 9, totalCents: 9 } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at test/target.test.js:4:1
+✖ retains first unit price (0.135542ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  99 !== 10
+  
+      at TestContext.<anonymous> (file:///srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/066-2-t12-aggregate-order-lines-C/test/target.test.js:4:44)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 99,
+    expected: 10,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

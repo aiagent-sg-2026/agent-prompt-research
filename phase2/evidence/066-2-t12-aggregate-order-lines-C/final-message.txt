@@ -1,0 +1,10 @@
+Implemented the contract in [src/aggregate-order-lines.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/066-2-t12-aggregate-order-lines-C/src/aggregate-order-lines.js).
+
+- Validates inputs and throws `TypeError` for invalid records.
+- Aggregates exact SKUs in first-seen order.
+- Retains each group’s first `unitCents`.
+- Calculates totals and avoids input mutation.
+- Handles empty input.
+
+Final tests: `npm test` — 1 passed, 0 failed.  
+Changed-file scope: only `src/aggregate-order-lines.js`.

@@ -1,0 +1,17 @@
+
+> test
+> node --test
+
+✔ accepts query string forms (0.769544ms)
+✔ accepts URLSearchParams and first repeated value (0.077708ms)
+✔ clamps page and limit (0.082251ms)
+✔ uses defaults for invalid values (0.06725ms)
+✔ validates input and does not mutate params (0.226209ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33.453533

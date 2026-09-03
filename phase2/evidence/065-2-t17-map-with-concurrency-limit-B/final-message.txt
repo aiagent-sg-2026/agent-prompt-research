@@ -1,0 +1,9 @@
+Implemented the canonical contract in [src/map-with-concurrency-limit.js](/srv/agent-workstation/workspaces/agent-prompt-research/phase2/runs/065-2-t17-map-with-concurrency-limit-B/src/map-with-concurrency-limit.js).
+
+Evidence:
+
+- `npm test`: 1 test file passed, 0 failures.
+- Strict concurrency cap corrected to `limit`.
+- Validation, ordered results, mapper errors, and non-mutation preserved.
+- `git diff --check`: passed.
+- Scope: only the allowed target file changed; no evaluator-owned files modified.

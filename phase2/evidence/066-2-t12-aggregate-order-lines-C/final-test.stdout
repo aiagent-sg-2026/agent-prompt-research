@@ -1,0 +1,17 @@
+
+> test
+> node --test
+
+✔ groups exact SKUs (0.744086ms)
+✔ retains first unit price (0.075958ms)
+✔ supports zero quantities and empty input (0.055959ms)
+✔ does not mutate lines (0.062417ms)
+✔ validates records (0.227126ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33.350199
